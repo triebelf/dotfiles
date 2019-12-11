@@ -195,75 +195,73 @@ kitty: &kitty
   primary:
     background: '0x000000'
     foreground: '0xdddddd'
-
+  cursor:
+    text: '0x000000'
+    cursor: '0x00ff00'
   normal:
-    black:   '0x000000'
-    red:     '0xcc0403'
-    green:   '0x19cb00'
-    yellow:  '0xcecb00'
-    blue:    '0x0d73cc'
+    black: '0x000000'
+    red: '0xcc0403'
+    green: '0x19cb00'
+    yellow: '0xcecb00'
+    blue: '0x0d73cc'
     magenta: '0xcb1ed1'
-    cyan:    '0x0dcdcd'
-    white:   '0xdddddd'
-
+    cyan: '0x0dcdcd'
+    white: '0xdddddd'
   bright:
-    black:   '0x767676'
-    red:     '0xf2201f'
-    green:   '0x23fd00'
-    yellow:  '0xfffd00'
-    blue:    '0x1a8fff'
+    black: '0x767676'
+    red: '0xf2201f'
+    green: '0x23fd00'
+    yellow: '0xfffd00'
+    blue: '0x1a8fff'
     magenta: '0xfd28ff'
-    cyan:    '0x14ffff'
-    white:   '0xffffff'
+    cyan: '0x14ffff'
+    white: '0xffffff'
 
 terminal_app: &terminal_app
   primary:
     background: '0x000000'
     foreground: '0xb6b6b6'
-
   normal:
-    black:   '0x000000'
-    red:     '0x990000'
-    green:   '0x00a600'
-    yellow:  '0x999900'
-    blue:    '0x0000b2'
+    black: '0x000000'
+    red: '0x990000'
+    green: '0x00a600'
+    yellow: '0x999900'
+    blue: '0x0000b2'
     magenta: '0xb200b2'
-    cyan:    '0x00a6b2'
-    white:   '0xbfbfbf'
-
+    cyan: '0x00a6b2'
+    white: '0xbfbfbf'
   bright:
-    black:   '0x666666'
-    red:     '0xe50000'
-    green:   '0x00d900'
-    yellow:  '0xe5e500'
-    blue:    '0x0000ff'
+    black: '0x666666'
+    red: '0xe50000'
+    green: '0x00d900'
+    yellow: '0xe5e500'
+    blue: '0x0000ff'
     magenta: '0xe500e5'
-    cyan:    '0x00e5e5'
-    white:   '0xe5e5e5'
+    cyan: '0x00e5e5'
+    white: '0xe5e5e5'
 
 xterm: &xterm
-   primary:
-     background: '0x000000'
-     foreground: '0xffffff'
-   normal:
-     black:   '0x000000'
-     red:     '0xcd0000'
-     green:   '0x00cd00'
-     yellow:  '0xcdcd00'
-     blue:    '0x0000ee'
-     magenta: '0xcd00cd'
-     cyan:    '0x00cdcd'
-     white:   '0xe5e5e5'
-
-   bright:
-     black:   '0x7f7f7f'
-     red:     '0xff0000'
-     green:   '0x00ff00'
-     yellow:  '0xffff00'
-     blue:    '0x5c5cff'
-     magenta: '0xff00ff'
-     cyan:    '0x00ffff'
-     white:   '0xffffff'
+  primary:
+    background: '0x000000'
+    foreground: '0xffffff'
+  normal:
+    black: '0x000000'
+    red: '0xcd0000'
+    green: '0x00cd00'
+    yellow: '0xcdcd00'
+    blue: '0x0000ee'
+    magenta: '0xcd00cd'
+    cyan: '0x00cdcd'
+    white: '0xe5e5e5'
+  bright:
+    black: '0x7f7f7f'
+    red: '0xff0000'
+    green: '0x00ff00'
+    yellow: '0xffff00'
+    blue: '0x5c5cff'
+    magenta: '0xff00ff'
+    cyan: '0x00ffff'
+    white: '0xffffff'
 
 colors: *kitty
 
@@ -315,7 +313,7 @@ cursor:
   #   - ▇ Block
   #   - _ Underline
   #   - | Beam
-  style: Beam
+  style: Block
 
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
