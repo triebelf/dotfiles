@@ -28,3 +28,8 @@ set updatetime=100
 let g:ale_echo_msg_format='[%linter%] [%severity%] %code% %s'
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+" mergetool configuration
+let g:mergetool_layout = 'bmr'
+" possible values: 'local' (default), 'remote', 'base'
+let g:mergetool_prefer_revision = 'local'

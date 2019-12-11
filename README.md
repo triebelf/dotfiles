@@ -1,7 +1,7 @@
 # Simple collection of my dotfiles
 
 ## alacritty
-* Fira Code font
+* Source Code Pro font
 
 ## tmux
 * urlview

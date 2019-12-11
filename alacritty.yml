@@ -184,115 +184,45 @@ font:
   #
   # This is a global setting and will require a log out or restart to take
   # effect.
-  #use_thin_strokes: true
+  # use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
-#draw_bold_text_with_bright_colors: true
+draw_bold_text_with_bright_colors: false
 
-schemes:
-
-kitty: &kitty
+# Base16 Solarized Dark - alacritty color config
+# Ethan Schoonover (modified by aramisgithub)
+colors:
+  # Default colors
   primary:
-    background: '0x000000'
-    foreground: '0xdddddd'
+    background: '0x002b36'
+    foreground: '0x93a1a1'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x000000'
-    cursor: '0x00ff00'
-  normal:
-    black: '0x000000'
-    red: '0xcc0403'
-    green: '0x19cb00'
-    yellow: '0xcecb00'
-    blue: '0x0d73cc'
-    magenta: '0xcb1ed1'
-    cyan: '0x0dcdcd'
-    white: '0xdddddd'
-  bright:
-    black: '0x767676'
-    red: '0xf2201f'
-    green: '0x23fd00'
-    yellow: '0xfffd00'
-    blue: '0x1a8fff'
-    magenta: '0xfd28ff'
-    cyan: '0x14ffff'
-    white: '0xffffff'
+    text: '0x002b36'
+    cursor: '0x93a1a1'
 
-terminal_app: &terminal_app
-  primary:
-    background: '0x000000'
-    foreground: '0xb6b6b6'
-  cursor:
-    text: '0x000000'
-    cursor: '0x00ff00'
+  # Normal colors
   normal:
-    black: '0x000000'
-    red: '0x990000'
-    green: '0x00a600'
-    yellow: '0x999900'
-    blue: '0x0000b2'
-    magenta: '0xb200b2'
-    cyan: '0x00a6b2'
-    white: '0xbfbfbf'
-  bright:
-    black: '0x666666'
-    red: '0xe50000'
-    green: '0x00d900'
-    yellow: '0xe5e500'
-    blue: '0x0000ff'
-    magenta: '0xe500e5'
-    cyan: '0x00e5e5'
-    white: '0xe5e5e5'
+    black: '0x002b36'
+    red: '0xdc322f'
+    green: '0x859900'
+    yellow: '0xb58900'
+    blue: '0x268bd2'
+    magenta: '0x6c71c4'
+    cyan: '0x2aa198'
+    white: '0x93a1a1'
 
-xterm: &xterm
-  primary:
-    background: '0x000000'
-    foreground: '0xffffff'
-  cursor:
-    text: '0x000000'
-    cursor: '0x00ff00'
-  normal:
-    black: '0x000000'
-    red: '0xcd0000'
-    green: '0x00cd00'
-    yellow: '0xcdcd00'
-    blue: '0x0000ee'
-    magenta: '0xcd00cd'
-    cyan: '0x00cdcd'
-    white: '0xe5e5e5'
+  # Bright colors
   bright:
-    black: '0x7f7f7f'
-    red: '0xff0000'
-    green: '0x00ff00'
-    yellow: '0xffff00'
-    blue: '0x5c5cff'
-    magenta: '0xff00ff'
-    cyan: '0x00ffff'
-    white: '0xffffff'
-
-gruvbox: &gruvbox
-  primary:
-    background: '0xfbf1c7'
-    foreground: '0x3c3836'
-  normal:
-    black: '0xfbf1c7'
-    red: '0xcc241d'
-    green: '0x98971a'
-    yellow: '0xd79921'
-    blue: '0x458588'
-    magenta: '0xb16286'
-    cyan: '0x689d6a'
-    white: '0x7c6f64'
-  bright:
-    black: '0x928374'
-    red: '0x9d0006'
-    green: '0x79740e'
-    yellow: '0xb57614'
-    blue: '0x076678'
-    magenta: '0x8f3f71'
-    cyan: '0x427b58'
-    white: '0x3c3836'
-
-colors: *kitty
+    black: '0x657b83'
+    red: '0xcb4b16'
+    green: '0x073642'
+    yellow: '0x586e75'
+    blue: '0x839496'
+    magenta: '0xeee8d5'
+    cyan: '0xd33682'
+    white: '0xfdf6e3'
 
 # Visual Bell
 #
