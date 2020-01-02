@@ -1,23 +1,23 @@
-[include]
-    path = ~/.gitlocal
 [core]
     editor = vim
     ignorecase = false
     whitespace = trailing-space,tab-in-indent,space-before-tab
+[color]
+    ui = auto
+[diff]
+    noprefix = true
+    wordRegex = "[^[:space:].,;]+"
 [apply]
     whitespace = fix
 [pull]
     ff = only
-[commit]
-    template = ~/.gitmessage
 [push]
     default = simple
-[diff]
-    noprefix = true
-    wordRegex = "[^[:space:].,;]+"
 [branch]
     autosetupmerge = always
     autosetuprebase = always
+[rebase]
+    abbreviateCommands = true
 [merge]
     tool = vim_mergetool
     conflictstyle = diff3
@@ -25,5 +25,7 @@
     cmd = vim -f -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
     trustExitCode = true
     prompt = false
-[color]
-    ui = auto
+[commit]
+    template = ~/.gitmessage
+[include]
+    path = ~/.gitlocal

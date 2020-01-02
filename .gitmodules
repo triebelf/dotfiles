@@ -14,10 +14,6 @@
 	path = .vim/pack/config/start/vim-dim
 	url = https://github.com/jeffkreeftmeijer/vim-dim
 	branch = master
-[submodule ".vim/pack/config/start/vim-gitgutter"]
-	path = .vim/pack/config/start/vim-gitgutter
-	url = https://github.com/airblade/vim-gitgutter
-	branch = master
 [submodule ".vim/pack/config/start/vim-sensible"]
 	path = .vim/pack/config/start/vim-sensible
 	url = https://github.com/tpope/vim-sensible
