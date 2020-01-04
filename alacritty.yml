@@ -186,41 +186,78 @@ font:
   # effect.
   # use_thin_strokes: true
 
-#COLOR
-# Base16 Cupertino - alacritty color config
-# Defman21
-colors:
-  # Default colors
-  primary:
-    background: '0xffffff'
-    foreground: '0x404040'
+schemes:
+  # Base16 Google Light - alacritty color config
+  # Seth Wright (http://sethawright.com)
+  light: &light
+    # Default colors
+    primary:
+      background: '0xffffff'
+      foreground: '0x373b41'
 
-  # Colors the cursor will use if `custom_cursor_colors` is true
-  cursor:
-    text: '0xffffff'
-    cursor: '0x404040'
+    # Colors the cursor will use if `custom_cursor_colors` is true
+    cursor:
+      text: '0xffffff'
+      cursor: '0x373b41'
 
-  # Normal colors
-  normal:
-    black:   '0xffffff'
-    red:     '0xc41a15'
-    green:   '0x007400'
-    yellow:  '0x826b28'
-    blue:    '0x0000ff'
-    magenta: '0xa90d91'
-    cyan:    '0x318495'
-    white:   '0x404040'
+    # Normal colors
+    normal:
+      black: '0xffffff'
+      red: '0xcc342b'
+      green: '0x198844'
+      yellow: '0xfba922'
+      blue: '0x3971ed'
+      magenta: '0xa36ac7'
+      cyan: '0x3971ed'
+      white: '0x373b41'
 
-  # Bright colors
-  bright:
-    black:   '0x808080'
-    red:     '0xeb8500'
-    green:   '0xc0c0c0'
-    yellow:  '0xc0c0c0'
-    blue:    '0x808080'
-    magenta: '0x404040'
-    cyan:    '0x826b28'
-    white:   '0x5e5e5e'
+    # Bright colors
+    bright:
+      black: '0xb4b7b4'
+      red: '0xf96a38'
+      green: '0xe0e0e0'
+      yellow: '0xc5c8c6'
+      blue: '0x969896'
+      magenta: '0x282a2e'
+      cyan: '0x3971ed'
+      white: '0x1d1f21'
+
+  # Base16 Brewer - alacritty color config
+  # Timothée Poisot (http://github.com/tpoisot)
+  dark: &dark
+    # Default colors
+    primary:
+      background: '0x0c0d0e'
+      foreground: '0xb7b8b9'
+
+    # Colors the cursor will use if `custom_cursor_colors` is true
+    cursor:
+      text: '0x0c0d0e'
+      cursor: '0xb7b8b9'
+
+    # Normal colors
+    normal:
+      black: '0x0c0d0e'
+      red: '0xe31a1c'
+      green: '0x31a354'
+      yellow: '0xdca060'
+      blue: '0x3182bd'
+      magenta: '0x756bb1'
+      cyan: '0x80b1d3'
+      white: '0xb7b8b9'
+
+    # Bright colors
+    bright:
+      black: '0x737475'
+      red: '0xe6550d'
+      green: '0x2e2f30'
+      yellow: '0x515253'
+      blue: '0x959697'
+      magenta: '0xdadbdc'
+      cyan: '0xb15928'
+      white: '0xfcfdfe'
+
+colors: *dark
 
 draw_bold_text_with_bright_colors: false
 
