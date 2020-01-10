@@ -198,7 +198,7 @@ schemes:
     # Colors the cursor will use if `custom_cursor_colors` is true
     cursor:
       text: '0xffffff'
-      cursor: '0x373b41'
+      cursor: '0x00ff00'
 
     # Normal colors
     normal:
@@ -232,8 +232,8 @@ schemes:
 
     # Colors the cursor will use if `custom_cursor_colors` is true
     cursor:
-      text: '0x0c0d0e'
-      cursor: '0xb7b8b9'
+      text: '0xffffff'
+      cursor: '0x00ff00'
 
     # Normal colors
     normal:
@@ -257,7 +257,7 @@ schemes:
       cyan: '0xb15928'
       white: '0xfcfdfe'
 
-colors: *dark
+colors: *light
 
 draw_bold_text_with_bright_colors: false
 
