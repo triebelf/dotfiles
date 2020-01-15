@@ -26,3 +26,7 @@
 	path = .vim/pack/config/start/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot
 	branch = master
+[submodule ".vim/pack/config/start/YouCompleteMe"]
+	path = .vim/pack/config/start/YouCompleteMe
+	url = https://github.com/ycm-core/YouCompleteMe
+	branch = master

@@ -16,14 +16,11 @@ set hlsearch
 
 " all color values are set by the terminal theme (requires vim-dim plugin)
 " TODO set this depending on terminal color scheme
-" set background=dark
+set background=dark
 colorscheme dim
 
 " accurate but slow syntax highlighting
 autocmd BufEnter * :syntax sync fromstart
-
-" gitgutter plugin configuration
-set updatetime=100
 
 " ALE plugin configuration
 function! AutodetectPythonLinter()
