@@ -30,3 +30,7 @@
 	path = .vim/pack/config/start/YouCompleteMe
 	url = https://github.com/ycm-core/YouCompleteMe
 	branch = master
+[submodule ".vim/pack/config/start/indentpython.vim"]
+	path = .vim/pack/config/start/indentpython.vim
+	url = https://github.com/vim-scripts/indentpython.vim.git
+	branch = master

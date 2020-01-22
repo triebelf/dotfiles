@@ -8,7 +8,10 @@ set clipboard^=unnamed,unnamedplus
 set mouse=a
 
 " use 4 spaces for tabs
-set tabstop=4 shiftwidth=4 expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
 
 set diffopt+=iwhite
 set ic
@@ -16,13 +19,20 @@ set hlsearch
 
 " all color values are set by the terminal theme (requires vim-dim plugin)
 " TODO set this depending on terminal color scheme
-set background=dark
+set background=light
 colorscheme dim
 
 " accurate but slow syntax highlighting
 autocmd BufEnter * :syntax sync fromstart
 
-" ALE plugin configuration
+" comma is the leader key
+let mapleader=","
+
+" [plugin] YouCompleteMe
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" [plugin] ALE
 function! AutodetectPythonLinter()
     " Check shebang and if python3 is found, use a python3 linter.
     " Otherwise fallback to python2.
@@ -42,7 +52,7 @@ let g:ale_echo_msg_format='[%linter%] [%severity%] %code% %s'
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
-" mergetool configuration
+" [plugin] mergetool
 let g:mergetool_layout = 'bmr'
 " possible values: 'local' (default), 'remote', 'base'
 let g:mergetool_prefer_revision = 'local'
