@@ -18,7 +18,6 @@ set ic
 set hlsearch
 
 " all color values are set by the terminal theme (requires vim-dim plugin)
-" TODO set this depending on terminal color scheme
 set background=light
 colorscheme dim
 
@@ -30,7 +29,11 @@ let mapleader=","
 
 " [plugin] YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map <leader>f  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map <leader>r  :YcmCompleter GoToReferences<CR>
+map <leader>g  :YcmCompleter GoTo<CR>
+map <leader>d  :YcmCompleter GetDoc<CR>
+map <leader>t  :YcmCompleter GetType<CR>
 
 " [plugin] ALE
 function! AutodetectPythonLinter()
@@ -51,8 +54,3 @@ let g:ale_python_pylint_options = '--disable=invalid-name,missing-docstring'
 let g:ale_echo_msg_format='[%linter%] [%severity%] %code% %s'
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
-" [plugin] mergetool
-let g:mergetool_layout = 'bmr'
-" possible values: 'local' (default), 'remote', 'base'
-let g:mergetool_prefer_revision = 'local'
