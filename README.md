@@ -9,6 +9,3 @@
 
 ## vim
 * some of the plugins have external dependencies
-* useful keyboard shortcuts
-    * ,g  go to definition else declaration
-    * C-^ go back to last open file

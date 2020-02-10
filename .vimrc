@@ -31,6 +31,7 @@ let mapleader=","
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>f  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 map <leader>r  :YcmCompleter GoToReferences<CR>
+" hint: C-^ go back to last open file
 map <leader>g  :YcmCompleter GoTo<CR>
 map <leader>d  :YcmCompleter GetDoc<CR>
 map <leader>t  :YcmCompleter GetType<CR>
