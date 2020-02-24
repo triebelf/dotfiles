@@ -34,3 +34,7 @@
 	path = .vim/pack/config/start/indentpython.vim
 	url = https://github.com/vim-scripts/indentpython.vim.git
 	branch = master
+[submodule ".vim/pack/config/start/nerdtree"]
+        path = .vim/pack/config/start/nerdtree
+        url = https://github.com/preservim/nerdtree.git
+        branch = master

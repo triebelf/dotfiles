@@ -11,8 +11,8 @@ colors:
     background: '0xf8f8f8'
     foreground: '0x383838'
   cursor:
-    text: '0xf8f8f8'
-    cursor: '0x383838'
+    text: '0x000000'
+    cursor: '0x00FF00'
   normal:
     black:   '0xf8f8f8'
     red:     '0xab4642'
