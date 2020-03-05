@@ -1,24 +1,28 @@
 [core]
     editor = vim
-    ignorecase = false
+    # detect whitespace problems
     whitespace = trailing-space,tab-in-indent,space-before-tab
-[color]
-    ui = auto
 [diff]
+    # don't show source or destination prefix in git diff
     noprefix = true
+    # characters to ignore in word diff mode
     wordRegex = "[^[:space:].,;]+"
 [apply]
+    # strip whitespace
     whitespace = fix
 [pull]
+    # don't create merge nodes during git pull
     ff = only
-[push]
-    default = simple
 [branch]
+    # always create new tracking branches
     autosetupmerge = always
+    # rebase instead of merge when pulling
     autosetuprebase = always
 [rebase]
+    # short commands in rebase editor
     abbreviateCommands = true
 [merge]
+    # based on vim mergetool plugin
     tool = vim_mergetool
     conflictstyle = diff3
 [mergetool "vim_mergetool"]
@@ -28,4 +32,5 @@
 [commit]
     template = ~/.gitmessage
 [include]
+    # include local configuration with stuff like user and http certificates
     path = ~/.gitlocal

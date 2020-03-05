@@ -27,6 +27,16 @@ autocmd BufEnter * :syntax sync fromstart
 " comma is the leader key
 let mapleader=","
 
+" NERDtree like setup (commands :Ex :Sex :Vex)
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 20
+
+" [plugin] ctrlp
+let g:ctrlp_max_files=0
+
 " [plugin] YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>f  :YcmCompleter GoToDefinitionElseDeclaration<CR>
