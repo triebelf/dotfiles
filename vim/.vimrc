@@ -16,6 +16,7 @@ set expandtab
 set diffopt+=iwhite
 set ic
 set hlsearch
+set wildignore+=*.pyc
 
 " all color values are set by the terminal theme (requires vim-dim plugin)
 set background=light
@@ -33,6 +34,7 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 20
+let g:netrw_list_hide= '.*\.swp$,.*\.pyc'
 
 " [plugin] ctrlp
 let g:ctrlp_max_files=0

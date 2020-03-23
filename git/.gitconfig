@@ -34,3 +34,7 @@
 [include]
     # include local configuration with stuff like user and http certificates
     path = ~/.gitlocal
+[credential]
+    helper = cache --timeout=36000
+[push]
+    default = upstream
