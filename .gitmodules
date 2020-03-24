@@ -1,36 +1,39 @@
 [submodule ".vim/pack/config/start/ale"]
-	path = vim/.vim/pack/config/start/ale
-	url = https://github.com/dense-analysis/ale.git
-	branch = master
+    path = vim/.vim/pack/config/start/ale
+    url = https://github.com/dense-analysis/ale.git
+    branch = master
 [submodule ".vim/pack/config/start/ctrlp.vim"]
-	path = vim/.vim/pack/config/start/ctrlp.vim
-	url = https://github.com/ctrlpvim/ctrlp.vim.git
-	branch = master
+    path = vim/.vim/pack/config/start/ctrlp.vim
+    url = https://github.com/ctrlpvim/ctrlp.vim.git
+    branch = master
 [submodule ".vim/pack/config/start/vim-airline"]
-	path = vim/.vim/pack/config/start/vim-airline
-	url = https://github.com/vim-airline/vim-airline
-	branch = master
+    path = vim/.vim/pack/config/start/vim-airline
+    url = https://github.com/vim-airline/vim-airline
+    branch = master
 [submodule ".vim/pack/config/start/vim-dim"]
-	path = vim/.vim/pack/config/start/vim-dim
-	url = https://github.com/jeffkreeftmeijer/vim-dim
-	branch = master
+    path = vim/.vim/pack/config/start/vim-dim
+    url = https://github.com/jeffkreeftmeijer/vim-dim
+    branch = master
 [submodule ".vim/pack/config/start/vim-sensible"]
-	path = vim/.vim/pack/config/start/vim-sensible
-	url = https://github.com/tpope/vim-sensible
-	branch = master
+    path = vim/.vim/pack/config/start/vim-sensible
+    url = https://github.com/tpope/vim-sensible
+    branch = master
 [submodule ".vim/pack/config/start/vim-mergetool"]
-	path = vim/.vim/pack/config/start/vim-mergetool
-	url = https://github.com/samoshkin/vim-mergetool.git
-	branch = master
+    path = vim/.vim/pack/config/start/vim-mergetool
+    url = https://github.com/samoshkin/vim-mergetool.git
+    branch = master
 [submodule ".vim/pack/config/start/vim-polyglot"]
-	path = vim/.vim/pack/config/start/vim-polyglot
-	url = https://github.com/sheerun/vim-polyglot
-	branch = master
+    path = vim/.vim/pack/config/start/vim-polyglot
+    url = https://github.com/sheerun/vim-polyglot
+    branch = master
 [submodule ".vim/pack/config/start/YouCompleteMe"]
-	path = vim/.vim/pack/config/start/YouCompleteMe
-	url = https://github.com/ycm-core/YouCompleteMe
-	branch = master
+    path = vim/.vim/pack/config/start/YouCompleteMe
+    url = https://github.com/ycm-core/YouCompleteMe
+    branch = master
 [submodule ".vim/pack/config/start/indentpython.vim"]
-	path = vim/.vim/pack/config/start/indentpython.vim
-	url = https://github.com/vim-scripts/indentpython.vim.git
-	branch = master
+    path = vim/.vim/pack/config/start/indentpython.vim
+    url = https://github.com/vim-scripts/indentpython.vim.git
+    branch = master
+[submodule "vim/.vim/pack/config/start/vim-signify"]
+    path = vim/.vim/pack/config/start/vim-signify
+    url = https://github.com/mhinz/vim-signify

@@ -36,6 +36,9 @@ let g:netrw_altv = 1
 let g:netrw_winsize = 20
 let g:netrw_list_hide= '.*\.swp$,.*\.pyc'
 
+" [plugin] vim-signify: default updatetime 4000ms is not good for async update
+set updatetime=100
+
 " [plugin] ctrlp
 let g:ctrlp_max_files=0
 
