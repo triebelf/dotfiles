@@ -9,6 +9,8 @@
     noprefix = true
     # characters to ignore in word diff mode
     wordRegex = "[^[:space:].,;]+"
+    # https://link.springer.com/article/10.1007%2Fs10664-019-09772-z
+    algorithm = histogram
 [apply]
     # strip whitespace
     whitespace = fix

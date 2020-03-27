@@ -10,10 +10,6 @@
     path = vim/.vim/pack/config/start/vim-airline
     url = https://github.com/vim-airline/vim-airline
     branch = master
-[submodule ".vim/pack/config/start/vim-dim"]
-    path = vim/.vim/pack/config/start/vim-dim
-    url = https://github.com/jeffkreeftmeijer/vim-dim
-    branch = master
 [submodule ".vim/pack/config/start/vim-sensible"]
     path = vim/.vim/pack/config/start/vim-sensible
     url = https://github.com/tpope/vim-sensible
@@ -37,3 +33,6 @@
 [submodule "vim/.vim/pack/config/start/vim-signify"]
     path = vim/.vim/pack/config/start/vim-signify
     url = https://github.com/mhinz/vim-signify
+[submodule "vim/.vim/pack/config/start/awesome-vim-colorschemes"]
+    path = vim/.vim/pack/config/start/awesome-vim-colorschemes
+    url = https://github.com/rafi/awesome-vim-colorschemes
