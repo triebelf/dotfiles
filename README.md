@@ -9,3 +9,5 @@
 
 ## vim
 * some of the plugins have external dependencies
+* plugin YouCompleteMe on Windows+Cygwin doesn't work, because vim cannot find
+  Python3 installation, so switch to the "legacy-py2" branch
