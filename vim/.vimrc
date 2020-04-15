@@ -24,8 +24,9 @@ if exists('+termguicolors')
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     set termguicolors
 endif
-set background=dark
-colorscheme jellybeans
+" set background=dark
+" colorscheme jellybeans
+colorscheme PaperColor
 
 " accurate but slow syntax highlighting
 autocmd BufEnter * :syntax sync fromstart
@@ -57,21 +58,29 @@ map <leader>d  :YcmCompleter GetDoc<CR>
 map <leader>t  :YcmCompleter GetType<CR>
 
 " [plugin] ALE
-function! AutodetectPythonLinter()
-    " Check shebang and if python3 is found, use a python3 linter.
-    " Otherwise fallback to python2.
-    if getline(1) =~ "^#!.*python3"
-        let g:ycm_python_interpreter_path = '/usr/bin/python3'
-        let g:ycm_python_binary_path = '/usr/bin/python3'
-        let g:ale_python_pylint_executable = 'pylint3'
-    else
-        let g:ycm_python_interpreter_path = '/usr/bin/python'
-        let g:ycm_python_binary_path = '/usr/bin/python'
-        let g:ale_python_pylint_executable = 'pylint'
-    endif
-endfunction
-autocmd BufNewFile,BufRead,BufWrite * call AutodetectPythonLinter()
-let g:ale_python_pylint_options = '--disable=invalid-name,missing-docstring'
 let g:ale_echo_msg_format='[%linter%] [%severity%] %code% %s'
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+let g:ale_python_flake8_executable = 'python3'
+let g:ale_python_flake8_options = '-m flake8'
+
+let g:ale_python_pylint_executable = 'pylint3'
+let g:ale_python_pylint_options = '--disable=invalid-name,missing-docstring'
+
+let g:ale_python_pyflakes_executable = 'pyflakes3'
+
+" function! AutodetectPythonLinter()
+"     " Check shebang and if python3 is found, use a python3 linter.
+"     " Otherwise fallback to python2.
+"     if getline(1) =~ "^#!.*python3"
+"         let g:ycm_python_interpreter_path = '/usr/bin/python3'
+"         let g:ycm_python_binary_path = '/usr/bin/python3'
+"         let g:ale_python_pylint_executable = 'pylint3'
+"     else
+"         let g:ycm_python_interpreter_path = '/usr/bin/python'
+"         let g:ycm_python_binary_path = '/usr/bin/python'
+"         let g:ale_python_pylint_executable = 'pylint'
+"     endif
+" endfunction
+" autocmd BufNewFile,BufRead,BufWrite * call AutodetectPythonLinter()
