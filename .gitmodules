@@ -36,3 +36,6 @@
 [submodule "vim/.vim/pack/config/start/awesome-vim-colorschemes"]
     path = vim/.vim/pack/config/start/awesome-vim-colorschemes
     url = https://github.com/rafi/awesome-vim-colorschemes
+[submodule "vim/.vim/pack/config/start/vim-gutentags"]
+    path = vim/.vim/pack/config/start/vim-gutentags
+    url = https://github.com/ludovicchabant/vim-gutentags.git

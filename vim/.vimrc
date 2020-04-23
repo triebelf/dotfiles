@@ -1,5 +1,11 @@
+" Add to .vimrc to enable project-specific vimrc
+" exrc allows loading local executing local rc files.
+set exrc
+" secure disallows the use of :autocmd, shell and write commands in local .vimrc files.
+set secure
+
 " tell vim where to put swap files
-set dir=/tmp
+set directory=$HOME/.vim/tmp//
 
 " use system clipboard
 set clipboard^=unnamed,unnamedplus
@@ -48,8 +54,14 @@ set updatetime=100
 " [plugin] ctrlp
 let g:ctrlp_max_files=0
 
+" [plugin] gutentags
+let g:gutentags_cache_dir = $HOME .'/.cache/gutentags'
+
 " [plugin] YouCompleteMe
+let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_global_ycm_extra_conf = $HOME .'/.vim/.ycm_extra_conf.py'
+
 map <leader>f  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 map <leader>r  :YcmCompleter GoToReferences<CR>
 " hint: C-^ go back to last open file
@@ -70,17 +82,6 @@ let g:ale_python_pylint_options = '--disable=invalid-name,missing-docstring'
 
 let g:ale_python_pyflakes_executable = 'pyflakes3'
 
-" function! AutodetectPythonLinter()
-"     " Check shebang and if python3 is found, use a python3 linter.
-"     " Otherwise fallback to python2.
-"     if getline(1) =~ "^#!.*python3"
-"         let g:ycm_python_interpreter_path = '/usr/bin/python3'
-"         let g:ycm_python_binary_path = '/usr/bin/python3'
-"         let g:ale_python_pylint_executable = 'pylint3'
-"     else
-"         let g:ycm_python_interpreter_path = '/usr/bin/python'
-"         let g:ycm_python_binary_path = '/usr/bin/python'
-"         let g:ale_python_pylint_executable = 'pylint'
-"     endif
-" endfunction
-" autocmd BufNewFile,BufRead,BufWrite * call AutodetectPythonLinter()
+" in a new .vimrc in your project directory, add this:
+" let g:ale_c_clang_options="-I/path/to/your/project"
+" let g:ale_cpp_clang_options="-I/path/to/your/project"
