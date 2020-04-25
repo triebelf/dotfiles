@@ -39,3 +39,6 @@
 [submodule "vim/.vim/pack/config/start/vim-gutentags"]
     path = vim/.vim/pack/config/start/vim-gutentags
     url = https://github.com/ludovicchabant/vim-gutentags.git
+[submodule "vim/.vim/pack/config/start/vim-addon-local-vimrc"]
+    path = vim/.vim/pack/config/start/vim-addon-local-vimrc
+    url = https://github.com/marcweber/vim-addon-local-vimrc

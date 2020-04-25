@@ -1,9 +1,3 @@
-" Add to .vimrc to enable project-specific vimrc
-" exrc allows loading local executing local rc files.
-set exrc
-" secure disallows the use of :autocmd, shell and write commands in local .vimrc files.
-set secure
-
 " tell vim where to put swap files
 set directory=$HOME/.vim/tmp//
 
