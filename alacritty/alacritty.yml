@@ -6,3 +6,6 @@ scrolling:
   history: 0
 font:
   size: 9
+cursor:
+  style: Beam
+# ADD COLOR SCHEME HERE

@@ -24,9 +24,12 @@ if exists('+termguicolors')
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     set termguicolors
 endif
-" set background=dark
-" colorscheme jellybeans
-colorscheme PaperColor
+if $DARK_MODE == 1 " set by shell depending on sunset/sunrise
+    set background=dark
+    colorscheme jellybeans
+else
+    colorscheme PaperColor
+endif
 
 " accurate but slow syntax highlighting
 autocmd BufEnter * :syntax sync fromstart
