@@ -34,9 +34,6 @@ endif
 " accurate but slow syntax highlighting
 autocmd BufEnter * :syntax sync fromstart
 
-" comma is the leader key
-let mapleader=","
-
 " NERDtree like setup (commands :Ex :Sex :Vex)
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
@@ -53,18 +50,29 @@ let g:ctrlp_max_files=0
 
 " [plugin] gutentags
 let g:gutentags_cache_dir = $HOME .'/.cache/gutentags'
+let g:gutentags_generate_on_new = 1
+let g:gutentags_generate_on_missing = 1
+let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_empty_buffer = 0
+let g:gutentags_ctags_extra_args = [ '--tag-relative=yes', '--fields=+ailmnS' ]
 
 " [plugin] YouCompleteMe
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_global_ycm_extra_conf = $HOME .'/.vim/.ycm_extra_conf.py'
 
-map <leader>f  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-map <leader>r  :YcmCompleter GoToReferences<CR>
-" hint: C-^ go back to last open file
+" comma is the leader key
+let mapleader=","
+" use Ctrl-O and Ctrl-I to move back and forth
+map <leader>i  :YcmCompleter GoToInclude<CR>
+map <leader>n  :YcmCompleter GoToDeclaration<CR>
+map <leader>f  :YcmCompleter GoToDefinition<CR>
 map <leader>g  :YcmCompleter GoTo<CR>
-map <leader>d  :YcmCompleter GetDoc<CR>
+map <leader>s  :YcmCompleter GoToImprecise<CR>
+map <leader>r  :YcmCompleter GoToReferences<CR>
 map <leader>t  :YcmCompleter GetType<CR>
+map <leader>d  :YcmCompleter GetDoc<CR>
+map <leader>k  :YcmCompleter RestartServer<CR>
 
 " [plugin] ALE
 let g:ale_echo_msg_format='[%linter%] [%severity%] %code% %s'
