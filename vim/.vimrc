@@ -18,6 +18,19 @@ set ic
 set hlsearch
 set wildignore+=*.pyc
 
+" folding
+set foldmethod=indent
+set foldnestmax=3
+set foldlevel=2
+
+" NERDtree like setup (commands :Ex :Sex :Vex)
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 20
+let g:netrw_list_hide= '.*\.swp$,.*\.pyc'
+
 " try to enable true color support
 if exists('+termguicolors')
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -33,14 +46,6 @@ endif
 
 " accurate but slow syntax highlighting
 autocmd BufEnter * :syntax sync fromstart
-
-" NERDtree like setup (commands :Ex :Sex :Vex)
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_winsize = 20
-let g:netrw_list_hide= '.*\.swp$,.*\.pyc'
 
 " [plugin] vim-signify: default updatetime 4000ms is not good for async update
 set updatetime=100
@@ -60,6 +65,7 @@ let g:gutentags_ctags_extra_args = [ '--tag-relative=yes', '--fields=+ailmnS' ]
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_global_ycm_extra_conf = $HOME .'/.vim/.ycm_extra_conf.py'
+let g:ycm_auto_hover = ''
 
 " comma is the leader key
 let mapleader=","
@@ -71,7 +77,8 @@ map <leader>g  :YcmCompleter GoTo<CR>
 map <leader>s  :YcmCompleter GoToImprecise<CR>
 map <leader>r  :YcmCompleter GoToReferences<CR>
 map <leader>t  :YcmCompleter GetType<CR>
-map <leader>d  :YcmCompleter GetDoc<CR>
+" map <leader>d  :YcmCompleter GetDoc<CR>
+nmap <leader>d <plug>(YCMHover)
 map <leader>k  :YcmCompleter RestartServer<CR>
 
 " [plugin] ALE
