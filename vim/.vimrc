@@ -77,8 +77,8 @@ map <leader>g  :YcmCompleter GoTo<CR>
 map <leader>s  :YcmCompleter GoToImprecise<CR>
 map <leader>r  :YcmCompleter GoToReferences<CR>
 map <leader>t  :YcmCompleter GetType<CR>
-" map <leader>d  :YcmCompleter GetDoc<CR>
-nmap <leader>d <plug>(YCMHover)
+map <leader>d  :YcmCompleter GetDoc<CR>
+" nmap <leader>d <plug>(YCMHover)
 map <leader>k  :YcmCompleter RestartServer<CR>
 
 " [plugin] ALE
