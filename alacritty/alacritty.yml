@@ -5,7 +5,13 @@ window:
 scrolling:
   history: 0
 font:
-  size: 9
+  normal:
+    family: Iosevka
+  bold:
+    family: Iosevka
+  italic:
+    family: Iosevka
+  size: 10
 cursor:
   style: Beam
 # ADD COLOR SCHEME HERE
