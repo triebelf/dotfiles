@@ -41,6 +41,6 @@
     # include local configuration with stuff like user and http certificates
     path = ~/.gitlocal
 [credential]
-    helper = cache --timeout=36000
+    helper = cache --timeout=259200
 [url "https://github.com"]
     insteadOf = git://github.com
