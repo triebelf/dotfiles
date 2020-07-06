@@ -6,14 +6,19 @@ scrolling:
   history: 0
 font:
   normal:
-    family: Iosevka
+    family: Iosevka Term
+    style: Regular
   bold:
-    family: Iosevka
+    family: Iosevka Term
+    style: Bold
   italic:
-    family: Iosevka
-  size: 10
+    family: Iosevka Term
+    style: Italic
+  bold_italic:
+    family: Iosevka Term
+    style: Bold Italic
 cursor:
   style: Beam
 shell:
-  program: /bin/tmux
+  program: /usr/bin/tmux
 # ADD COLOR SCHEME HERE
