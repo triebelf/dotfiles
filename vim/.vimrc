@@ -26,7 +26,7 @@ set foldlevel=2
 " NERDtree like setup (commands :Ex :Sex :Vex)
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
+let g:netrw_browse_split = 1
 let g:netrw_altv = 1
 let g:netrw_winsize = 20
 let g:netrw_list_hide= '.*\.swp$,.*\.pyc'
@@ -50,8 +50,14 @@ autocmd BufEnter * :syntax sync fromstart
 " [plugin] vim-signify: default updatetime 4000ms is not good for async update
 set updatetime=100
 
+" [plugin] tagbar
+nnoremap <silent> <F9> :TagbarOpenAutoClose<CR>
+
 " [plugin] ctrlp
-let g:ctrlp_max_files=0
+let g:ctrlp_user_command = ['.git/', 'git ls-files -oc --exclude-standard %s']
+let g:ctrlp_open_multiple_files = '3vj'
+let g:ctrlp_use_caching = 0
+let g:ctrlp_by_filename = 1
 
 " [plugin] gutentags
 let g:gutentags_cache_dir = $HOME .'/.cache/gutentags'
@@ -60,7 +66,6 @@ let g:gutentags_ctags_extra_args = [ '--tag-relative=yes', '--fields=+ailmnS' ]
 " [plugin] YouCompleteMe
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_global_ycm_extra_conf = $HOME .'/.vim/.ycm_extra_conf.py'
 let g:ycm_auto_hover = ''
 
 " comma is the leader key
