@@ -55,8 +55,6 @@ nnoremap <silent> <F9> :TagbarOpenAutoClose<CR>
 
 " [plugin] ctrlp
 let g:ctrlp_user_command = ['.git/', 'git ls-files -oc --exclude-standard %s']
-let g:ctrlp_open_multiple_files = '3vj'
-let g:ctrlp_use_caching = 0
 let g:ctrlp_by_filename = 1
 
 " [plugin] gutentags
