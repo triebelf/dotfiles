@@ -1,50 +1,50 @@
-[submodule ".vim/pack/config/start/ale"]
+[submodule "vim-ale"]
     path = vim/.vim/pack/config/start/ale
     url = https://github.com/dense-analysis/ale.git
     branch = master
-[submodule ".vim/pack/config/start/ctrlp.vim"]
+[submodule "vim-ctrlp"]
     path = vim/.vim/pack/config/start/ctrlp.vim
     url = https://github.com/ctrlpvim/ctrlp.vim.git
     branch = master
-[submodule ".vim/pack/config/start/vim-airline"]
+[submodule "vim-airline"]
     path = vim/.vim/pack/config/start/vim-airline
     url = https://github.com/vim-airline/vim-airline
     branch = master
-[submodule ".vim/pack/config/start/vim-sensible"]
+[submodule "vim-sensible"]
     path = vim/.vim/pack/config/start/vim-sensible
     url = https://github.com/tpope/vim-sensible
     branch = master
-[submodule ".vim/pack/config/start/vim-mergetool"]
+[submodule "vim-mergetool"]
     path = vim/.vim/pack/config/start/vim-mergetool
     url = https://github.com/samoshkin/vim-mergetool.git
     branch = master
-[submodule ".vim/pack/config/start/vim-polyglot"]
+[submodule "vim-polyglot"]
     path = vim/.vim/pack/config/start/vim-polyglot
     url = https://github.com/sheerun/vim-polyglot
     branch = master
-[submodule ".vim/pack/config/start/YouCompleteMe"]
+[submodule "vim-YouCompleteMe"]
     path = vim/.vim/pack/config/start/YouCompleteMe
     url = https://github.com/ycm-core/YouCompleteMe
     branch = master
-[submodule ".vim/pack/config/start/indentpython.vim"]
+[submodule "vim-indentpython"]
     path = vim/.vim/pack/config/start/indentpython.vim
     url = https://github.com/vim-scripts/indentpython.vim.git
     branch = master
-[submodule "vim/.vim/pack/config/start/vim-signify"]
+[submodule "vim-signify"]
     path = vim/.vim/pack/config/start/vim-signify
     url = https://github.com/mhinz/vim-signify
-[submodule "vim/.vim/pack/config/start/awesome-vim-colorschemes"]
+[submodule "awesome-vim-colorschemes"]
     path = vim/.vim/pack/config/start/awesome-vim-colorschemes
     url = https://github.com/rafi/awesome-vim-colorschemes
-[submodule "vim/.vim/pack/config/start/vim-gutentags"]
+[submodule "vim-gutentags"]
     path = vim/.vim/pack/config/start/vim-gutentags
     url = https://github.com/ludovicchabant/vim-gutentags.git
-[submodule "vim/.vim/pack/config/start/vim-addon-local-vimrc"]
+[submodule "vim-addon-local-vimrc"]
     path = vim/.vim/pack/config/start/vim-addon-local-vimrc
     url = https://github.com/marcweber/vim-addon-local-vimrc
-[submodule "alacritty/base16-alacritty"]
+[submodule "base16-alacritty"]
     path = alacritty/base16-alacritty
     url = https://github.com/aaron-williamson/base16-alacritty.git
-[submodule "vim/.vim/pack/config/start/tagbar"]
-	path = vim/.vim/pack/config/start/tagbar
-	url = https://github.com/majutsushi/tagbar.git
+[submodule "vim-tagbar"]
+    path = vim/.vim/pack/config/start/tagbar
+    url = https://github.com/majutsushi/tagbar.git
