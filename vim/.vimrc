@@ -5,7 +5,7 @@ set directory=$HOME/.vim/tmp//
 set clipboard^=unnamed,unnamedplus
 
 " enable mouse in all modes
-set mouse=a
+set mouse=""
 
 " use 4 spaces for tabs
 set tabstop=4
@@ -26,7 +26,7 @@ set foldlevel=2
 " NERDtree like setup (commands :Ex :Sex :Vex)
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
-let g:netrw_browse_split = 1
+let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 20
 let g:netrw_list_hide= '.*\.swp$,.*\.pyc'
@@ -54,8 +54,12 @@ set updatetime=100
 nnoremap <silent> <F9> :TagbarOpenAutoClose<CR>
 
 " [plugin] ctrlp
-let g:ctrlp_user_command = ['.git/', 'git ls-files -oc --exclude-standard %s']
 let g:ctrlp_by_filename = 1
+let g:ctrlp_lazy_update = 0
+let g:ctrlp_max_files = 0
+let g:ctrlp_open_new_file = 'v'
+let g:ctrlp_user_command = ['.git/', 'git ls-files -oc --exclude-standard %s']
+
 
 " [plugin] gutentags
 let g:gutentags_cache_dir = $HOME .'/.cache/gutentags'
