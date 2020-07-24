@@ -48,3 +48,6 @@
 [submodule "vim-tagbar"]
     path = vim/.vim/pack/config/start/tagbar
     url = https://github.com/majutsushi/tagbar.git
+[submodule "vim/.vim/pack/config/start/ctrlp-py-matcher"]
+    path = vim/.vim/pack/config/start/ctrlp-py-matcher
+    url = https://github.com/FelikZ/ctrlp-py-matcher.git
