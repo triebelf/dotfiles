@@ -11,6 +11,6 @@ fi
 cd ~/.dotfiles/alacritty || exit
 sed -i -e '/COLOR/q' alacritty.yml
 if [ "$DARK_MODE" = 0 ] ; then
-    cat base16-alacritty/colors/base16-mexico-light.yml >> alacritty.yml
+    cat base16-alacritty/colors/base16-edge-light.yml >> alacritty.yml
 fi
 cd - >/dev/null || exit
