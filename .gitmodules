@@ -22,10 +22,6 @@
     path = vim/.vim/pack/config/start/vim-polyglot
     url = https://github.com/sheerun/vim-polyglot
     branch = master
-[submodule "vim-YouCompleteMe"]
-    path = vim/.vim/pack/config/start/YouCompleteMe
-    url = https://github.com/ycm-core/YouCompleteMe
-    branch = master
 [submodule "vim-indentpython"]
     path = vim/.vim/pack/config/start/indentpython.vim
     url = https://github.com/vim-scripts/indentpython.vim.git
@@ -48,6 +44,6 @@
 [submodule "vim-tagbar"]
     path = vim/.vim/pack/config/start/tagbar
     url = https://github.com/majutsushi/tagbar.git
-[submodule "vim/.vim/pack/config/start/ctrlp-py-matcher"]
-    path = vim/.vim/pack/config/start/ctrlp-py-matcher
-    url = https://github.com/FelikZ/ctrlp-py-matcher.git
+[submodule "vim/.vim/pack/config/start/coc.nvim"]
+    path = vim/.vim/pack/config/start/coc.nvim
+    url = https://github.com/neoclide/coc.nvim.git
