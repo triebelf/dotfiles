@@ -1,0 +1,5 @@
+{
+    "coc.preferences.hoverTarget": "preview",
+    "clangd.path": "clangd-10",
+    "python.jediPath": "~/.local/lib/python3.6/site-packages"
+}

@@ -4,6 +4,9 @@ set directory=$HOME/.vim/tmp//
 " use system clipboard
 set clipboard^=unnamed,unnamedplus
 
+" comma is the leader key
+let mapleader=","
+
 " enable mouse in all modes
 set mouse=""
 
@@ -18,10 +21,16 @@ set ic
 set hlsearch
 set wildignore+=*.pyc
 
+" always show signcolumns
+set signcolumn=yes
+
+" faster updates
+set updatetime=100
+
 " folding
-set foldmethod=indent
-set foldnestmax=3
-set foldlevel=2
+" set foldmethod=indent
+" set foldnestmax=3
+" set foldlevel=2
 
 " NERDtree like setup (commands :Ex :Sex :Vex)
 let g:netrw_banner = 0
@@ -47,9 +56,6 @@ endif
 " accurate but slow syntax highlighting
 autocmd BufEnter * :syntax sync fromstart
 
-" [plugin] vim-signify: default updatetime 4000ms is not good for async update
-set updatetime=100
-
 " [plugin] tagbar
 nnoremap <silent> <F9> :TagbarOpenAutoClose<CR>
 
@@ -64,23 +70,42 @@ let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 let g:gutentags_cache_dir = $HOME .'/.cache/gutentags'
 let g:gutentags_ctags_extra_args = [ '--tag-relative=yes', '--fields=+ailmnS' ]
 
-" [plugin] YouCompleteMe
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_auto_hover = ''
+" [plugin] coc.nvim
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
 
-" comma is the leader key
-let mapleader=","
-" use Ctrl-O and Ctrl-I to move back and forth
-map <leader>i  :YcmCompleter GoToInclude<CR>
-map <leader>n  :YcmCompleter GoToDeclaration<CR>
-map <leader>f  :YcmCompleter GoToDefinition<CR>
-map <leader>g  :YcmCompleter GoTo<CR>
-map <leader>s  :YcmCompleter GoToImprecise<CR>
-map <leader>r  :YcmCompleter GoToReferences<CR>
-map <leader>t  :YcmCompleter GetType<CR>
-map <leader>d  :YcmCompleter GetDoc<CR>
-map <leader>k  :YcmCompleter RestartServer<CR>
+inoremap <silent><expr> <TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
+
+" use <c-space> for trigger completion
+inoremap <silent><expr> <NUL> coc#refresh()
+
+nmap <silent> <leader>g <Plug>(coc-definition)
+nmap <silent> <leader>t <Plug>(coc-type-definition)
+nmap <silent> <leader>i <Plug>(coc-implementation)
+nmap <silent> <leader>r <Plug>(coc-references)
+nmap <leader>n <Plug>(coc-rename)
+xmap <leader>f <Plug>(coc-format-selected)
+nmap <leader>f <Plug>(coc-format)
+xmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>c <Plug>(coc-codeaction)
+nmap <leader>q <Plug>(coc-fix-current)
+nmap <silent> <leader>k <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>j <Plug>(coc-diagnostic-next)
+nnoremap <silent> <leader>d :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 " [plugin] ALE
 let g:ale_echo_msg_format='[%linter%] [%severity%] %code% %s'
