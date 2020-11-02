@@ -56,6 +56,8 @@ endif
 " accurate but slow syntax highlighting
 autocmd BufEnter * :syntax sync fromstart
 
+set pastetoggle=<leader>p
+
 " [plugin] tagbar
 nnoremap <silent> <F9> :TagbarOpenAutoClose<CR>
 
