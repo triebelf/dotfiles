@@ -25,21 +25,28 @@
 [submodule "vim-signify"]
     path = vim/.vim/pack/config/start/vim-signify
     url = https://github.com/mhinz/vim-signify
+    branch = master
 [submodule "awesome-vim-colorschemes"]
     path = vim/.vim/pack/config/start/awesome-vim-colorschemes
     url = https://github.com/rafi/awesome-vim-colorschemes
+    branch = master
 [submodule "vim-gutentags"]
     path = vim/.vim/pack/config/start/vim-gutentags
     url = https://github.com/ludovicchabant/vim-gutentags.git
+    branch = master
 [submodule "vim-addon-local-vimrc"]
     path = vim/.vim/pack/config/start/vim-addon-local-vimrc
     url = https://github.com/marcweber/vim-addon-local-vimrc
+    branch = master
 [submodule "vim-tagbar"]
     path = vim/.vim/pack/config/start/tagbar
     url = https://github.com/majutsushi/tagbar.git
+    branch = master
 [submodule "vim/.vim/pack/config/start/coc.nvim"]
     path = vim/.vim/pack/config/start/coc.nvim
     url = https://github.com/neoclide/coc.nvim.git
+    branch = release
 [submodule "vim/.vim/pack/config/start/ctrlp-py-matcher"]
     path = vim/.vim/pack/config/start/ctrlp-py-matcher
     url = https://github.com/FelikZ/ctrlp-py-matcher.git
+    branch = master

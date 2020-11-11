@@ -1,8 +1,5 @@
 {
     "coc.preferences.extensionUpdateCheck": "daily",
-    "coc.preferences.hoverTarget": "preview",
-    "diagnostic.checkCurrentLine": true,
-    "diagnostic.messageTarget": "echo",
     "diagnostic.hintSign": "-",
     "diagnostic.infoSign": "›",
     "diagnostic.warningSign": "»",
