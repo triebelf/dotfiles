@@ -7,10 +7,3 @@ if [ "0700" -lt "$date" ] && [ "$date" -lt "1900" ] ; then
 else
     export DARK_MODE=1
 fi
-
-cd ~/.dotfiles/alacritty || exit
-sed -i -e '/COLOR/q' alacritty.yml
-if [ "$DARK_MODE" = 0 ] ; then
-    cat base16-alacritty/colors/base16-edge-light.yml >> alacritty.yml
-fi
-cd - >/dev/null || exit

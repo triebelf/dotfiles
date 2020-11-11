@@ -1,7 +1,3 @@
-[submodule "vim-ale"]
-    path = vim/.vim/pack/config/start/ale
-    url = https://github.com/dense-analysis/ale.git
-    branch = master
 [submodule "vim-ctrlp"]
     path = vim/.vim/pack/config/start/ctrlp.vim
     url = https://github.com/ctrlpvim/ctrlp.vim.git
@@ -38,9 +34,6 @@
 [submodule "vim-addon-local-vimrc"]
     path = vim/.vim/pack/config/start/vim-addon-local-vimrc
     url = https://github.com/marcweber/vim-addon-local-vimrc
-[submodule "base16-alacritty"]
-    path = alacritty/base16-alacritty
-    url = https://github.com/aaron-williamson/base16-alacritty.git
 [submodule "vim-tagbar"]
     path = vim/.vim/pack/config/start/tagbar
     url = https://github.com/majutsushi/tagbar.git

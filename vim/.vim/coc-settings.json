@@ -1,6 +1,17 @@
 {
     "coc.preferences.extensionUpdateCheck": "daily",
     "coc.preferences.hoverTarget": "preview",
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.messageTarget": "echo",
+    "diagnostic.hintSign": "-",
+    "diagnostic.infoSign": "›",
+    "diagnostic.warningSign": "»",
+    "diagnostic.errorSign": "X",
     "clangd.path": "clangd-10",
-    "python.jediPath": "~/.local/lib/python3.6/site-packages"
+    "python.jediEnabled": false,
+    "http.proxy": "http://localhost:3128",
+    "http.proxyStrictSSL": false,
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.flake8Enabled": true
 }

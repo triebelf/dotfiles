@@ -110,28 +110,6 @@ function! s:show_documentation()
   endif
 endfunction
 
-" [plugin] ALE
-let g:ale_echo_msg_format='[%linter%] [%severity%] %code% %s'
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
-function! AutodetectPythonLinter()
-    " Check shebang and if python3 is found, use a python3 linter.
-    " Otherwise fallback to python2.
-    if getline(1) =~ "^#!.*python3"
-        let g:ale_python_flake8_executable = 'python3'
-        let g:ale_python_pylint_executable = 'pylint3'
-        let g:ale_python_pyflakes_executable = 'pyflakes3'
-    else
-        let g:ale_python_flake8_executable = 'python'
-        let g:ale_python_pylint_executable = 'pylint'
-        let g:ale_python_pyflakes_executable = 'pyflakes'
-    endif
-    let g:ale_python_flake8_options = '-m flake8'
-    let g:ale_python_pylint_options = '--disable=invalid-name,missing-docstring'
-endfunction
-autocmd BufNewFile,BufRead,BufWrite * call AutodetectPythonLinter()
-
 " [plugin] vim-addon-local-vimrc
 " in a new .vimrc in your project directory, add this:
 " let g:ale_c_clang_options="-I/path/to/your/project"
