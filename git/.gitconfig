@@ -2,6 +2,7 @@
     editor = vim
     # detect whitespace problems
     whitespace = trailing-space,tab-in-indent,space-before-tab
+    askPass =
 [gc]
     pruneExpire = now
 [diff]
@@ -41,6 +42,7 @@
     # include local configuration with stuff like user and http certificates
     path = ~/.gitlocal
 [credential]
+    # helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
     helper = cache --timeout=259200
 [url "https://github.com"]
     insteadOf = git://github.com
