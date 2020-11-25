@@ -55,7 +55,7 @@ let g:ctrlp_by_filename = 1
 let g:ctrlp_max_files = 0
 let g:ctrlp_open_new_file = 'v'
 let g:ctrlp_user_command = ['.git/', 'git ls-files -oc --exclude-standard %s']
-let g:ctrlp_lazy_update = 300
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 " [plugin] gutentags
 let g:gutentags_cache_dir = $HOME .'/.cache/gutentags'
