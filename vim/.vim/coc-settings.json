@@ -5,10 +5,8 @@
     "diagnostic.warningSign": "»",
     "diagnostic.errorSign": "X",
     "clangd.path": "clangd-10",
-    "python.jediEnabled": false,
     "http.proxy": "http://localhost:3128",
     "http.proxyStrictSSL": false,
-    "python.linting.enabled": true,
-    "python.linting.flake8Enabled": true,
-    "python.linting.pylintEnabled": false
+    "python.linting.pylintEnabled": false,
+    "python.linting.pytypeEnabled": true
 }

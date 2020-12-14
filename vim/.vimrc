@@ -61,6 +61,10 @@ let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 let g:gutentags_cache_dir = $HOME .'/.cache/gutentags'
 let g:gutentags_ctags_extra_args = [ '--tag-relative=yes', '--fields=+ailmnS' ]
 
+" [plugin] pydocstring
+let g:pydocstring_doq_path = $HOME .'/.local/bin/doq'
+nmap <silent> <leader>D <Plug>(pydocstring)
+
 " [plugin] coc.nvim
 
 " TextEdit might fail if hidden is not set.
