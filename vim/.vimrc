@@ -66,6 +66,16 @@ let g:pydocstring_doq_path = $HOME .'/.local/bin/doq'
 nmap <silent> <leader>D <Plug>(pydocstring)
 
 " [plugin] coc.nvim
+let g:coc_global_extensions = [
+  \ 'coc-clangd',
+  \ 'coc-json',
+  \ 'coc-markdownlint',
+  \ 'coc-marketplace',
+  \ 'coc-pyright',
+  \ 'coc-sh',
+  \ 'coc-vimlsp',
+  \ 'coc-xml',
+  \ 'coc-yaml']
 
 " TextEdit might fail if hidden is not set.
 set hidden

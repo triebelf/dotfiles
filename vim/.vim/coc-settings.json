@@ -5,8 +5,6 @@
     "diagnostic.warningSign": "»",
     "diagnostic.errorSign": "X",
     "clangd.path": "clangd-10",
-    "http.proxy": "http://localhost:3128",
-    "http.proxyStrictSSL": false,
     "python.linting.pylintEnabled": false,
     "python.linting.pytypeEnabled": true
 }
