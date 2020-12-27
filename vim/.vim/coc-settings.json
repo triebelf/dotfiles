@@ -1,10 +1,15 @@
 {
-    "coc.preferences.extensionUpdateCheck": "daily",
-    "diagnostic.hintSign": "-",
-    "diagnostic.infoSign": "›",
-    "diagnostic.warningSign": "»",
-    "diagnostic.errorSign": "X",
-    "clangd.path": "clangd-10",
-    "python.linting.pylintEnabled": false,
-    "python.linting.pytypeEnabled": true
+  "coc.preferences.extensionUpdateCheck": "daily",
+  "diagnostic.hintSign": "-",
+  "diagnostic.infoSign": "›",
+  "diagnostic.warningSign": "»",
+  "diagnostic.errorSign": "X",
+  "clangd.path": "clangd-10",
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8Path": "python3",
+  "python.linting.flake8Args": [
+    "flake8"
+  ],
+  "python.formatting.provider": "black",
+  "python.formatting.blackPath": "~/.local/bin/black"
 }

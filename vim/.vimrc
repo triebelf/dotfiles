@@ -68,11 +68,14 @@ nmap <silent> <leader>D <Plug>(pydocstring)
 " [plugin] coc.nvim
 let g:coc_global_extensions = [
   \ 'coc-clangd',
+  \ 'coc-docker',
+  \ 'coc-groovy',
   \ 'coc-json',
   \ 'coc-markdownlint',
   \ 'coc-marketplace',
   \ 'coc-pyright',
   \ 'coc-sh',
+  \ 'coc-tag',
   \ 'coc-vimlsp',
   \ 'coc-xml',
   \ 'coc-yaml']
