@@ -37,10 +37,8 @@ if exists('+termguicolors')
 endif
 if $DARK_MODE == 1 " set by shell depending on sunset/sunrise
     set background=dark
-    colorscheme jellybeans
-else
-    colorscheme PaperColor
 endif
+colorscheme PaperColor
 
 " accurate but slow syntax highlighting
 autocmd BufEnter * :syntax sync fromstart
