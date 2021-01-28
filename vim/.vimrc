@@ -19,15 +19,16 @@ set expandtab
 set diffopt+=iwhite
 set ic
 set hlsearch
-set wildignore+=*.pyc
+set wildignore+='.*\.swp$,.*\.pyc,__pycache__'
 
 " NERDtree like setup (commands :Ex :Sex :Vex)
-let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
-let g:netrw_winsize = 20
-let g:netrw_list_hide= '.*\.swp$,.*\.pyc,__pycache__'
+let g:netrw_winsize = 15
+let g:netrw_banner = 0
+let g:netrw_list_hide = &wildignore
+let g:netrw_keepdir=0
 
 " try to enable true color support
 if exists('+termguicolors')
@@ -38,7 +39,7 @@ endif
 if $DARK_MODE == 1 " set by shell depending on sunset/sunrise
     set background=dark
 endif
-colorscheme PaperColor
+colorscheme minimalist
 
 " accurate but slow syntax highlighting
 autocmd BufEnter * :syntax sync fromstart
