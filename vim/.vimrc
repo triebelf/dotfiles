@@ -7,7 +7,7 @@ set clipboard^=unnamed,unnamedplus
 " comma is the leader key
 let mapleader=","
 
-" enable mouse in all modes
+" disable mouse
 set mouse=""
 
 " use 4 spaces for tabs
@@ -36,10 +36,9 @@ if exists('+termguicolors')
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     set termguicolors
 endif
-if $DARK_MODE == 1 " set by shell depending on sunset/sunrise
-    set background=dark
-endif
-colorscheme minimalist
+set background=dark
+colorscheme molokai
+set cursorline
 
 " accurate but slow syntax highlighting
 autocmd BufEnter * :syntax sync fromstart
