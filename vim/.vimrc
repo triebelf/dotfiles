@@ -6,6 +6,7 @@ set clipboard^=unnamed,unnamedplus
 
 " comma is the leader key
 let mapleader=","
+set pastetoggle=<leader>p
 
 " disable mouse
 set mouse=""
@@ -17,7 +18,6 @@ set shiftwidth=4
 set expandtab
 
 set diffopt+=iwhite
-set ic
 set hlsearch
 set wildignore+='.*\.swp$,.*\.pyc,__pycache__'
 
@@ -39,11 +39,6 @@ endif
 set background=dark
 colorscheme molokai
 set cursorline
-
-" accurate but slow syntax highlighting
-autocmd BufEnter * :syntax sync fromstart
-
-set pastetoggle=<leader>p
 
 " [plugin] tagbar
 nnoremap <silent> <F9> :TagbarOpenAutoClose<CR>
@@ -191,13 +186,6 @@ nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<
 nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
 inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-
-" NeoVim-only mapping for visual mode scroll
-" Useful on signatureHelp after jump placeholder of snippet expansion
-if has('nvim')
-  vnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#nvim_scroll(1, 1) : "\<C-f>"
-  vnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#nvim_scroll(0, 1) : "\<C-b>"
-endif
 
 " Use CTRL-S for selections ranges.
 " Requires 'textDocument/selectionRange' support of language server.
