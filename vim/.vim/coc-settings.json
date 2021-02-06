@@ -8,5 +8,6 @@
   "python.linting.flake8Enabled": true,
   "python.linting.flake8Path": "~/.local/bin/flake8",
   "python.formatting.provider": "black",
-  "python.formatting.blackPath": "~/.local/bin/black"
+  "python.formatting.blackPath": "~/.local/bin/black",
+  "python.formatting.blackArgs": ["--line-length", "120"]
 }
