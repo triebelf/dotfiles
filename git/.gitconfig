@@ -1,7 +1,5 @@
 [core]
     editor = vim
-    # detect whitespace problems
-    whitespace = trailing-space,tab-in-indent,space-before-tab
     askPass =
 [gc]
     pruneExpire = now
