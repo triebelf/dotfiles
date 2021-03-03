@@ -37,7 +37,7 @@ if exists('+termguicolors')
     set termguicolors
 endif
 set background=dark
-colorscheme ayu
+colorscheme gruvbox
 set cursorline
 
 " [plugin] tagbar
