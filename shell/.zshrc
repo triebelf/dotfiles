@@ -131,7 +131,7 @@ alias open="xdg-open"
 alias top='htop'
 alias _='sudo'
 
-path=('~/.local/bin' $path)
+path=("$HOME/.local/bin" $path)
 export PATH
 
 # Docker

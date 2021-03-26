@@ -50,6 +50,7 @@ let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 " [plugin] gutentags
 let g:gutentags_cache_dir = $HOME .'/.cache/gutentags'
 let g:gutentags_ctags_extra_args = [ '--tag-relative=yes', '--fields=+ailmnS' ]
+" let g:gutentags_trace = 1
 
 " [plugin] pydocstring
 let g:pydocstring_doq_path = $HOME .'/.local/bin/doq'
