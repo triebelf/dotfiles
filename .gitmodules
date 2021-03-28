@@ -38,10 +38,6 @@
     path = vim/.vim/pack/config/start/vim-addon-local-vimrc
     url = https://github.com/marcweber/vim-addon-local-vimrc
     branch = master
-[submodule "vim-tagbar"]
-    path = vim/.vim/pack/config/start/tagbar
-    url = https://github.com/majutsushi/tagbar.git
-    branch = master
 [submodule "vim/.vim/pack/config/start/coc.nvim"]
     path = vim/.vim/pack/config/start/coc.nvim
     url = https://github.com/neoclide/coc.nvim.git
