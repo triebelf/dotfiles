@@ -7,4 +7,7 @@
 : ${ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim}
 # }}} End configuration added by Zim install
 
-export EDITOR=vim
+export EDITOR="vim"
+
+# display long-running commands with execution time
+export REPORTTIME=10
