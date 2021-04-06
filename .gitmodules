@@ -49,3 +49,6 @@
 [submodule "vim/.vim/pack/config/start/vim-pydocstring"]
     path = vim/.vim/pack/config/start/vim-pydocstring
     url = https://github.com/heavenshell/vim-pydocstring.git
+[submodule "vim/.vim/pack/config/start/vim-oscyank"]
+	path = vim/.vim/pack/config/start/vim-oscyank
+	url = https://github.com/ojroques/vim-oscyank

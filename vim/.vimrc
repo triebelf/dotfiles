@@ -1,9 +1,6 @@
 " tell vim where to put swap files
 set directory=$HOME/.vim/tmp//
 
-" use system clipboard
-set clipboard^=unnamed,unnamedplus
-
 " comma is the leader key
 let mapleader=","
 set pastetoggle=<leader>p
@@ -40,8 +37,8 @@ set background=dark
 colorscheme PaperColor
 set cursorline
 
-" [plugin] tagbar
-nnoremap <silent> <F9> :TagbarOpenAutoClose<CR>
+" [plugin] oscyank
+autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | OSCYankReg " | endif
 
 " [plugin] ctrlp
 let g:ctrlp_by_filename = 1
