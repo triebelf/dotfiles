@@ -7,12 +7,15 @@
   "clangd.path": "clangd-10",
   "python.linting.flake8Enabled": true,
   "python.linting.flake8Path": "~/.local/bin/flake8",
-  "python.formatting.provider": "black",
+  "python.linting.pylintEnabled": true,
+  "python.linting.pylintPath": "~/.local/bin/pylint",
+  "python.formatting.provider": "yapf",
   "python.formatting.blackPath": "~/.local/bin/black",
   "python.formatting.blackArgs": [
     "--line-length",
     "120"
   ],
+  "python.formatting.yapfPath": "~/.local/bin/yapf",
   "diagnostic-languageserver.filetypes": {
     "sh": "shellcheck"
   }

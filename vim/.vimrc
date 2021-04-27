@@ -16,7 +16,11 @@ set expandtab
 
 set diffopt+=iwhite
 set hlsearch
-set wildignore+='.*\.swp$,.*\.pyc,__pycache__'
+set wildignore+=.*\.swp$
+set wildignore+=.*\.pyc$
+set wildignore+=__pycache__
+set wildignore+=.*\.egg-info
+set wildignore+=\.venv/
 
 " NERDtree like setup (commands :Ex :Sex :Vex)
 let g:netrw_liststyle = 3
@@ -25,6 +29,7 @@ let g:netrw_altv = 1
 let g:netrw_winsize = 15
 let g:netrw_banner = 0
 let g:netrw_list_hide = &wildignore
+let g:netrw_hide = 1
 let g:netrw_keepdir=0
 
 " try to enable true color support
