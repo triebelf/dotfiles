@@ -19,6 +19,7 @@ set hlsearch
 set wildignore+=.*\.swp$
 set wildignore+=.*\.pyc$
 set wildignore+=__pycache__
+set wildignore+=.pytest_cache/
 set wildignore+=.*\.egg-info
 set wildignore+=\.venv/
 

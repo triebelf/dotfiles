@@ -1,6 +1,7 @@
 [core]
     editor = vim
     askPass =
+    autocrlf = false
 [gc]
     pruneExpire = now
 [diff]
