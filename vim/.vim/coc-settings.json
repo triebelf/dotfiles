@@ -5,11 +5,12 @@
   "diagnostic.warningSign": "»",
   "diagnostic.errorSign": "X",
   "clangd.path": "clangd-10",
+  "python.linting.mypyEnabled": true,
   "python.linting.flake8Enabled": true,
   "python.linting.flake8Path": "~/.local/bin/flake8",
   "python.linting.pylintEnabled": true,
   "python.linting.pylintPath": "~/.local/bin/pylint",
-  "python.formatting.provider": "yapf",
+  "python.formatting.provider": "black",
   "python.formatting.blackPath": "~/.local/bin/black",
   "python.formatting.blackArgs": [
     "--line-length",
