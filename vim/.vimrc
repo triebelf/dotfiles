@@ -8,9 +8,7 @@ set pastetoggle=<leader>p
 " disable mouse
 set mouse=""
 
-" use 4 spaces for tabs
-set tabstop=4
-set shiftwidth=4
+" use spaces for tabs
 set expandtab
 
 set diffopt+=iwhite
