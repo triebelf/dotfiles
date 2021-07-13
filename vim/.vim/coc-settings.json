@@ -7,7 +7,6 @@
   "clangd.path": "clangd-10",
   "python.linting.mypyEnabled": true,
   "python.linting.flake8Enabled": true,
-  "python.linting.flake8Path": "~/.local/bin/flake8",
   "python.linting.flake8Args": [
     "--max-line-length=120",
     "--ignore=E402,E203,W503"
@@ -16,12 +15,11 @@
     // W503: line break before binary operator
   ],
   "python.linting.pylintEnabled": true,
-  "python.linting.pylintPath": "~/.local/bin/pylint",
+  "python.linting.pylintUseMinimalCheckers": true,
   "python.linting.pylintArgs": [
     "--score=n",
     "--jobs=0"
   ],
-  "python.sortImports.path": "~/.local/bin/isort",
   "python.sortImports.args": [
     "--line-length=120",
     "--multi-line=3",
@@ -33,7 +31,6 @@
   "python.formatting.blackArgs": [
     "--line-length=120"
   ],
-  "python.formatting.yapfPath": "~/.local/bin/yapf",
   "diagnostic-languageserver.filetypes": {
     "sh": "shellcheck"
   }

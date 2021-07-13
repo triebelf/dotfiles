@@ -11,6 +11,8 @@ set mouse=""
 " use spaces for tabs
 set expandtab
 
+" set formatoptions=acroqj
+
 set diffopt+=iwhite
 set hlsearch
 set wildignore+=.*\.swp$
