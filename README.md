@@ -1,26 +1,48 @@
-# Collection of my dotfiles
+# Felix' Configuration Files
 
-- minimalism, keep the configuration files small
-- focus on development using vim
-- git configuration
-- separate zsh configuration using zimfw framework
+## Features
 
-## Terminal
+- stack: alacritty, tmux, zsh, vim, git
+- vi key bindings
+- true color support
+- clipboard integration (works through ssh)
+- Python development
+
+Tested on Ubuntu and Manjaro Linux.
+
+### Terminal
 
 Select a terminal that supports copy-paste through ssh sessions, for example
-xterm, mintty (Windows) or Alacritty, see [this
+xterm, Windows Terminal or Alacritty, see [this
 page](https://github.com/ojroques/vim-oscyank).
 
-## tmux
+Also, the terminal must support [true
+color](https://gist.github.com/XVilka/8346728).
 
-- Prefix is Ctrl-A instead of the default Ctrl-B.
-- vi key bindings
-- force zsh for new panes
-- use this command to create/attach to ‘main’ session:
+Configure this command to create/attach a tmux ‘main’ session:
 
 > /usr/bin/tmux new-session -A -s main
 
-## vim
+### tmux
+
+- Prefix is Ctrl-A instead of the default Ctrl-B.
+- vi key bindings
+  - Copy: `Ctrl-A`, then select with `v` and copy with `y`
+  - Paste: `Ctrl-P`
+
+### zsh
+
+- fast, asynchronous zsh configuration using [zinit
+  framework](https://github.com/zdharma/zinit)
+- set sane options
+- vi key bindings
+- syntax highlighting
+- auto suggestions
+- completion
+- history search with `up` key
+- a few aliases
+
+### vim
 
 Configure vim as a complete IDE for Python, C++, shell script development.
 
