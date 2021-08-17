@@ -88,7 +88,8 @@ SPACESHIP_VI_MODE_SHOW=false
 SPACESHIP_EXIT_CODE_SHOW=true
 
 zinit wait lucid for \
-    spaceship-prompt/spaceship-prompt \
+    pick"async.zsh" src"pure.zsh" \
+        sindresorhus/pure \
     zimfw/input \
     svn is-snippet PZT::modules/git \
     atinit"zicompinit; zicdreplay" \
@@ -101,6 +102,11 @@ zinit wait lucid for \
         zsh-users/zsh-history-substring-search \
     atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!' \
         trapd00r/LS_COLORS \
+
+if command -v kubectl &> /dev/null
+then
+  source <(kubectl completion zsh)
+fi
 
 bindkey -v
 
