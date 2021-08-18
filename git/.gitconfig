@@ -31,6 +31,7 @@
     # based on vim mergetool plugin
     tool = vim_mergetool
     conflictstyle = diff3
+    renamelimit = 4096
 [mergetool "vim_mergetool"]
     cmd = vim -f -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
     trustExitCode = true

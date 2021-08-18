@@ -98,10 +98,11 @@ zinit wait lucid for \
         zsh-users/zsh-autosuggestions \
     blockf atpull'zinit creinstall -q .' \
         zsh-users/zsh-completions \
-    atload'bindkey "^[[A" history-substring-search-up; bindkey "^[[B" history-substring-search-down' \
+    atload'bindkey "$terminfo[kcuu1]" history-substring-search-up ; bindkey "$terminfo[kcud1]" history-substring-search-down' \
         zsh-users/zsh-history-substring-search \
     atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!' \
         trapd00r/LS_COLORS \
+    ael-code/zsh-colored-man-pages \
 
 if command -v kubectl &> /dev/null
 then
