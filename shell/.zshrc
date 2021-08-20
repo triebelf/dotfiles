@@ -92,6 +92,7 @@ zinit wait lucid for \
         sindresorhus/pure \
     zimfw/input \
     svn is-snippet PZT::modules/git \
+    hkupty/ssh-agent \
     atinit"zicompinit; zicdreplay" \
         zdharma/fast-syntax-highlighting \
     atload"_zsh_autosuggest_start" \
