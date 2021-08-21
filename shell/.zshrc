@@ -1,75 +1,43 @@
 ################################## OPTIONS ##################################
-
-# Perform cd to a directory if the typed command is invalid, but is a directory.
+# Changing Directories
 setopt AUTO_CD
-# Make cd push the old directory to the directory stack.
 setopt AUTO_PUSHD
-# Don't push multiple copies of the same directory to the stack.
 setopt PUSHD_IGNORE_DUPS
-# Don't print the directory stack after pushd or popd.
-setopt PUSHD_SILENT
-# Have pushd without arguments act like `pushd ${HOME}`.
-setopt PUSHD_TO_HOME
 
-# The file to save the history in.
+# Completion
+setopt ALWAYS_TO_END
+setopt AUTO_MENU
+setopt COMPLETE_IN_WORD
+setopt HASH_LIST_ALL
+
+# Expansion and Globbing
+setopt BAD_PATTERN
+setopt NO_CASE_GLOB
+setopt EXTENDED_GLOB
+setopt NOMATCH
+
+# History
 if (( ! ${+HISTFILE} )) typeset -g HISTFILE=${ZDOTDIR:-${HOME}}/.zhistory
-# The maximum number of events stored internally and saved in the history file.
-# The former is greater than the latter in case user wants HIST_EXPIRE_DUPS_FIRST.
 HISTSIZE=20000
 SAVEHIST=10000
-# Don't display duplicates when searching the history.
-setopt HIST_FIND_NO_DUPS
-# Don't enter immediate duplicates into the history.
-setopt HIST_IGNORE_DUPS
-# Remove commands from the history that begin with a space.
-setopt HIST_IGNORE_SPACE
-# Don't execute the command directly upon history expansion.
-setopt HIST_VERIFY
-# Cause all terminals to share the same history 'session'.
 setopt SHARE_HISTORY
+setopt HIST_VERIFY
 
-# Treat `#`, `~`, and `^` as patterns for filename globbing.
-setopt EXTENDED_GLOB
-# If a pattern for filename generation has no matches, print an error, instead
-# of leaving it unchanged in the argument list. This also applies to file
-# expansion of an initial '~' or '='.
-setopt NOMATCH
-# use zsh style word splitting
-setopt NOSHWORDSPLIT
-# allow expansion in prompts
-setopt PROMPT_SUBST
-# Allow comments starting with `#` in the interactive shell.
-setopt INTERACTIVE_COMMENTS
-# Disallow `>` to overwrite existing files. Use `>|` or `>!` instead.
+# Input/Output
 setopt NO_CLOBBER
-# no c-s/c-q output freezing
-setopt NOFLOWCONTROL
-# Try to correct the spelling of commands. Note that, when the HASH_LIST_ALL
-# option is not set or when some directories in the path are not readable, this
-# may falsely report spelling errors the first time some commands are used.
 setopt CORRECT
-# whenever a command completion is attempted, make sure the entire command path is hashed first.
-setopt HASH_LIST_ALL
-# not just at the end
-setopt COMPLETE_IN_WORD
-# Move cursor to end of word if a full completion is inserted.
-setopt ALWAYS_TO_END
-# Make globbing case insensitive.
-setopt NO_CASE_GLOB
-setopt MENU_COMPLETE
+setopt NO_FLOW_CONTROL
+setopt INTERACTIVE_COMMENTS
 
-# display PID when suspending processes as well
-setopt LONGLISTJOBS
-# List jobs in verbose format by default.
-setopt LONG_LIST_JOBS
-# Prevent background jobs being given a lower priority.
+# Job Control
 setopt NO_BG_NICE
-# Prevent status report of jobs on shell exit.
 setopt NO_CHECK_JOBS
-# Prevent SIGHUP to jobs on shell exit.
 setopt NO_HUP
-# report the status of backgrounds jobs immediately
+setopt LONG_LIST_JOBS
 setopt NOTIFY
+
+# Prompting
+setopt PROMPT_SUBST
 
 ################################## PLUGINS ##################################
 
