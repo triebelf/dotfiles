@@ -1,5 +1,26 @@
-" tell vim where to put swap files
-set directory=$HOME/.vim/tmp//
+" TODO include advice from
+" https://begriffs.com/posts/2019-07-19-history-use-vim.html
+
+" Protect changes between writes.
+set swapfile
+set directory^=~/.vim/swap//
+
+" protect against crash-during-write
+set writebackup
+" but do not persist backup after successful write
+set nobackup
+" use rename-and-write-new method whenever safe
+set backupcopy=auto
+" patch required to honor double slash at end
+if has("patch-8.1.0251")
+    " consolidate the writebackups -- not a big
+    " deal either way, since they usually get deleted
+    set backupdir^=~/.vim/backup//
+end
+
+" persist the undo tree for each file
+set undofile
+set undodir^=~/.vim/undo//
 
 " comma is the leader key
 let mapleader=","
