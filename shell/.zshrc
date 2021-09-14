@@ -52,27 +52,25 @@ zinit light-mode for \
     zinit-zsh/z-a-patch-dl \
     zinit-zsh/z-a-bin-gem-node
 
-SPACESHIP_PROMPT_SEPARATE_LINE=false
-SPACESHIP_VI_MODE_SHOW=false
-SPACESHIP_EXIT_CODE_SHOW=true
-
 zinit wait lucid for \
     pick"async.zsh" src"pure.zsh" \
         sindresorhus/pure \
     zimfw/input \
-    svn is-snippet PZT::modules/git \
+    svn is-snippet \
+        PZT::modules/git \
     hkupty/ssh-agent \
-    atinit"zicompinit; zicdreplay" \
+    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
         zdharma/fast-syntax-highlighting \
-    atload"_zsh_autosuggest_start" \
-        zsh-users/zsh-autosuggestions \
-    blockf atpull'zinit creinstall -q .' \
+    blockf atpull'zinit creinstall -Q .' \
         zsh-users/zsh-completions \
+    atload"!_zsh_autosuggest_start" \
+        zsh-users/zsh-autosuggestions \
     atload'bindkey "$terminfo[kcuu1]" history-substring-search-up ; bindkey "$terminfo[kcud1]" history-substring-search-down' \
         zsh-users/zsh-history-substring-search \
     atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!' \
         trapd00r/LS_COLORS \
     ael-code/zsh-colored-man-pages \
+
 
 if command -v kubectl &> /dev/null
 then
