@@ -15,22 +15,8 @@
     // W503: line break before binary operator
   ],
   "python.linting.pylintEnabled": true,
-  "python.linting.pylintUseMinimalCheckers": true,
-  "python.linting.pylintArgs": [
-    "--score=n",
-    "--jobs=0"
-  ],
-  "python.sortImports.args": [
-    "--line-length=120",
-    "--multi-line=3",
-    "--trailing-comma",
-    "--use-parentheses"
-  ],
   "python.formatting.provider": "black",
-  "python.formatting.blackPath": "~/.local/bin/black",
-  "python.formatting.blackArgs": [
-    "--line-length=120"
-  ],
+  "pydocstring.enableFileAction": true,
   "diagnostic-languageserver.filetypes": {
     "sh": "shellcheck"
   }
