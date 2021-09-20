@@ -15,7 +15,9 @@
     // W503: line break before binary operator
   ],
   "python.linting.pylintEnabled": true,
+  "pyright.organizeimports.provider": "isort",
   "python.formatting.provider": "black",
+  "python.formatting.blackPath": "~/.local/bin/black",
   "pydocstring.enableFileAction": true,
   "diagnostic-languageserver.filetypes": {
     "sh": "shellcheck"
