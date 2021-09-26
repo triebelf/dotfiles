@@ -57,28 +57,7 @@ Configure vim as a complete IDE for Python, C++, shell script development.
   - ,n : rename
   - ,q : quick fix
 - plugins (some of those have external dependencies)
-  - awesome-vim-colorschemes
-  - coc.nvim, which has more nested plugins
-    - coc-clangd
-    - coc-docker
-    - coc-groovy
-    - coc-json
-    - coc-markdownlint
-    - coc-pyright
-    - coc-sh
-    - coc-tag
-    - coc-vimlsp
-    - coc-xml
-    - coc-yaml
-  - ctrlp-py-matcher
-  - ctrlp.vim
-  - indentpython.vim
-  - vim-addon-local-vimrc
-  - vim-airline
-  - vim-gutentags
-  - vim-mergetool
-  - vim-oscyank
-  - vim-polyglot
-  - vim-pydocstring
-  - vim-sensible
-  - vim-signify
+
+After installing vim plugins, update the helptags with:
+
+> :helptags ALL

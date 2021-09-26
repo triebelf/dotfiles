@@ -1,6 +1,3 @@
-" TODO include advice from
-" https://begriffs.com/posts/2019-07-19-history-use-vim.html
-
 " Protect changes between writes.
 set swapfile
 set directory^=~/.vim/swap//
@@ -34,8 +31,12 @@ set expandtab
 
 " set formatoptions=acroqj
 
+" ignore whitespace in diff
 set diffopt+=iwhite
+
 set hlsearch
+set ignorecase
+
 set wildignore+=.*\.swp$
 set wildignore+=.*\.pyc$
 set wildignore+=__pycache__
@@ -60,27 +61,27 @@ if exists('+termguicolors')
     set termguicolors
 endif
 set background=dark
-colorscheme PaperColor
 set cursorline
 
-" [plugin] oscyank
-autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | OSCYankReg " | endif
+" [plugin] awesome-vim-colorschemes
+colorscheme PaperColor
 
-" [plugin] ctrlp
+" [plugin] ctrlp.vim
 let g:ctrlp_by_filename = 1
 let g:ctrlp_max_files = 0
 let g:ctrlp_open_new_file = 'v'
 let g:ctrlp_user_command = ['.git/', 'git ls-files -oc --exclude-standard %s']
+
+" [plugin] ctrlp-py-matcher
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
-" [plugin] gutentags
+" [plugin] vim-gutentags
 let g:gutentags_cache_dir = $HOME .'/.cache/gutentags'
 let g:gutentags_ctags_extra_args = [ '--tag-relative=yes', '--fields=+ailmnS' ]
 " let g:gutentags_trace = 1
 
-" [plugin] pydocstring
-let g:pydocstring_doq_path = $HOME .'/.local/bin/doq'
-nmap <silent> <leader>D <Plug>(pydocstring)
+" [plugin] vim-oscyank
+autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | OSCYankReg " | endif
 
 " [plugin] coc.nvim
 let g:coc_global_extensions = [

@@ -18,10 +18,6 @@
     path = vim/.vim/pack/config/start/vim-polyglot
     url = https://github.com/sheerun/vim-polyglot
     branch = master
-[submodule "vim-indentpython"]
-    path = vim/.vim/pack/config/start/indentpython.vim
-    url = https://github.com/vim-scripts/indentpython.vim.git
-    branch = master
 [submodule "vim-signify"]
     path = vim/.vim/pack/config/start/vim-signify
     url = https://github.com/mhinz/vim-signify
