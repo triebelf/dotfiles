@@ -6,6 +6,11 @@
   "diagnostic.errorSign": "X",
   "clangd.path": "clangd-10",
   "python.linting.mypyEnabled": true,
+  "python.linting.mypyArgs": [
+    "--strict",
+    "--follow-imports=silent",
+    "--show-column-numbers"
+  ],
   "python.linting.flake8Enabled": true,
   "python.linting.flake8Args": [
     "--max-line-length=120",
@@ -18,7 +23,6 @@
   "pyright.organizeimports.provider": "isort",
   "python.formatting.provider": "black",
   "python.formatting.blackPath": "~/.local/bin/black",
-  "pydocstring.enableFileAction": true,
   "diagnostic-languageserver.filetypes": {
     "sh": "shellcheck"
   }

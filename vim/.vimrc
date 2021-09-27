@@ -91,6 +91,7 @@ let g:coc_global_extensions = [
   \ 'coc-groovy',
   \ 'coc-json',
   \ 'coc-markdownlint',
+  \ 'coc-pydocstring',
   \ 'coc-pyright',
   \ 'coc-sh',
   \ 'coc-tag',
