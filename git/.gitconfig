@@ -18,7 +18,7 @@
     # don't create merge nodes during git pull
     ff = only
 [push]
-    default = upstream
+    default = current
 [branch]
     # always create new tracking branches
     autosetupmerge = always
