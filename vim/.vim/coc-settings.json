@@ -6,6 +6,7 @@
   "diagnostic.errorSign": "X",
   "clangd.path": "clangd-10",
   "python.linting.mypyEnabled": true,
+  "python.linting.mypyPath": "mypy",
   "python.linting.mypyArgs": [
     "--strict",
     "--follow-imports=silent",

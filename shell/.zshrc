@@ -113,3 +113,7 @@ typeset -U path cdpath fpath manpath
 path=("$HOME/.local/bin" $path)
 export PATH
 export EDITOR="vim"
+
+export PYTHONPYCACHEPREFIX="$(mktemp -d --suffix=_pycache)"
+
+klist >/dev/null || kinit
