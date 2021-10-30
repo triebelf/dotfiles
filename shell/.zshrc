@@ -58,7 +58,8 @@ zinit wait lucid for \
     zimfw/input \
     svn is-snippet \
         PZT::modules/git \
-    hkupty/ssh-agent \
+    is-snippet \
+        OMZP::gpg-agent \
     atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
         zdharma/fast-syntax-highlighting \
     blockf atpull'zinit creinstall -Q .' \
