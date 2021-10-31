@@ -32,8 +32,7 @@ Configure this command to create/attach a tmux ‘main’ session:
 
 ### zsh
 
-- fast, asynchronous zsh configuration using [zinit
-  framework](https://github.com/zdharma/zinit)
+- [zplug](https://github.com/zplug/zplug) zsh plugin manager
 - set sane options
 - vi key bindings
 - syntax highlighting
