@@ -85,7 +85,9 @@ source ~/.zplug/init.zsh
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "mafredri/zsh-async"
 zplug "sindresorhus/pure", use:pure.zsh, as:theme
+zplug "jreese/zsh-titles"
 zplug "modules/git", from:prezto
+zplug "nekofar/zsh-git-lfs"
 zplug "plugins/gpg-agent", from:oh-my-zsh
 zplug "trapd00r/LS_COLORS", hook-build:"dircolors -b LS_COLORS > c.zsh"
 zplug "ael-code/zsh-colored-man-pages"
@@ -98,7 +100,7 @@ if ! zplug check ; then
 	zplug install
 fi
 
-zplug load
+zplug load  # --verbose
 
 if command -v kubectl &> /dev/null
 then
