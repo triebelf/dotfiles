@@ -21,7 +21,6 @@
     default = current
 [fetch]
     prune = true
-    pruneTags = true
 [branch]
     # always create new tracking branches
     autosetupmerge = always
