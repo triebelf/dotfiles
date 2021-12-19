@@ -43,6 +43,50 @@
     url = https://github.com/FelikZ/ctrlp-py-matcher.git
     branch = master
 [submodule "vim/.vim/pack/config/start/vim-oscyank"]
-	path = vim/.vim/pack/config/start/vim-oscyank
-	url = https://github.com/ojroques/vim-oscyank
+    path = vim/.vim/pack/config/start/vim-oscyank
+    url = https://github.com/ojroques/vim-oscyank
     branch = main
+[submodule "nvim/site/pack/config/start/awesome-vim-colorschemes"]
+    path = nvim/site/pack/config/start/awesome-vim-colorschemes
+    url = https://github.com/rafi/awesome-vim-colorschemes
+    branch = master
+[submodule "nvim/site/pack/config/start/ctrlp.vim"]
+    path = nvim/site/pack/config/start/ctrlp.vim
+    url = https://github.com/ctrlpvim/ctrlp.vim.git
+    branch = master
+[submodule "nvim/site/pack/config/start/vim-airline"]
+    path = nvim/site/pack/config/start/vim-airline
+    url = https://github.com/vim-airline/vim-airline
+    branch = master
+[submodule "nvim/site/pack/config/start/vim-mergetool"]
+    path = nvim/site/pack/config/start/vim-mergetool
+    url = https://github.com/samoshkin/vim-mergetool.git
+    branch = master
+[submodule "nvim/site/pack/config/start/vim-polyglot"]
+    path = nvim/site/pack/config/start/vim-polyglot
+    url = https://github.com/sheerun/vim-polyglot
+    branch = master
+[submodule "nvim/site/pack/config/start/vim-signify"]
+    path = nvim/site/pack/config/start/vim-signify
+    url = https://github.com/mhinz/vim-signify
+    branch = master
+[submodule "nvim/site/pack/config/start/vim-gutentags"]
+    path = nvim/site/pack/config/start/vim-gutentags
+    url = https://github.com/ludovicchabant/vim-gutentags.git
+    branch = master
+[submodule "nvim/site/pack/config/start/vim-addon-local-vimrc"]
+    path = nvim/site/pack/config/start/vim-addon-local-vimrc
+    url = https://github.com/marcweber/vim-addon-local-vimrc
+    branch = master
+[submodule "nvim/site/pack/config/start/ctrlp-py-matcher"]
+    path = nvim/site/pack/config/start/ctrlp-py-matcher
+    url = https://github.com/FelikZ/ctrlp-py-matcher.git
+    branch = master
+[submodule "nvim/site/pack/config/start/vim-oscyank"]
+    path = nvim/site/pack/config/start/vim-oscyank
+    url = https://github.com/ojroques/vim-oscyank
+    branch = main
+[submodule "nvim/site/pack/config/start/LanguageClient-neovim"]
+    path = nvim/site/pack/config/start/LanguageClient-neovim
+    url = https://github.com/autozimu/LanguageClient-neovim
+    branch = next
