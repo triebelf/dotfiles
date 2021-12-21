@@ -60,5 +60,8 @@ let g:gutentags_ctags_extra_args = [ '--tag-relative=yes', '--fields=+ailmnS' ]
 " [plugin] vim-oscyank
 autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | OSCYankReg " | endif
 
-" [plugin] LanguageClient-neovim
-let g:LanguageClient_serverCommands = { 'haskell': ['haskell-language-server-wrapper', '--lsp'] }
+" [plugin] lspconfig
+lua << EOF
+require'lspconfig'.pyright.setup{}
+require'lspconfig'.hls.setup{}
+EOF

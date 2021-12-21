@@ -86,7 +86,7 @@
     path = nvim/site/pack/config/start/vim-oscyank
     url = https://github.com/ojroques/vim-oscyank
     branch = main
-[submodule "nvim/site/pack/config/start/LanguageClient-neovim"]
-    path = nvim/site/pack/config/start/LanguageClient-neovim
-    url = https://github.com/autozimu/LanguageClient-neovim
-    branch = next
+[submodule "nvim/site/pack/config/start/nvim-lspconfig"]
+    path = nvim/site/pack/config/start/nvim-lspconfig
+    url = https://github.com/neovim/nvim-lspconfig
+    branch = master
