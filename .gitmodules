@@ -1,51 +1,3 @@
-[submodule "vim-ctrlp"]
-    path = vim/.vim/pack/config/start/ctrlp.vim
-    url = https://github.com/ctrlpvim/ctrlp.vim.git
-    branch = master
-[submodule "vim-airline"]
-    path = vim/.vim/pack/config/start/vim-airline
-    url = https://github.com/vim-airline/vim-airline
-    branch = master
-[submodule "vim-sensible"]
-    path = vim/.vim/pack/config/start/vim-sensible
-    url = https://github.com/tpope/vim-sensible
-    branch = master
-[submodule "vim-mergetool"]
-    path = vim/.vim/pack/config/start/vim-mergetool
-    url = https://github.com/samoshkin/vim-mergetool.git
-    branch = master
-[submodule "vim-polyglot"]
-    path = vim/.vim/pack/config/start/vim-polyglot
-    url = https://github.com/sheerun/vim-polyglot
-    branch = master
-[submodule "vim-signify"]
-    path = vim/.vim/pack/config/start/vim-signify
-    url = https://github.com/mhinz/vim-signify
-    branch = master
-[submodule "awesome-vim-colorschemes"]
-    path = vim/.vim/pack/config/start/awesome-vim-colorschemes
-    url = https://github.com/rafi/awesome-vim-colorschemes
-    branch = master
-[submodule "vim-gutentags"]
-    path = vim/.vim/pack/config/start/vim-gutentags
-    url = https://github.com/ludovicchabant/vim-gutentags.git
-    branch = master
-[submodule "vim-addon-local-vimrc"]
-    path = vim/.vim/pack/config/start/vim-addon-local-vimrc
-    url = https://github.com/marcweber/vim-addon-local-vimrc
-    branch = master
-[submodule "vim/.vim/pack/config/start/coc.nvim"]
-    path = vim/.vim/pack/config/start/coc.nvim
-    url = https://github.com/neoclide/coc.nvim.git
-    branch = release
-[submodule "vim/.vim/pack/config/start/ctrlp-py-matcher"]
-    path = vim/.vim/pack/config/start/ctrlp-py-matcher
-    url = https://github.com/FelikZ/ctrlp-py-matcher.git
-    branch = master
-[submodule "vim/.vim/pack/config/start/vim-oscyank"]
-    path = vim/.vim/pack/config/start/vim-oscyank
-    url = https://github.com/ojroques/vim-oscyank
-    branch = main
 [submodule "nvim/site/pack/config/start/awesome-vim-colorschemes"]
     path = nvim/site/pack/config/start/awesome-vim-colorschemes
     url = https://github.com/rafi/awesome-vim-colorschemes
@@ -90,3 +42,23 @@
     path = nvim/site/pack/config/start/nvim-lspconfig
     url = https://github.com/neovim/nvim-lspconfig
     branch = master
+[submodule "nvim/site/pack/config/start/nvim-cmp"]
+    path = nvim/site/pack/config/start/nvim-cmp
+    url = https://github.com/hrsh7th/nvim-cmp/
+    branch = main
+[submodule "nvim/site/pack/config/start/cmp-buffer"]
+    path = nvim/site/pack/config/start/cmp-buffer
+    url = https://github.com/hrsh7th/cmp-buffer
+    branch = main
+[submodule "nvim/site/pack/config/start/cmp-path"]
+    path = nvim/site/pack/config/start/cmp-path
+    url = https://github.com/hrsh7th/cmp-path
+    branch = main
+[submodule "nvim/site/pack/config/start/cmp-nvim-lsp"]
+    path = nvim/site/pack/config/start/cmp-nvim-lsp
+    url = https://github.com/hrsh7th/cmp-nvim-lsp
+    branch = main
+[submodule "nvim/site/pack/config/start/cmp-cmdline"]
+    path = nvim/site/pack/config/start/cmp-cmdline
+    url = https://github.com/hrsh7th/cmp-cmdline
+    branch = main

@@ -133,13 +133,15 @@ alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+alias vi='nvim'
+alias vim='nvim'
 
 ################################## ENVIRONMENT ##################################
 # automatically remove duplicates from these arrays
 typeset -U path cdpath fpath manpath
 path=("$HOME/.local/bin" $path)
 export PATH
-export EDITOR="vim"
+export EDITOR="nvim"
 
 export PYTHONPYCACHEPREFIX="$(mktemp -d --suffix=_pycache)"
 
