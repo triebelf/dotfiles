@@ -39,7 +39,8 @@ set background=dark
 set cursorline
 
 " [plugin] awesome-vim-colorschemes
-colorscheme PaperColor
+"colorscheme PaperColor
+colorscheme ayu
 
 " [plugin] ctrlp.vim
 let g:ctrlp_by_filename = 1
@@ -68,7 +69,7 @@ lua <<EOF
   cmp.setup({
     snippet = {
       expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        require('snippy').expand_snippet(args.body)
       end,
     },
     mapping = {

@@ -34,8 +34,10 @@
     tool = vim_mergetool
     conflictstyle = diff3
     renamelimit = 4096
+[mergetool]
+    keepBackup = false
 [mergetool "vim_mergetool"]
-    cmd = vim -f -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
+    cmd = nvim -f -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
     trustExitCode = true
     prompt = false
 [commit]
