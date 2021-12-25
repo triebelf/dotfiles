@@ -63,8 +63,10 @@
     url = https://github.com/hrsh7th/cmp-cmdline
     branch = main
 [submodule "nvim/site/pack/config/start/cmp-snippy"]
-	path = nvim/site/pack/config/start/cmp-snippy
-	url = https://github.com/dcampos/cmp-snippy
+    path = nvim/site/pack/config/start/cmp-snippy
+    url = https://github.com/dcampos/cmp-snippy
+    branch = master
 [submodule "nvim/site/pack/config/start/nvim-snippy"]
-	path = nvim/site/pack/config/start/nvim-snippy
-	url = https://github.com/dcampos/nvim-snippy
+    path = nvim/site/pack/config/start/nvim-snippy
+    url = https://github.com/dcampos/nvim-snippy
+    branch = master
