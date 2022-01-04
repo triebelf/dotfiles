@@ -59,16 +59,16 @@ let g:gutentags_ctags_extra_args = [ '--tag-relative=yes', '--fields=+ailmnS' ]
 " [plugin] vim-oscyank
 autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | OSCYankReg " | endif
 
-" [plugin] nvim-cmp
 set completeopt=menu,menuone,noselect
 
 lua <<EOF
-  -- Setup nvim-cmp.
+  -- [plugin] nvim-cmp
   local cmp = require'cmp'
 
   cmp.setup({
     snippet = {
       expand = function(args)
+        -- [plugin] nvim-snippy
         require('snippy').expand_snippet(args.body)
       end,
     },
@@ -84,7 +84,9 @@ lua <<EOF
       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     },
     sources = cmp.config.sources(
+      -- [plugin] cmp-nvim-lsp
       { { name = 'nvim_lsp' }, },
+      -- [plugin] cmp-buffer
       { { name = 'buffer' }, }
     )
   })
@@ -95,12 +97,14 @@ lua <<EOF
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline(':', {
     sources = cmp.config.sources(
+      -- [plugin] cmp-path
       { { name = 'path' } },
+      -- [plugin] cmp-cmdline
       { { name = 'cmdline' } }
     )
   })
 
-  -- Setup lspconfig.
+  -- [plugin] nvim-lspconfig
   -- Use an on_attach function to only map the following keys
   -- after the language server attaches to the current buffer
   local on_attach = function(client, bufnr)
