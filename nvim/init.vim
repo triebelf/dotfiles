@@ -39,17 +39,12 @@ set background=dark
 set cursorline
 
 " [plugin] awesome-vim-colorschemes
-"colorscheme PaperColor
-colorscheme ayu
+colorscheme PaperColor
 
 " [plugin] ctrlp.vim
 let g:ctrlp_by_filename = 1
 let g:ctrlp_max_files = 0
-let g:ctrlp_open_new_file = 'v'
 let g:ctrlp_user_command = ['.git/', 'git ls-files -oc --exclude-standard %s']
-
-" [plugin] ctrlp-py-matcher
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 " [plugin] vim-gutentags
 let g:gutentags_cache_dir = $HOME .'/.cache/gutentags'
@@ -137,7 +132,14 @@ lua <<EOF
   -- map buffer local keybindings when the language server attaches
   local nvim_lsp = require('lspconfig')
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  for _, lsp in ipairs({ 'diagnosticls', 'hls', 'jsonls', 'pyright', 'vimls', 'yamlls' }) do
+  for _, lsp in ipairs({
+      'diagnosticls',
+      'dockerls',
+      'hls',
+      'jsonls',
+      'pyright',
+      'vimls',
+      'yamlls' }) do
     nvim_lsp[lsp].setup {
       on_attach = on_attach,
       flags = { debounce_text_changes = 150, },
