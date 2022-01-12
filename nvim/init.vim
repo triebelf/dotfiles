@@ -38,12 +38,17 @@ set termguicolors
 set background=dark
 set cursorline
 
+" workaround inefficient pattern matching, prevent error:
+" E363: pattern uses more memory than 'maxmempattern'
+set maxmempattern=50000
+
 " [plugin] awesome-vim-colorschemes
 colorscheme PaperColor
 
 " [plugin] ctrlp.vim
 let g:ctrlp_by_filename = 1
 let g:ctrlp_max_files = 0
+let g:ctrlp_open_new_file = 'v'
 let g:ctrlp_user_command = ['.git/', 'git ls-files -oc --exclude-standard %s']
 
 " [plugin] vim-gutentags
@@ -137,6 +142,7 @@ lua <<EOF
       'dockerls',
       'hls',
       'jsonls',
+      --'ltex',
       'pyright',
       'vimls',
       'yamlls' }) do
