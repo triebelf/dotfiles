@@ -42,13 +42,19 @@ vim.opt.cursorline = true
 vim.opt.maxmempattern = 50000
 
 -- [plugin] awesome-vim-colorschemes
-vim.cmd('colorscheme PaperColor')
+vim.cmd('colorscheme tender')
 
 -- [plugin] ctrlp.vim
 vim.g.ctrlp_by_filename = 1
 vim.g.ctrlp_max_files = 0
 vim.g.ctrlp_open_new_file = 'v'
 vim.g.ctrlp_user_command = {'.git/', 'git ls-files -oc --exclude-standard %s'}
+
+-- [plugin] nvim-telescope
+-- https://github.com/nvim-telescope/telescope.nvim
+
+-- [plugin] nvim-lualine
+require('lualine').setup()
 
 -- [plugin] vim-gutentags
 vim.g.gutentags_cache_dir = vim.env.HOME .. '/.cache/gutentags'

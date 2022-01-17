@@ -6,10 +6,6 @@
     path = nvim/site/pack/config/start/ctrlp.vim
     url = https://github.com/ctrlpvim/ctrlp.vim.git
     branch = master
-[submodule "nvim/site/pack/config/start/vim-airline"]
-    path = nvim/site/pack/config/start/vim-airline
-    url = https://github.com/vim-airline/vim-airline
-    branch = master
 [submodule "nvim/site/pack/config/start/vim-mergetool"]
     path = nvim/site/pack/config/start/vim-mergetool
     url = https://github.com/samoshkin/vim-mergetool.git
@@ -65,4 +61,16 @@
 [submodule "nvim/site/pack/config/start/nvim-snippy"]
     path = nvim/site/pack/config/start/nvim-snippy
     url = https://github.com/dcampos/nvim-snippy
+    branch = master
+[submodule "nvim/site/pack/config/start/lualine.nvim"]
+    path = nvim/site/pack/config/start/lualine.nvim
+    url = https://github.com/nvim-lualine/lualine.nvim
+    branch = master
+[submodule "nvim/site/pack/config/start/telescope.nvim"]
+    path = nvim/site/pack/config/start/telescope.nvim
+    url = https://github.com/nvim-telescope/telescope.nvim
+    branch = master
+[submodule "nvim/site/pack/config/start/plenary.nvim"]
+    path = nvim/site/pack/config/start/plenary.nvim
+    url = https://github.com/nvim-lua/plenary.nvim
     branch = master
