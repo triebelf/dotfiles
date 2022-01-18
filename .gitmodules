@@ -2,10 +2,6 @@
     path = nvim/site/pack/config/start/awesome-vim-colorschemes
     url = https://github.com/rafi/awesome-vim-colorschemes
     branch = master
-[submodule "nvim/site/pack/config/start/ctrlp.vim"]
-    path = nvim/site/pack/config/start/ctrlp.vim
-    url = https://github.com/ctrlpvim/ctrlp.vim.git
-    branch = master
 [submodule "nvim/site/pack/config/start/vim-mergetool"]
     path = nvim/site/pack/config/start/vim-mergetool
     url = https://github.com/samoshkin/vim-mergetool.git

@@ -5,7 +5,7 @@ vim.opt.undofile = true
 -- comma is the leader key
 vim.g.mapleader = ","
 
--- toggle paste mode with <leader>-p
+-- toggle paste mode with ,p
 vim.opt.pastetoggle = "<leader>p"
 
 -- use spaces for tabs
@@ -37,29 +37,28 @@ vim.opt.termguicolors = true
 vim.opt.background = 'dark'
 vim.opt.cursorline = true
 
--- workaround inefficient pattern matching, prevent error:
--- E363: pattern uses more memory than 'maxmempattern'
-vim.opt.maxmempattern = 50000
-
 -- [plugin] awesome-vim-colorschemes
-vim.cmd('colorscheme tender')
-
--- [plugin] ctrlp.vim
-vim.g.ctrlp_by_filename = 1
-vim.g.ctrlp_max_files = 0
-vim.g.ctrlp_open_new_file = 'v'
-vim.g.ctrlp_user_command = {'.git/', 'git ls-files -oc --exclude-standard %s'}
+vim.cmd('colorscheme PaperColor')
 
 -- [plugin] nvim-telescope
--- https://github.com/nvim-telescope/telescope.nvim
+vim.api.nvim_set_keymap('n', '<leader>z', '<cmd>Telescope find_files<cr>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>o', '<cmd>Telescope git_files<cr>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>s', '<cmd>Telescope grep_string<cr>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>l', '<cmd>Telescope live_grep<cr>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>b', '<cmd>Telescope buffers<cr>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>m', '<cmd>Telescope oldfiles<cr>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>a', '<cmd>Telescope help_tags<cr>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>v', '<cmd>Telescope vim_options<cr>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>x', '<cmd>Telescope registers<cr>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>y', '<cmd>Telescope current_buffer_fuzzy_find<cr>', {noremap = true})
 
 -- [plugin] nvim-lualine
-require('lualine').setup()
+require('lualine').setup { options = { icons_enabled = false,}}
 
 -- [plugin] vim-gutentags
 vim.g.gutentags_cache_dir = vim.env.HOME .. '/.cache/gutentags'
 vim.g.gutentags_ctags_extra_args = {'--tag-relative=yes', '--fields=+ailmnS'}
--- vim.g.gutentags_trace = 1
+--vim.g.gutentags_trace = 1
 
 -- [plugin] vim-oscyank
 vim.cmd [[
@@ -114,27 +113,23 @@ local on_attach = function(client, bufnr)
     local opts = {noremap = true, silent = true}
 
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    buf_set_keymap('n', ',g', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', ',D', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    buf_set_keymap('n', ',t', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    buf_set_keymap('n', ',i', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    buf_set_keymap('n', ',r', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    buf_set_keymap('n', ',d', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    buf_set_keymap('n', ',D', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    buf_set_keymap('n', ',n', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    buf_set_keymap('n', ',wa',
-                   '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', ',wr',
-                   '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', ',wl',
-                   '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
-                   opts)
-    buf_set_keymap('n', ',c', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    buf_set_keymap('n', ',e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-    buf_set_keymap('n', ',k', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', ',j', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-    buf_set_keymap('n', ',q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-    buf_set_keymap('n', ',f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+    buf_set_keymap('n', '<leader>g', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    buf_set_keymap('n', '<leader>t', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    buf_set_keymap('n', '<leader>i', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    buf_set_keymap('n', '<leader>r', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    buf_set_keymap('n', '<leader>d', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', '<leader>h', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', '<leader>n', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+    buf_set_keymap('n', '<leader>c', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+    buf_set_keymap('n', '<leader>k', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', '<leader>j', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+    buf_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+    buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp
@@ -194,11 +189,11 @@ require("lspconfig").jsonls.setup {
     capabilities = capabilities
 }
 
-require("lspconfig").ltex.setup {
-    on_attach = on_attach,
-    flags = {debounce_text_changes = 150},
-    capabilities = capabilities
-}
+-- require("lspconfig").ltex.setup {
+--     on_attach = on_attach,
+--     flags = {debounce_text_changes = 150},
+--     capabilities = capabilities
+-- }
 
 require("lspconfig").pyright.setup {
     on_attach = on_attach,
