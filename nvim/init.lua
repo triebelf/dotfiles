@@ -38,9 +38,14 @@ vim.opt.background = 'dark'
 vim.opt.cursorline = true
 
 -- [plugin] awesome-vim-colorschemes
-vim.cmd('colorscheme PaperColor')
+vim.cmd('colorscheme jellybeans')
 
 -- [plugin] nvim-telescope
+require('telescope').setup({
+  defaults = {
+    layout_strategy='vertical',
+  },
+})
 vim.api.nvim_set_keymap('n', '<leader>z', '<cmd>Telescope find_files<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>o', '<cmd>Telescope git_files<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>s', '<cmd>Telescope grep_string<cr>', {noremap = true})
@@ -167,7 +172,7 @@ require"lspconfig".efm.setup {
     init_options = {documentFormatting = true},
     filetypes = {
         'make', 'markdown', 'rst', 'yaml', 'python', 'dockerfile', 'sh', 'html',
-        'json', 'lua'
+        'lua'
     }
 }
 
@@ -189,25 +194,26 @@ require("lspconfig").jsonls.setup {
     capabilities = capabilities
 }
 
--- require("lspconfig").ltex.setup {
---     on_attach = on_attach,
---     flags = {debounce_text_changes = 150},
---     capabilities = capabilities
--- }
+require("lspconfig").ltex.setup {
+    on_attach = on_attach,
+    flags = {debounce_text_changes = 150},
+    capabilities = capabilities,
+    filetypes = { "bib", "markdown", "org", "plaintex", "rst", "rnoweb", "tex" }
+}
 
 require("lspconfig").pyright.setup {
     on_attach = on_attach,
     flags = {debounce_text_changes = 150},
     capabilities = capabilities,
-    settings = {
-        python = {
-            analysis = {
-                typeCheckingMode = "strict",
-                diagnosticMode = "workspace",
-                useLibraryCodeForTypes = true
-            }
-        }
-    }
+    --settings = {
+    --    python = {
+    --        analysis = {
+    --            typeCheckingMode = "strict",
+    --            diagnosticMode = "workspace",
+    --            useLibraryCodeForTypes = true
+    --        }
+    --    }
+    --}
 }
 
 local runtime_path = vim.split(package.path, ';')
