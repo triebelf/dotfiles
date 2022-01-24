@@ -70,3 +70,7 @@
     path = nvim/site/pack/config/start/plenary.nvim
     url = https://github.com/nvim-lua/plenary.nvim
     branch = master
+[submodule "nvim/site/pack/config/start/null-ls.nvim"]
+    path = nvim/site/pack/config/start/null-ls.nvim
+    url = https://github.com/jose-elias-alvarez/null-ls.nvim.git
+    branch = main

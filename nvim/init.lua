@@ -141,47 +141,6 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp
                                                                      .protocol
                                                                      .make_client_capabilities())
 
-require'lspconfig'.ansiblels.setup {
-    on_attach = on_attach,
-    flags = {debounce_text_changes = 150},
-    capabilities = capabilities
-}
-
-require'lspconfig'.clangd.setup {
-    on_attach = on_attach,
-    flags = {debounce_text_changes = 150},
-    capabilities = capabilities
-}
-
-require'lspconfig'.cmake.setup {
-    on_attach = on_attach,
-    flags = {debounce_text_changes = 150},
-    capabilities = capabilities
-}
-
-require("lspconfig").dockerls.setup {
-    on_attach = on_attach,
-    flags = {debounce_text_changes = 150},
-    capabilities = capabilities
-}
-
-require"lspconfig".efm.setup {
-    on_attach = on_attach,
-    flags = {debounce_text_changes = 150},
-    capabilities = capabilities,
-    init_options = {documentFormatting = true},
-    filetypes = {
-        'make', 'markdown', 'rst', 'yaml', 'python', 'dockerfile', 'sh', 'html',
-        'lua'
-    }
-}
-
-require'lspconfig'.groovyls.setup {
-    on_attach = on_attach,
-    flags = {debounce_text_changes = 150},
-    capabilities = capabilities
-}
-
 require("lspconfig").hls.setup {
     on_attach = on_attach,
     flags = {debounce_text_changes = 150},
@@ -201,19 +160,30 @@ require("lspconfig").ltex.setup {
     filetypes = { "bib", "markdown", "org", "plaintex", "rst", "rnoweb", "tex" }
 }
 
+local null_ls = require("null-ls")
+null_ls.setup({
+    sources = {
+        null_ls.builtins.code_actions.shellcheck ,
+        null_ls.builtins.diagnostics.gitlint ,
+        null_ls.builtins.diagnostics.hadolint ,
+        null_ls.builtins.diagnostics.markdownlint ,
+        null_ls.builtins.diagnostics.mypy ,
+        null_ls.builtins.diagnostics.pylint ,
+        null_ls.builtins.diagnostics.shellcheck ,
+        null_ls.builtins.diagnostics.yamllint,
+        null_ls.builtins.formatting.black ,
+        null_ls.builtins.formatting.clang_format ,
+        null_ls.builtins.formatting.cmake_format,
+        null_ls.builtins.formatting.isort ,
+        null_ls.builtins.formatting.lua_format ,
+        null_ls.builtins.formatting.markdownlint
+    },
+})
+
 require("lspconfig").pyright.setup {
     on_attach = on_attach,
     flags = {debounce_text_changes = 150},
-    capabilities = capabilities,
-    --settings = {
-    --    python = {
-    --        analysis = {
-    --            typeCheckingMode = "strict",
-    --            diagnosticMode = "workspace",
-    --            useLibraryCodeForTypes = true
-    --        }
-    --    }
-    --}
+    capabilities = capabilities
 }
 
 local runtime_path = vim.split(package.path, ';')
