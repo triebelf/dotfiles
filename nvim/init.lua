@@ -141,6 +141,16 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp
                                                                      .protocol
                                                                      .make_client_capabilities())
 
+require"lspconfig".efm.setup {
+    on_attach = on_attach,
+    flags = {debounce_text_changes = 150},
+    capabilities = capabilities,
+    init_options = {documentFormatting = true},
+    filetypes = {
+        'make', 'rst', 'yaml', 'dockerfile', 'sh', 'html', 'lua'
+    }
+}
+
 require("lspconfig").hls.setup {
     on_attach = on_attach,
     flags = {debounce_text_changes = 150},
@@ -166,9 +176,8 @@ null_ls.setup({
         null_ls.builtins.code_actions.shellcheck ,
         null_ls.builtins.diagnostics.gitlint ,
         null_ls.builtins.diagnostics.hadolint ,
-        null_ls.builtins.diagnostics.markdownlint ,
         null_ls.builtins.diagnostics.mypy ,
-        null_ls.builtins.diagnostics.pylint ,
+        --null_ls.builtins.diagnostics.pylint ,
         null_ls.builtins.diagnostics.shellcheck ,
         null_ls.builtins.diagnostics.yamllint,
         null_ls.builtins.formatting.black ,
@@ -176,7 +185,6 @@ null_ls.setup({
         null_ls.builtins.formatting.cmake_format,
         null_ls.builtins.formatting.isort ,
         null_ls.builtins.formatting.lua_format ,
-        null_ls.builtins.formatting.markdownlint
     },
 })
 
