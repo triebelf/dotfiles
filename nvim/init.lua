@@ -18,7 +18,12 @@ vim.opt.diffopt:append("iwhite")
 vim.opt.ignorecase = true
 
 vim.opt.wildignore = {
-    ".*\\.egg-info", ".*\\.pyc$", "__pycache__", ".pytest_cache/", ".*\\.swp$",
+    ".*\\.egg-info",
+    "\\.eggs",
+    ".*\\.pyc$",
+    "__pycache__",
+    ".pytest_cache/",
+    ".*\\.swp$",
     "\\.venv/"
 }
 
