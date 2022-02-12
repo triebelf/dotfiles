@@ -1,4 +1,3 @@
--- vimscript to lua guide: https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua/
 -- persist the undo tree for each file
 vim.opt.undofile = true
 
@@ -39,11 +38,11 @@ vim.g.netrw_keepdir = 0
 
 -- true color support
 vim.opt.termguicolors = true
-vim.opt.background = 'dark'
 vim.opt.cursorline = true
 
 -- [plugin] awesome-vim-colorschemes
 vim.cmd('colorscheme jellybeans')
+vim.opt.background = 'dark'
 
 -- [plugin] nvim-telescope
 require('telescope').setup({
@@ -151,9 +150,7 @@ require"lspconfig".efm.setup {
     flags = {debounce_text_changes = 150},
     capabilities = capabilities,
     init_options = {documentFormatting = true},
-    filetypes = {
-        'make', 'rst', 'yaml', 'dockerfile', 'sh', 'html', 'lua'
-    }
+    filetypes = { 'rst' }
 }
 
 require("lspconfig").hls.setup {
@@ -179,16 +176,13 @@ local null_ls = require("null-ls")
 null_ls.setup({
     sources = {
         null_ls.builtins.code_actions.shellcheck ,
-        null_ls.builtins.diagnostics.gitlint ,
         null_ls.builtins.diagnostics.hadolint ,
         null_ls.builtins.diagnostics.mypy ,
         --null_ls.builtins.diagnostics.pylint ,
         null_ls.builtins.diagnostics.shellcheck ,
         null_ls.builtins.diagnostics.yamllint,
-        null_ls.builtins.formatting.black ,
-        null_ls.builtins.formatting.clang_format ,
-        null_ls.builtins.formatting.cmake_format,
-        null_ls.builtins.formatting.isort ,
+        null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.isort.with({args = { "--quiet", "--profile", "black", "--line-width", "120", "-" }}) ,
         null_ls.builtins.formatting.lua_format ,
     },
 })
