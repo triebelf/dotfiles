@@ -39,6 +39,7 @@ vim.g.netrw_keepdir = 0
 -- true color support
 vim.opt.termguicolors = true
 vim.opt.cursorline = true
+vim.opt.signcolumn = "yes"
 
 -- [plugin] awesome-vim-colorschemes
 vim.cmd('colorscheme jellybeans')
