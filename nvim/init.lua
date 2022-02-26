@@ -42,7 +42,7 @@ vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
 
 -- [plugin] awesome-vim-colorschemes
-vim.cmd('colorscheme jellybeans')
+vim.cmd('colorscheme PaperColor')
 vim.opt.background = 'dark'
 
 -- [plugin] nvim-telescope
@@ -53,10 +53,10 @@ require('telescope').setup({
 })
 vim.api.nvim_set_keymap('n', '<leader>z', '<cmd>Telescope find_files<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>o', '<cmd>Telescope git_files<cr>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>s', '<cmd>Telescope grep_string<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>l', '<cmd>Telescope live_grep<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>b', '<cmd>Telescope buffers<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>m', '<cmd>Telescope oldfiles<cr>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>s', '<cmd>Telescope tags<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>a', '<cmd>Telescope help_tags<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>v', '<cmd>Telescope vim_options<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>x', '<cmd>Telescope registers<cr>', {noremap = true})
@@ -66,9 +66,13 @@ vim.api.nvim_set_keymap('n', '<leader>y', '<cmd>Telescope current_buffer_fuzzy_f
 require('lualine').setup { options = { icons_enabled = false,}}
 
 -- [plugin] vim-gutentags
-vim.g.gutentags_cache_dir = vim.env.HOME .. '/.cache/gutentags'
-vim.g.gutentags_ctags_extra_args = {'--tag-relative=yes', '--fields=+ailmnS'}
---vim.g.gutentags_trace = 1
+vim.g.gutentags_cache_dir = vim.fn.expand('~/.cache/nvim/ctags/')
+vim.g.gutentags_ctags_exclude = { ".*" }
+vim.g.gutentags_ctags_extra_args = {'--tag-relative=yes', '--fields=+ailmnS', }
+vim.g.gutentags_generate_on_new = true
+vim.g.gutentags_generate_on_missing = true
+vim.g.gutentags_generate_on_write = true
+vim.g.gutentags_generate_on_empty_buffer = true
 
 -- [plugin] vim-oscyank
 vim.cmd [[
@@ -98,7 +102,7 @@ cmp.setup({
         ['<CR>'] = cmp.mapping.confirm({select = true}) -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     },
     -- [plugin] cmp-nvim-lsp, cmp-buffer
-    sources = cmp.config.sources({{name = 'nvim_lsp'}}, {{name = 'buffer'}})
+    sources = cmp.config.sources({{name = 'nvim_lsp'}}, {{name = 'buffer'}}, {{ name = 'snippy' }})
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
@@ -178,8 +182,8 @@ null_ls.setup({
     sources = {
         null_ls.builtins.code_actions.shellcheck ,
         null_ls.builtins.diagnostics.hadolint ,
-        null_ls.builtins.diagnostics.mypy ,
-        --null_ls.builtins.diagnostics.pylint ,
+        null_ls.builtins.diagnostics.mypy.with({args = function(params) return { "--strict", "--hide-error-codes", "--hide-error-context", "--no-color-output", "--show-column-numbers", "--show-error-codes", "--no-error-summary", "--no-pretty", "--shadow-file", params.bufname, params.temp_path, params.bufname, } end}) ,
+        null_ls.builtins.diagnostics.pylint ,
         null_ls.builtins.diagnostics.shellcheck ,
         null_ls.builtins.diagnostics.yamllint,
         null_ls.builtins.formatting.black,
