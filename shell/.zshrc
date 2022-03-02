@@ -135,6 +135,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias vi='nvim'
 alias vim='nvim'
+alias http_share='python3 -m http.server 9999'
 
 ################################## ENVIRONMENT ##################################
 # automatically remove duplicates from these arrays
