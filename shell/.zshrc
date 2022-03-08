@@ -80,6 +80,17 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 fi
 
 ################################## PLUGINS ##################################
+# Install zplug.
+if [[ ! -e ~/.zplug ]]; then
+  git clone --depth=1 https://github.com/zplug/zplug.git ~/.zplug
+  () {
+    emulate -L zsh -o extended_glob
+    local f
+    for f in ~/.zplug/**/*.zsh(.) ~/.zplug/autoload/**/^*.zsh(.); do
+      zcompile -R -- $f.zwc $f
+    done
+  }
+fi
 source ~/.zplug/init.zsh
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
