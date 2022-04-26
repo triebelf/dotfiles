@@ -39,13 +39,16 @@ vim.g.netrw_keepdir = 0
 -- true color support
 vim.opt.termguicolors = true
 vim.opt.cursorline = true
+
+-- plugin: vim-signify
 vim.opt.signcolumn = "yes"
 
--- [plugin] awesome-vim-colorschemes
-vim.cmd('colorscheme PaperColor')
+-- plugin: awesome-vim-colorschemes
+vim.cmd('colorscheme gruvbox')
 vim.opt.background = 'dark'
 
--- [plugin] nvim-telescope
+-- plugin: telescope.nvim
+-- plugin: plenary.nvim
 require('telescope').setup({
   defaults = {
     layout_strategy='vertical',
@@ -62,10 +65,10 @@ vim.api.nvim_set_keymap('n', '<leader>v', '<cmd>Telescope vim_options<cr>', {nor
 vim.api.nvim_set_keymap('n', '<leader>x', '<cmd>Telescope registers<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>y', '<cmd>Telescope current_buffer_fuzzy_find<cr>', {noremap = true})
 
--- [plugin] nvim-lualine
+-- plugin: lualine.nvim
 require('lualine').setup { options = { icons_enabled = false,}}
 
--- [plugin] vim-gutentags
+-- plugin: vim-gutentags
 vim.g.gutentags_cache_dir = vim.fn.expand('~/.cache/nvim/ctags/')
 vim.g.gutentags_ctags_exclude = { ".*" }
 vim.g.gutentags_ctags_extra_args = {'--tag-relative=yes', '--fields=+ailmnS', }
@@ -74,69 +77,37 @@ vim.g.gutentags_generate_on_missing = true
 vim.g.gutentags_generate_on_write = true
 vim.g.gutentags_generate_on_empty_buffer = true
 
--- [plugin] vim-oscyank
+-- plugin: vim-oscyank
 vim.cmd [[
   autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | OSCYankReg " | endif
 ]]
 
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 
--- [plugin] nvim-cmp
+-- plugin: nvim-cmp
+-- plugin: nvim-snippy
+-- plugin: cmp-buffer
+-- plugin: cmp-cmdline
+-- plugin: cmp-nvim-lsp
+-- plugin: cmp-path
+-- plugin: cmp-snippy
 local cmp = require 'cmp'
 cmp.setup({
+    sources = cmp.config.sources({
+        {name = 'nvim_lsp'},
+        {name = 'buffer'},
+        { name = 'snippy' }
+    }),
+    mapping = cmp.mapping.preset.insert({
+        ["<cr>"] = cmp.mapping.confirm({select = true}),
+        ["<s-tab>"] = cmp.mapping.select_prev_item(),
+        ["<tab>"] = cmp.mapping.select_next_item(),
+    }),
     snippet = {
         expand = function(args)
-            -- [plugin] nvim-snippy
             require('snippy').expand_snippet(args.body)
         end
     },
-    mapping = cmp.mapping.preset.insert({
-        ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4)),
-        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4)),
-        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete()),
-        ['<C-e>'] = cmp.mapping.abort(),
-        ['<C-n>'] = {
-            c = function(fallback)
-                local cmp = require('cmp')
-                if cmp.visible() then
-                    cmp.select_next_item()
-                else
-                    fallback()
-                end
-            end,
-        },
-        ['<C-p>'] = {
-            c = function(fallback)
-                local cmp = require('cmp')
-                if cmp.visible() then
-                    cmp.select_prev_item()
-                else
-                    fallback()
-                end
-            end,
-        },
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        ['<Tab>'] = function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-            else
-                fallback()
-            end
-        end,
-        ['<S-Tab>'] = function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-            else
-                fallback()
-            end
-        end,
-    }),
-    -- [plugin] cmp-nvim-lsp, cmp-buffer
-    sources = cmp.config.sources({{name = 'nvim_lsp'}}, {{name = 'buffer'}}, {{ name = 'snippy' }})
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
@@ -144,11 +115,10 @@ cmp.setup.cmdline('/', {sources = {{name = 'buffer'}}})
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
-    -- [plugin] cmp-path / cmp-cmdline
     sources = cmp.config.sources({{name = 'path'}}, {{name = 'cmdline'}})
 })
 
--- [plugin] nvim-lspconfig
+-- plugin: nvim-lspconfig
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -209,21 +179,6 @@ require("lspconfig").ltex.setup {
     filetypes = { "bib", "markdown", "org", "plaintex", "rst", "rnoweb", "tex" }
 }
 
-local null_ls = require("null-ls")
-null_ls.setup({
-    sources = {
-        null_ls.builtins.code_actions.shellcheck ,
-        null_ls.builtins.diagnostics.hadolint ,
-        null_ls.builtins.diagnostics.mypy.with({args = function(params) return { "--strict", "--hide-error-codes", "--hide-error-context", "--no-color-output", "--show-column-numbers", "--show-error-codes", "--no-error-summary", "--no-pretty", "--shadow-file", params.bufname, params.temp_path, params.bufname, } end}) ,
-        null_ls.builtins.diagnostics.pylint ,
-        null_ls.builtins.diagnostics.shellcheck ,
-        null_ls.builtins.diagnostics.yamllint,
-        null_ls.builtins.formatting.black,
-        null_ls.builtins.formatting.isort.with({args = { "--quiet", "--profile", "black", "--line-width", "120", "-" }}) ,
-        null_ls.builtins.formatting.lua_format ,
-    },
-})
-
 require("lspconfig").pyright.setup {
     on_attach = on_attach,
     flags = {debounce_text_changes = 150},
@@ -252,3 +207,19 @@ require("lspconfig").yamlls.setup {
     flags = {debounce_text_changes = 150},
     capabilities = capabilities
 }
+
+-- plugin: null-ls.nvim
+local null_ls = require("null-ls")
+null_ls.setup({
+    sources = {
+        null_ls.builtins.code_actions.shellcheck ,
+        null_ls.builtins.diagnostics.hadolint ,
+        null_ls.builtins.diagnostics.mypy.with({args = function(params) return { "--strict", "--hide-error-codes", "--hide-error-context", "--no-color-output", "--show-column-numbers", "--show-error-codes", "--no-error-summary", "--no-pretty", "--shadow-file", params.bufname, params.temp_path, params.bufname, } end}) ,
+        null_ls.builtins.diagnostics.pylint ,
+        null_ls.builtins.diagnostics.shellcheck ,
+        null_ls.builtins.diagnostics.yamllint,
+        null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.isort.with({args = { "--quiet", "--profile", "black", "--line-width", "120", "-" }}) ,
+        null_ls.builtins.formatting.lua_format ,
+    },
+})
