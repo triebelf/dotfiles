@@ -74,3 +74,7 @@
     path = nvim/site/pack/config/start/null-ls.nvim
     url = https://github.com/jose-elias-alvarez/null-ls.nvim.git
     branch = main
+[submodule "nvim/site/pack/config/start/vim-snippets"]
+    path = nvim/site/pack/config/start/vim-snippets
+    url = https://github.com/honza/vim-snippets.git
+    branch = master
