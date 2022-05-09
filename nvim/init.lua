@@ -43,9 +43,13 @@ vim.opt.cursorline = true
 -- plugin: vim-signify
 vim.opt.signcolumn = "yes"
 
--- plugin: awesome-vim-colorschemes
-vim.cmd('colorscheme gruvbox')
-vim.opt.background = 'dark'
+-- plugin: tokyonight.nvim
+--vim.g.tokyonight_style = "night" -- day, storm, night
+vim.g.tokyonight_sidebars = { "netrw" }
+vim.cmd[[colorscheme tokyonight]]
+
+-- plugin: lualine.nvim
+require('lualine').setup { options = { icons_enabled = false, theme = "tokyonight" }}
 
 -- plugin: telescope.nvim
 -- plugin: plenary.nvim
@@ -64,9 +68,6 @@ vim.api.nvim_set_keymap('n', '<leader>a', '<cmd>Telescope help_tags<cr>', {norem
 vim.api.nvim_set_keymap('n', '<leader>v', '<cmd>Telescope vim_options<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>x', '<cmd>Telescope registers<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>y', '<cmd>Telescope current_buffer_fuzzy_find<cr>', {noremap = true})
-
--- plugin: lualine.nvim
-require('lualine').setup { options = { icons_enabled = false,}}
 
 -- plugin: vim-gutentags
 vim.g.gutentags_cache_dir = vim.fn.expand('~/.cache/nvim/ctags/')
