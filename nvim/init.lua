@@ -39,20 +39,14 @@ vim.g.netrw_keepdir = 0
 -- true color support
 vim.opt.termguicolors = true
 vim.opt.cursorline = true
-
--- plugin: vim-signify
 vim.opt.signcolumn = "yes"
 
--- plugin: tokyonight.nvim
 --vim.g.tokyonight_style = "night" -- day, storm, night
 vim.g.tokyonight_sidebars = { "netrw" }
 vim.cmd[[colorscheme tokyonight]]
 
--- plugin: lualine.nvim
 require('lualine').setup { options = { icons_enabled = false, theme = "tokyonight" }}
 
--- plugin: telescope.nvim
--- plugin: plenary.nvim
 require('telescope').setup({
   defaults = {
     layout_strategy='vertical',
@@ -69,7 +63,6 @@ vim.api.nvim_set_keymap('n', '<leader>v', '<cmd>Telescope vim_options<cr>', {nor
 vim.api.nvim_set_keymap('n', '<leader>x', '<cmd>Telescope registers<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>y', '<cmd>Telescope current_buffer_fuzzy_find<cr>', {noremap = true})
 
--- plugin: vim-gutentags
 vim.g.gutentags_cache_dir = vim.fn.expand('~/.cache/nvim/ctags/')
 vim.g.gutentags_ctags_exclude = { ".*" }
 vim.g.gutentags_ctags_extra_args = {'--tag-relative=yes', '--fields=+ailmnS', }
@@ -78,22 +71,15 @@ vim.g.gutentags_generate_on_missing = true
 vim.g.gutentags_generate_on_write = true
 vim.g.gutentags_generate_on_empty_buffer = true
 
--- plugin: vim-oscyank
 vim.cmd [[
   autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | OSCYankReg " | endif
 ]]
 
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 
--- plugin: nvim-cmp
--- plugin: nvim-snippy
--- plugin: cmp-buffer
--- plugin: cmp-cmdline
--- plugin: cmp-nvim-lsp
--- plugin: cmp-path
--- plugin: cmp-snippy
 local cmp = require 'cmp'
 cmp.setup({
+    completion = { autocomplete = false },
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'buffer' },
@@ -127,7 +113,6 @@ cmp.setup.cmdline(':', {
     sources = cmp.config.sources({{name = 'path'}}, {{name = 'cmdline'}})
 })
 
--- plugin: nvim-lspconfig
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -217,7 +202,6 @@ require("lspconfig").yamlls.setup {
     capabilities = capabilities
 }
 
--- plugin: null-ls.nvim
 local null_ls = require("null-ls")
 null_ls.setup({
     sources = {
