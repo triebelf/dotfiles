@@ -47,6 +47,13 @@ vim.cmd[[colorscheme tokyonight]]
 
 require('lualine').setup { options = { icons_enabled = false, theme = "tokyonight" }}
 
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "bash", "cmake", "cpp", "dockerfile", "haskell", "json", "lua", "markdown", "python", "rst", "toml", "yaml" },
+  highlight = { enable = true }
+}
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+
 require('telescope').setup({
   defaults = {
     layout_strategy='vertical',

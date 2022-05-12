@@ -78,3 +78,7 @@
     path = nvim/site/pack/config/start/tokyonight.nvim
     url = https://github.com/folke/tokyonight.nvim.git
     branch = main
+[submodule "nvim/site/pack/config/start/nvim-treesitter"]
+    path = nvim/site/pack/config/start/nvim-treesitter
+    url = https://github.com/nvim-treesitter/nvim-treesitter.git
+    branch = master
