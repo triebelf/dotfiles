@@ -16,15 +16,7 @@ vim.opt.diffopt:append("iwhite")
 --  ignore case when searching
 vim.opt.ignorecase = true
 
-vim.opt.wildignore = {
-    ".*\\.egg-info",
-    "\\.eggs",
-    ".*\\.pyc$",
-    "__pycache__",
-    ".pytest_cache/",
-    ".*\\.swp$",
-    "\\.venv/"
-}
+vim.opt.wildignore = {".*\\.egg-info", "\\.eggs", ".*\\.pyc$", "__pycache__", ".pytest_cache/", ".*\\.swp$", "\\.venv/"}
 
 -- NERDtree like setup (commands :Ex :Sex :Vex)
 vim.g.netrw_liststyle = 3
@@ -41,24 +33,22 @@ vim.opt.termguicolors = true
 vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
 
---vim.g.tokyonight_style = "night" -- day, storm, night
-vim.g.tokyonight_sidebars = { "netrw" }
-vim.cmd[[colorscheme tokyonight]]
+-- vim.g.tokyonight_style = "night" -- day, storm, night
+vim.g.tokyonight_sidebars = {"netrw"}
+vim.cmd [[colorscheme tokyonight]]
 
-require('lualine').setup { options = { icons_enabled = false, theme = "tokyonight" }}
+require('lualine').setup {options = {icons_enabled = false, theme = "tokyonight"}}
 
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "bash", "cmake", "cpp", "dockerfile", "haskell", "json", "lua", "markdown", "python", "rst", "toml", "yaml" },
-  highlight = { enable = true }
+    ensure_installed = {
+        "bash", "cmake", "cpp", "dockerfile", "haskell", "json", "lua", "markdown", "python", "rst", "toml", "yaml"
+    },
+    highlight = {enable = true}
 }
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
-require('telescope').setup({
-  defaults = {
-    layout_strategy='vertical',
-  },
-})
+require('telescope').setup({defaults = {layout_strategy = 'vertical'}})
 vim.api.nvim_set_keymap('n', '<leader>z', '<cmd>Telescope find_files<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>o', '<cmd>Telescope git_files<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>l', '<cmd>Telescope live_grep<cr>', {noremap = true})
@@ -71,8 +61,8 @@ vim.api.nvim_set_keymap('n', '<leader>x', '<cmd>Telescope registers<cr>', {norem
 vim.api.nvim_set_keymap('n', '<leader>y', '<cmd>Telescope current_buffer_fuzzy_find<cr>', {noremap = true})
 
 vim.g.gutentags_cache_dir = vim.fn.expand('~/.cache/nvim/ctags/')
-vim.g.gutentags_ctags_exclude = { ".*" }
-vim.g.gutentags_ctags_extra_args = {'--tag-relative=yes', '--fields=+ailmnS', }
+vim.g.gutentags_ctags_exclude = {".*"}
+vim.g.gutentags_ctags_extra_args = {'--tag-relative=yes', '--fields=+ailmnS'}
 vim.g.gutentags_generate_on_new = true
 vim.g.gutentags_generate_on_missing = true
 vim.g.gutentags_generate_on_write = true
@@ -86,33 +76,22 @@ vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 
 local cmp = require 'cmp'
 cmp.setup({
-    completion = { autocomplete = false },
-    sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'buffer' },
-        { name = 'snippy' }
-    }),
+    completion = {autocomplete = false},
+    sources = cmp.config.sources({{name = 'nvim_lsp'}, {name = 'buffer'}, {name = 'snippy'}}),
     mapping = cmp.mapping.preset.insert({
-      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.abort(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-      -- ["<s-tab>"] = cmp.mapping.select_prev_item(),
-      -- ["<tab>"] = cmp.mapping.select_next_item(),
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.abort(),
+        ['<CR>'] = cmp.mapping.confirm({select = true}) -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        -- ["<s-tab>"] = cmp.mapping.select_prev_item(),
+        -- ["<tab>"] = cmp.mapping.select_next_item(),
     }),
-    snippet = {
-        expand = function(args)
-            require('snippy').expand_snippet(args.body)
-        end
-    },
+    snippet = {expand = function(args) require('snippy').expand_snippet(args.body) end}
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline('/', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = { { name = 'buffer' } }
-})
+cmp.setup.cmdline('/', {mapping = cmp.mapping.preset.cmdline(), sources = {{name = 'buffer'}}})
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
@@ -120,13 +99,10 @@ cmp.setup.cmdline(':', {
     sources = cmp.config.sources({{name = 'path'}}, {{name = 'cmdline'}})
 })
 
-
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-    local function buf_set_keymap(...)
-        vim.api.nvim_buf_set_keymap(bufnr, ...)
-    end
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
     -- Mappings.
     local opts = {noremap = true, silent = true}
@@ -158,7 +134,7 @@ require"lspconfig".efm.setup {
     flags = {debounce_text_changes = 150},
     capabilities = capabilities,
     init_options = {documentFormatting = true},
-    filetypes = { 'rst' }
+    filetypes = {'rst'}
 }
 
 require("lspconfig").hls.setup {
@@ -177,7 +153,7 @@ require("lspconfig").ltex.setup {
     on_attach = on_attach,
     flags = {debounce_text_changes = 150},
     capabilities = capabilities,
-    filetypes = { "bib", "markdown", "org", "plaintex", "rst", "rnoweb", "tex" }
+    filetypes = {"bib", "markdown", "org", "plaintex", "rst", "rnoweb", "tex"}
 }
 
 require("lspconfig").pyright.setup {
@@ -212,14 +188,18 @@ require("lspconfig").yamlls.setup {
 local null_ls = require("null-ls")
 null_ls.setup({
     sources = {
-        null_ls.builtins.code_actions.shellcheck ,
-        null_ls.builtins.diagnostics.hadolint ,
-        null_ls.builtins.diagnostics.mypy.with({args = function(params) return { "--strict", "--hide-error-codes", "--hide-error-context", "--no-color-output", "--show-column-numbers", "--show-error-codes", "--no-error-summary", "--no-pretty", "--shadow-file", params.bufname, params.temp_path, params.bufname, } end}) ,
-        null_ls.builtins.diagnostics.pylint ,
-        null_ls.builtins.diagnostics.shellcheck ,
-        null_ls.builtins.diagnostics.yamllint,
-        null_ls.builtins.formatting.black,
-        null_ls.builtins.formatting.isort.with({args = { "--quiet", "--profile", "black", "--line-width", "120", "-" }}) ,
-        null_ls.builtins.formatting.lua_format ,
-    },
+        null_ls.builtins.code_actions.shellcheck, null_ls.builtins.diagnostics.hadolint,
+        null_ls.builtins.diagnostics.mypy.with({
+            args = function(params)
+                return {
+                    "--strict", "--hide-error-codes", "--hide-error-context", "--no-color-output",
+                    "--show-column-numbers", "--show-error-codes", "--no-error-summary", "--no-pretty", "--shadow-file",
+                    params.bufname, params.temp_path, params.bufname
+                }
+            end
+        }), null_ls.builtins.diagnostics.pylint, null_ls.builtins.diagnostics.shellcheck,
+        null_ls.builtins.diagnostics.yamllint, null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.isort.with({args = {"--quiet", "--profile", "black", "--line-width", "120", "-"}}),
+        null_ls.builtins.formatting.lua_format.with({args = {"--in-place", "--column-limit=120"}})
+    }
 })
