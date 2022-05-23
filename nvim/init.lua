@@ -45,8 +45,8 @@ require'nvim-treesitter.configs'.setup {
     },
     highlight = {enable = true}
 }
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+--vim.opt.foldmethod = "expr"
+--vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 require('telescope').setup({defaults = {layout_strategy = 'vertical'}})
 vim.api.nvim_set_keymap('n', '<leader>z', '<cmd>Telescope find_files<cr>', {noremap = true})
