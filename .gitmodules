@@ -82,3 +82,15 @@
     path = nvim/site/pack/config/start/nvim-treesitter
     url = https://github.com/nvim-treesitter/nvim-treesitter.git
     branch = master
+[submodule "nvim/site/pack/config/start/cmp-treesitter"]
+    path = nvim/site/pack/config/start/cmp-treesitter
+    url = https://github.com/ray-x/cmp-treesitter
+    branch = master
+[submodule "nvim/site/pack/config/start/cmp-nvim-tags"]
+    path = nvim/site/pack/config/start/cmp-nvim-tags
+    url = https://github.com/quangnguyen30192/cmp-nvim-tags
+    branch = main
+[submodule "nvim/site/pack/config/start/cmp-nvim-lua"]
+    path = nvim/site/pack/config/start/cmp-nvim-lua
+    url = https://github.com/hrsh7th/cmp-nvim-lua
+    branch = main

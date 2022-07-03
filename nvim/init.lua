@@ -41,12 +41,15 @@ vim.opt.termguicolors = true
 vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
 
--- vim.g.tokyonight_style = "night" -- day, storm, night
+-- tokyonight.nvim
+vim.g.tokyonight_style = "storm" -- day, storm, night
 vim.g.tokyonight_sidebars = { "netrw" }
 vim.cmd([[colorscheme tokyonight]])
 
+-- lualine.nvim
 require("lualine").setup({ options = { icons_enabled = false, theme = "tokyonight" } })
 
+-- nvim-treesitter
 require("nvim-treesitter.configs").setup({
     ensure_installed = {
         "bash",
@@ -67,6 +70,8 @@ require("nvim-treesitter.configs").setup({
 --vim.opt.foldmethod = "expr"
 --vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
+-- plenary.nvim
+-- telescope.nvim
 require("telescope").setup({ defaults = { layout_strategy = "vertical" } })
 vim.api.nvim_set_keymap("n", "<leader>z", "<cmd>Telescope find_files<cr>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>Telescope git_files<cr>", { noremap = true })
@@ -79,6 +84,7 @@ vim.api.nvim_set_keymap("n", "<leader>v", "<cmd>Telescope vim_options<cr>", { no
 vim.api.nvim_set_keymap("n", "<leader>x", "<cmd>Telescope registers<cr>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>y", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { noremap = true })
 
+-- vim-gutentags
 vim.g.gutentags_cache_dir = vim.fn.expand("~/.cache/nvim/ctags/")
 vim.g.gutentags_ctags_exclude = { ".*" }
 vim.g.gutentags_ctags_extra_args = { "--tag-relative=yes", "--fields=+ailmnS" }
@@ -87,16 +93,31 @@ vim.g.gutentags_generate_on_missing = true
 vim.g.gutentags_generate_on_write = true
 vim.g.gutentags_generate_on_empty_buffer = true
 
+-- vim-oscyank
 vim.cmd([[
   autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | OSCYankReg " | endif
 ]])
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
+-- nvim-cmp
 local cmp = require("cmp")
 cmp.setup({
     completion = { autocomplete = false },
-    sources = cmp.config.sources({ { name = "nvim_lsp" }, { name = "buffer" }, { name = "snippy" } }),
+    sources = cmp.config.sources({
+        -- cmp-nvim-lsp
+        { name = "nvim_lsp" },
+        -- cmp-buffer
+        --{ name = "buffer" },
+        -- cmp-snippy
+        { name = "snippy" },
+        -- cmp-treesitter
+        { name = "treesitter" },
+        -- cmp-nvim-tags
+        -- { name = "tags" },
+        -- cmp-nvim-lua
+        { name = "nvim_lua" },
+    }),
     mapping = cmp.mapping.preset.insert({
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
@@ -108,6 +129,8 @@ cmp.setup({
     }),
     snippet = {
         expand = function(args)
+            -- nvim-snippy
+            -- vim-snippets
             require("snippy").expand_snippet(args.body)
         end,
     },
@@ -117,6 +140,8 @@ cmp.setup({
 cmp.setup.cmdline("/", { mapping = cmp.mapping.preset.cmdline(), sources = { { name = "buffer" } } })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+-- cmp-path
+-- cmp-cmdline
 cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
@@ -154,6 +179,7 @@ end
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+-- nvim-lspconfig
 require("lspconfig").efm.setup({
     on_attach = on_attach,
     flags = { debounce_text_changes = 150 },
@@ -210,6 +236,7 @@ require("lspconfig").yamlls.setup({
     capabilities = capabilities,
 })
 
+-- null-ls.nvim
 local null_ls = require("null-ls")
 null_ls.setup({
     sources = {
@@ -217,7 +244,6 @@ null_ls.setup({
         null_ls.builtins.completion.tags,
         null_ls.builtins.diagnostics.flake8,
         null_ls.builtins.diagnostics.hadolint,
-
         null_ls.builtins.diagnostics.mypy.with({
             args = function(params)
                 return {
@@ -236,7 +262,6 @@ null_ls.setup({
                 }
             end,
         }),
-
         null_ls.builtins.diagnostics.pydocstyle,
         null_ls.builtins.diagnostics.pylint,
         null_ls.builtins.diagnostics.shellcheck,
