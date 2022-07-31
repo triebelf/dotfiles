@@ -262,7 +262,6 @@ null_ls.setup({
                 }
             end,
         }),
-        null_ls.builtins.diagnostics.pydocstyle,
         null_ls.builtins.diagnostics.pylint,
         null_ls.builtins.diagnostics.shellcheck,
         null_ls.builtins.diagnostics.yamllint,
