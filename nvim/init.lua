@@ -200,6 +200,13 @@ require("lspconfig").jsonls.setup({
     capabilities = capabilities,
 })
 
+require'lspconfig'.lemminx.setup({
+    on_attach = on_attach,
+    flags = { debounce_text_changes = 150 },
+    capabilities = capabilities,
+})
+
+
 require("lspconfig").ltex.setup({
     on_attach = on_attach,
     flags = { debounce_text_changes = 150 },
