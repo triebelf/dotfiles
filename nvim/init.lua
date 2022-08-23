@@ -51,20 +51,6 @@ require("lualine").setup({ options = { icons_enabled = false, theme = "tokyonigh
 
 -- nvim-treesitter
 require("nvim-treesitter.configs").setup({
-    ensure_installed = {
-        "bash",
-        "cmake",
-        "cpp",
-        "dockerfile",
-        "haskell",
-        "json",
-        "lua",
-        "markdown",
-        "python",
-        "rst",
-        "toml",
-        "yaml",
-    },
     highlight = { enable = true },
 })
 --vim.opt.foldmethod = "expr"
@@ -180,15 +166,7 @@ end
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- nvim-lspconfig
-require("lspconfig").efm.setup({
-    on_attach = on_attach,
-    flags = { debounce_text_changes = 150 },
-    capabilities = capabilities,
-    init_options = { documentFormatting = true },
-    filetypes = { "rst" },
-})
-
-require("lspconfig").hls.setup({
+require("lspconfig").dockerls.setup({
     on_attach = on_attach,
     flags = { debounce_text_changes = 150 },
     capabilities = capabilities,
@@ -200,12 +178,11 @@ require("lspconfig").jsonls.setup({
     capabilities = capabilities,
 })
 
-require'lspconfig'.lemminx.setup({
+require("lspconfig").lemminx.setup({
     on_attach = on_attach,
     flags = { debounce_text_changes = 150 },
     capabilities = capabilities,
 })
-
 
 require("lspconfig").ltex.setup({
     on_attach = on_attach,
@@ -241,6 +218,14 @@ require("lspconfig").yamlls.setup({
     on_attach = on_attach,
     flags = { debounce_text_changes = 150 },
     capabilities = capabilities,
+    settings = {
+        yaml = { format = { enable = true, proseWrap = "Always", printWidth = 120 } },
+        redhat = {
+            telemetry = {
+                enabled = false,
+            },
+        },
+    },
 })
 
 -- null-ls.nvim
@@ -248,9 +233,7 @@ local null_ls = require("null-ls")
 null_ls.setup({
     sources = {
         null_ls.builtins.code_actions.shellcheck,
-        null_ls.builtins.completion.tags,
         null_ls.builtins.diagnostics.flake8,
-        null_ls.builtins.diagnostics.hadolint,
         null_ls.builtins.diagnostics.mypy.with({
             args = function(params)
                 return {
@@ -277,10 +260,7 @@ null_ls.setup({
         null_ls.builtins.formatting.isort.with({
             args = { "--quiet", "--profile", "black", "--line-width", "120", "-" },
         }),
-        null_ls.builtins.formatting.jq,
         null_ls.builtins.formatting.shellharden,
-        null_ls.builtins.formatting.shfmt,
-        null_ls.builtins.formatting.taplo,
         null_ls.builtins.formatting.stylua.with({
             extra_args = { "--column-width", "120", "--indent-type", "Spaces" },
         }),
