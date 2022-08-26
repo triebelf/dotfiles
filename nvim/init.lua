@@ -42,7 +42,7 @@ vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
 
 -- tokyonight.nvim
-vim.g.tokyonight_style = "storm" -- day, storm, night
+vim.g.tokyonight_style = "night" -- day, storm, night
 vim.g.tokyonight_sidebars = { "netrw" }
 vim.cmd([[colorscheme tokyonight]])
 
@@ -56,23 +56,9 @@ require("nvim-treesitter.configs").setup({
 --vim.opt.foldmethod = "expr"
 --vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
--- plenary.nvim
--- telescope.nvim
-require("telescope").setup({ defaults = { layout_strategy = "vertical" } })
-vim.api.nvim_set_keymap("n", "<leader>z", "<cmd>Telescope find_files<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>Telescope git_files<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>l", "<cmd>Telescope live_grep<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>b", "<cmd>Telescope buffers<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>m", "<cmd>Telescope oldfiles<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>s", "<cmd>Telescope tags<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>a", "<cmd>Telescope help_tags<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>v", "<cmd>Telescope vim_options<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>x", "<cmd>Telescope registers<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>y", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { noremap = true })
-
 -- vim-gutentags
+--vim.g.gutentags_trace = 1
 vim.g.gutentags_cache_dir = vim.fn.expand("~/.cache/nvim/ctags/")
-vim.g.gutentags_ctags_exclude = { ".*" }
 vim.g.gutentags_ctags_extra_args = { "--tag-relative=yes", "--fields=+ailmnS" }
 vim.g.gutentags_generate_on_new = true
 vim.g.gutentags_generate_on_missing = true
@@ -133,6 +119,21 @@ cmp.setup.cmdline(":", {
     sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
 })
 
+-- plenary.nvim
+-- telescope.nvim
+require("telescope").setup({ defaults = { layout_strategy = "vertical" } })
+-- opening files
+vim.api.nvim_set_keymap("n", "<leader>,", "<cmd>Telescope live_grep<cr>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>.", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>h", "<cmd>Telescope oldfiles<cr>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>j", "<cmd>Telescope tags<cr>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>m", "<cmd>Telescope diagnostics<cr>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>Telescope git_files<cr>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>s", "<cmd>Telescope git_branches<cr>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>u", "<cmd>Telescope buffers<cr>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>y", "<cmd>Telescope registers<cr>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>z", "<cmd>Telescope find_files<cr>", { noremap = true })
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -144,23 +145,13 @@ local on_attach = function(client, bufnr)
     local opts = { noremap = true, silent = true }
 
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    buf_set_keymap("n", "<leader>g", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    buf_set_keymap("n", "<leader>D", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-    buf_set_keymap("n", "<leader>t", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-    buf_set_keymap("n", "<leader>i", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-    buf_set_keymap("n", "<leader>r", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+    buf_set_keymap("n", "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
     buf_set_keymap("n", "<leader>d", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    buf_set_keymap("n", "<leader>h", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-    buf_set_keymap("n", "<leader>n", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-    buf_set_keymap("n", "<leader>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-    buf_set_keymap("n", "<leader>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-    buf_set_keymap("n", "<leader>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
-    buf_set_keymap("n", "<leader>c", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
     buf_set_keymap("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-    buf_set_keymap("n", "<leader>k", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-    buf_set_keymap("n", "<leader>j", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-    buf_set_keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
     buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    buf_set_keymap("n", "<leader>g", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    buf_set_keymap("n", "<leader>n", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+    buf_set_keymap("n", "<leader>r", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 end
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
