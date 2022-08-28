@@ -19,11 +19,10 @@ vim.opt.ignorecase = true
 vim.opt.wildignore = {
     ".*\\.egg-info",
     "\\.eggs",
+    ".git",
+    ".mypy_cache",
     ".*\\.pyc$",
     "__pycache__",
-    ".pytest_cache/",
-    ".*\\.swp$",
-    "\\.venv/",
 }
 
 -- NERDtree like setup (commands :Ex :Sex :Vex)
@@ -64,6 +63,7 @@ vim.g.gutentags_generate_on_new = true
 vim.g.gutentags_generate_on_missing = true
 vim.g.gutentags_generate_on_write = true
 vim.g.gutentags_generate_on_empty_buffer = true
+vim.g.gutentags_ctags_exclude = { ".*" }
 
 -- vim-oscyank
 vim.cmd([[
@@ -122,15 +122,16 @@ cmp.setup.cmdline(":", {
 -- plenary.nvim
 -- telescope.nvim
 require("telescope").setup({ defaults = { layout_strategy = "vertical" } })
+
 -- opening files
+vim.api.nvim_set_keymap("n", "<leader>b", "<cmd>Telescope buffers<cr>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>,", "<cmd>Telescope live_grep<cr>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>.", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>h", "<cmd>Telescope oldfiles<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>j", "<cmd>Telescope tags<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>m", "<cmd>Telescope diagnostics<cr>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>m", "<cmd>Telescope oldfiles<cr>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>Telescope git_files<cr>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>s", "<cmd>Telescope git_branches<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>u", "<cmd>Telescope buffers<cr>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>t", "<cmd>Telescope tags<cr>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>x", "<cmd>Telescope diagnostics<cr>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>y", "<cmd>Telescope registers<cr>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>z", "<cmd>Telescope find_files<cr>", { noremap = true })
 
@@ -150,6 +151,8 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
     buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
     buf_set_keymap("n", "<leader>g", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    buf_set_keymap("n", "<leader>j", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+    buf_set_keymap("n", "<leader>k", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
     buf_set_keymap("n", "<leader>n", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
     buf_set_keymap("n", "<leader>r", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 end
@@ -245,7 +248,7 @@ null_ls.setup({
         }),
         null_ls.builtins.diagnostics.pylint,
         null_ls.builtins.diagnostics.shellcheck,
-        null_ls.builtins.diagnostics.yamllint,
+        --null_ls.builtins.diagnostics.yamllint,
         null_ls.builtins.diagnostics.zsh,
         null_ls.builtins.formatting.black,
         null_ls.builtins.formatting.isort.with({
