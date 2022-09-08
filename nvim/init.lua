@@ -41,8 +41,11 @@ vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
 
 -- tokyonight.nvim
-vim.g.tokyonight_style = "night" -- day, storm, night
-vim.g.tokyonight_sidebars = { "netrw" }
+require("tokyonight").setup({
+    style = "day", -- day, storm, night
+    sidebars = { "netrw", "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
+    --day_brightness = 0.5,
+})
 vim.cmd([[colorscheme tokyonight]])
 
 -- lualine.nvim
