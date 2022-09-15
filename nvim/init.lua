@@ -42,7 +42,7 @@ vim.opt.signcolumn = "yes"
 
 -- tokyonight.nvim
 require("tokyonight").setup({
-    style = "day", -- day, storm, night
+    style = "night", -- day, storm, night
     sidebars = { "netrw", "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
     --day_brightness = 0.5,
 })
