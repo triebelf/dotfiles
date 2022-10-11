@@ -102,6 +102,8 @@ zplug "plugins/gpg-agent", from:oh-my-zsh
 zplug "trapd00r/LS_COLORS", hook-build:"dircolors -b LS_COLORS >| c.zsh"
 zplug "ael-code/zsh-colored-man-pages"
 zplug "MichaelAquilina/zsh-you-should-use"
+zplug "MichaelAquilina/zsh-autoswitch-virtualenv"
+zplug "oldratlee/hacker-quotes"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions", defer:1
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
@@ -155,7 +157,6 @@ typeset -U path cdpath fpath manpath
 path=("$HOME/.local/bin" $path)
 export PATH
 export EDITOR="nvim"
-
-export PYTHONPYCACHEPREFIX="$(mktemp -d --suffix=_pycache)"
-
+export AUTOSWITCH_SILENT=1
+#export PYTHONPYCACHEPREFIX="$(mktemp -d --suffix=_pycache)"
 # klist >/dev/null || kinit
