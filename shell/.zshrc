@@ -101,6 +101,7 @@ zplug "nekofar/zsh-git-lfs"
 zplug "plugins/gpg-agent", from:oh-my-zsh
 zplug "trapd00r/LS_COLORS", hook-build:"dircolors -b LS_COLORS >| c.zsh"
 zplug "ael-code/zsh-colored-man-pages"
+zplug "michaelxmcbride/zsh-dircycle"
 zplug "MichaelAquilina/zsh-you-should-use"
 zplug "MichaelAquilina/zsh-autoswitch-virtualenv"
 zplug "zsh-users/zsh-completions"
