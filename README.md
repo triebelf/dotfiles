@@ -1,20 +1,24 @@
 # Felix' Configuration Files
 
+This repository contains complete configuration files for Python development on
+Linux terminal. Some external dependencies have to be installed manually.
+
 ## Features
 
-- stack: alacritty, tmux, zsh, vim, git
+- terminal, shell, and editor configuration for IDE-like experience
+- stack: alacritty, tmux, zsh, neovim, git
 - vi key bindings
 - true color support
-- clipboard integration (works through ssh)
+- system clipboard integration
 - Python development
 
-Tested on Ubuntu and Manjaro Linux.
+Tested on various Linux distributions.
 
 ### Terminal
 
 Select a terminal that supports copy-paste through ssh sessions, for example
-xterm, Windows Terminal or Alacritty, see [this
-page](https://github.com/ojroques/vim-oscyank).
+xterm, kitty, foot, or alacritty, see
+[this](https://github.com/ojroques/vim-oscyank).
 
 Also, the terminal must support [true
 color](https://gist.github.com/XVilka/8346728).
@@ -27,8 +31,8 @@ Configure this command to create/attach a tmux ‘main’ session:
 
 - Prefix is Ctrl-A instead of the default Ctrl-B.
 - vi key bindings
-  - Copy: `Ctrl-A`, then select with `v` and copy with `y`
-  - Paste: `Ctrl-P`
+  - Copy: `Ctrl-A` then `Esc` then select with `v` and copy with `y`
+  - Paste: `Ctrl-A` then `Ctrl-P`
 
 ### zsh
 
@@ -41,22 +45,24 @@ Configure this command to create/attach a tmux ‘main’ session:
 - history search with `up` key
 - a few aliases
 
-### vim
+### neovim
 
-Configure vim as a complete IDE for Python, C++, shell script development.
+Configure neovim as a complete IDE for Python and shell script development.
 
-- leader key is ‘,’
-  - ,p : toggle paste mode
-  - ,d : show code documentation
-  - ,D : add pydoc string
-  - ,k : previous issue
-  - ,j : next issue
-  - ,g : go to definition
-  - ,r : references
-  - ,n : rename
-  - ,q : quick fix
-- plugins (some of those have external dependencies)
-
-After installing vim plugins, update the helptags with:
-
-> :helptags ALL
+- leader key is comma `,`
+- true color support with tokyonight scheme
+- treesitter configuration, run `TSInstall` or `TSUpdate`
+- automatic tag file generation
+- copy to clipboard on yank, even through ssh connection
+- autocompletion with many sources
+  - language server
+  - snippets
+  - treesitter
+  - buffer
+  - path
+- language server configuration and hotkeys for code actions
+  - Pyright
+  - null-ls as wrapper for all kinds of tools
+  - jsonls
+  - ...
+- search with Telescope and hotkeys, for example `,o` search file in git repo
