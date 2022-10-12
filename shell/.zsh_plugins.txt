@@ -1,0 +1,12 @@
+sindresorhus/pure kind:fpath
+sorin-ionescu/prezto path:modules/git/alias.zsh
+nekofar/zsh-git-lfs
+ohmyzsh/ohmyzsh path:plugins/gpg-agent
+michaelxmcbride/zsh-dircycle
+MichaelAquilina/zsh-you-should-use
+MichaelAquilina/zsh-autoswitch-virtualenv
+zsh-users/zsh-completions
+belak/zsh-utils path:completion
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-history-substring-search

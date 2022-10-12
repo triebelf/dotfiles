@@ -41,6 +41,19 @@ setopt NOTIFY
 # Prompting
 setopt PROMPT_SUBST
 
+################################## PLUGINS ##################################
+# git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
+source ${ZDOTDIR:-~}/.antidote/antidote.zsh
+antidote load
+
+autoload -Uz promptinit && promptinit && prompt pure
+
+# ignore case completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' '+r:|?=**'
+
+autoload -U zmv
+export AUTOSWITCH_SILENT=1
+
 ################################## KEY BINDINGS ##################################
 bindkey -v
 typeset -g -A key
@@ -79,54 +92,7 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
-################################## PLUGINS ##################################
-# Install zplug.
-if [[ ! -e ~/.zplug ]]; then
-  git clone --depth=1 https://github.com/zplug/zplug.git ~/.zplug
-  () {
-    emulate -L zsh -o extended_glob
-    local f
-    for f in ~/.zplug/**/*.zsh(.) ~/.zplug/autoload/**/^*.zsh(.); do
-      zcompile -R -- $f.zwc $f
-    done
-  }
-fi
-source ~/.zplug/init.zsh
-
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-zplug "mafredri/zsh-async", from:github
-zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
-zplug "modules/git", from:prezto
-zplug "nekofar/zsh-git-lfs"
-zplug "plugins/gpg-agent", from:oh-my-zsh
-zplug "trapd00r/LS_COLORS", hook-build:"dircolors -b LS_COLORS >| c.zsh"
-zplug "ael-code/zsh-colored-man-pages"
-zplug "michaelxmcbride/zsh-dircycle"
-zplug "MichaelAquilina/zsh-you-should-use"
-zplug "MichaelAquilina/zsh-autoswitch-virtualenv"
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-autosuggestions", defer:1
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "zsh-users/zsh-history-substring-search", defer:3
-
-if ! zplug check ; then
-	zplug install
-fi
-
-zplug load  # --verbose
-
-if command -v kubectl &> /dev/null
-then
-	source <(kubectl completion zsh)
-fi
-
-# ignore case completion
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' '+r:|?=**'
-
-autoload -U zmv
-
 ################################## ALIASES ##################################
-
 alias open="xdg-open"
 alias top='htop'
 alias _='sudo -E'
@@ -157,6 +123,4 @@ typeset -U path cdpath fpath manpath
 path=("$HOME/.local/bin" $path)
 export PATH
 export EDITOR="nvim"
-export AUTOSWITCH_SILENT=1
 #export PYTHONPYCACHEPREFIX="$(mktemp -d --suffix=_pycache)"
-# klist >/dev/null || kinit
