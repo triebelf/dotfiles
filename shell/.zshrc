@@ -103,7 +103,6 @@ zplug "trapd00r/LS_COLORS", hook-build:"dircolors -b LS_COLORS >| c.zsh"
 zplug "ael-code/zsh-colored-man-pages"
 zplug "MichaelAquilina/zsh-you-should-use"
 zplug "MichaelAquilina/zsh-autoswitch-virtualenv"
-zplug "oldratlee/hacker-quotes"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions", defer:1
 zplug "zsh-users/zsh-syntax-highlighting", defer:2

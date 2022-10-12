@@ -230,12 +230,16 @@ local null_ls = require("null-ls")
 null_ls.setup({
     sources = {
         null_ls.builtins.code_actions.shellcheck,
-        null_ls.builtins.diagnostics.flake8,
+        null_ls.builtins.diagnostics.flake8.with({
+            args = { "--max-line-length", "120", "--format", "default", "--stdin-display-name", "$FILENAME", "-" },
+        }),
         null_ls.builtins.diagnostics.mypy.with({
             args = function(params)
                 return {
+                    -- recommendations from https://blog.wolt.com/engineering/2021/09/30/professional-grade-mypy-configuration/
+                    -- prefer # type: ignore[<error-code>] over # type: ignore
                     "--strict",
-                    "--hide-error-codes",
+                    "--disallow-any-unimported", -- instead of ignore_missing_imports = True
                     "--hide-error-context",
                     "--no-color-output",
                     "--show-column-numbers",
@@ -249,7 +253,9 @@ null_ls.setup({
                 }
             end,
         }),
-        null_ls.builtins.diagnostics.pylint,
+        null_ls.builtins.diagnostics.pylint.with({
+            args = { "--max-line-length", "120", "--from-stdin", "$FILENAME", "-f", "json" },
+        }),
         null_ls.builtins.diagnostics.shellcheck,
         --null_ls.builtins.diagnostics.yamllint,
         null_ls.builtins.diagnostics.zsh,
