@@ -42,7 +42,7 @@ vim.opt.signcolumn = "yes"
 
 -- tokyonight.nvim
 require("tokyonight").setup({
-    style = "night", -- day, storm, night
+    style = "storm", -- day, storm, night
     sidebars = { "netrw", "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
     --day_brightness = 0.5,
 })
@@ -69,8 +69,9 @@ vim.g.gutentags_generate_on_empty_buffer = true
 vim.g.gutentags_ctags_exclude = { ".*" }
 
 -- vim-oscyank
+vim.g.oscyank_term = "kitty"
 vim.cmd([[
-  autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | OSCYankReg " | endif
+    autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endif
 ]])
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }

@@ -1,12 +1,23 @@
+belak/zsh-utils path:editor
+belak/zsh-utils path:history
+
 sindresorhus/pure kind:fpath
-sorin-ionescu/prezto path:modules/git/alias.zsh
-nekofar/zsh-git-lfs
-ohmyzsh/ohmyzsh path:plugins/gpg-agent
-michaelxmcbride/zsh-dircycle
-MichaelAquilina/zsh-you-should-use
-MichaelAquilina/zsh-autoswitch-virtualenv
+belak/zsh-utils path:prompt
+
 zsh-users/zsh-completions
 belak/zsh-utils path:completion
+
+sorin-ionescu/prezto path:init.zsh
+sorin-ionescu/prezto path:modules/git
+nekofar/zsh-git-lfs
+
+ohmyzsh/ohmyzsh path:plugins/gpg-agent
+
+trapd00r/LS_COLORS path:lscolors.sh
+zpm-zsh/colorize
+
+MichaelAquilina/zsh-you-should-use
+MichaelAquilina/zsh-autoswitch-virtualenv
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-history-substring-search

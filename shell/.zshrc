@@ -4,93 +4,25 @@ setopt AUTO_CD
 setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 
-# Completion
-setopt ALWAYS_TO_END
-setopt AUTO_LIST
-setopt AUTO_MENU
-setopt COMPLETE_IN_WORD
-setopt HASH_LIST_ALL
-
-# Expansion and Globbing
-setopt BAD_PATTERN
-setopt NO_CASE_GLOB
-setopt EXTENDED_GLOB
-setopt NOMATCH
-
-# History
-if (( ! ${+HISTFILE} )) typeset -g HISTFILE=${ZDOTDIR:-${HOME}}/.zhistory
-HISTSIZE=20000
-SAVEHIST=10000
-setopt SHARE_HISTORY
-setopt HIST_VERIFY
-setopt HIST_FIND_NO_DUPS
-
 # Input/Output
 setopt NO_CLOBBER
 setopt CORRECT_ALL
-setopt NO_FLOW_CONTROL
 setopt INTERACTIVE_COMMENTS
 
-# Job Control
-setopt NO_BG_NICE
-setopt NO_CHECK_JOBS
-setopt NO_HUP
-setopt LONG_LIST_JOBS
-setopt NOTIFY
-
-# Prompting
-setopt PROMPT_SUBST
-
 ################################## PLUGINS ##################################
-# git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
+[[ ! -d "$HOME/.antidote" ]] && git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 antidote load
 
-autoload -Uz promptinit && promptinit && prompt pure
+# vi mode and additional key bindings
+bindkey -v
+[[ -n "${key_info[Up]}" ]] && bindkey -- "${key_info[Up]}" history-substring-search-up
+[[ -n "${key_info[Down]}" ]] && bindkey -- "${key_info[Down]}" history-substring-search-down
 
-# ignore case completion
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' '+r:|?=**'
-
+prompt pure
+compstyle 'prezto'
 autoload -U zmv
 export AUTOSWITCH_SILENT=1
-
-################################## KEY BINDINGS ##################################
-bindkey -v
-typeset -g -A key
-key[Home]="${terminfo[khome]}"
-key[End]="${terminfo[kend]}"
-key[Insert]="${terminfo[kich1]}"
-key[Backspace]="${terminfo[kbs]}"
-key[Delete]="${terminfo[kdch1]}"
-key[Up]="${terminfo[kcuu1]}"
-key[Down]="${terminfo[kcud1]}"
-key[Left]="${terminfo[kcub1]}"
-key[Right]="${terminfo[kcuf1]}"
-key[PageUp]="${terminfo[kpp]}"
-key[PageDown]="${terminfo[knp]}"
-key[Shift-Tab]="${terminfo[kcbt]}"
-[[ -n "${key[Home]}" ]] && bindkey -- "${key[Home]}" beginning-of-line
-[[ -n "${key[End]}" ]] && bindkey -- "${key[End]}" end-of-line
-[[ -n "${key[Insert]}" ]] && bindkey -- "${key[Insert]}" overwrite-mode
-[[ -n "${key[Backspace]}" ]] && bindkey -- "${key[Backspace]}" backward-delete-char
-[[ -n "${key[Delete]}" ]] && bindkey -- "${key[Delete]}" delete-char
-[[ -n "${key[Up]}" ]] && bindkey -- "${key[Up]}" history-substring-search-up
-[[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" history-substring-search-down
-[[ -n "${key[Left]}" ]] && bindkey -- "${key[Left]}" backward-char
-[[ -n "${key[Right]}" ]] && bindkey -- "${key[Right]}" forward-char
-[[ -n "${key[PageUp]}" ]] && bindkey -- "${key[PageUp]}" beginning-of-buffer-or-history
-[[ -n "${key[PageDown]}" ]] && bindkey -- "${key[PageDown]}" end-of-buffer-or-history
-[[ -n "${key[Shift-Tab]}" ]] && bindkey -- "${key[Shift-Tab]}" reverse-menu-complete
-
-# Finally, make sure the terminal is in application mode, when zle is
-# active. Only then are the values from $terminfo valid.
-if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
-	autoload -Uz add-zle-hook-widget
-	function zle_application_mode_start { echoti smkx }
-	function zle_application_mode_stop { echoti rmkx }
-	add-zle-hook-widget -Uz zle-line-init zle_application_mode_start
-	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
-fi
 
 ################################## ALIASES ##################################
 alias open="xdg-open"
@@ -123,4 +55,3 @@ typeset -U path cdpath fpath manpath
 path=("$HOME/.local/bin" $path)
 export PATH
 export EDITOR="nvim"
-#export PYTHONPYCACHEPREFIX="$(mktemp -d --suffix=_pycache)"
