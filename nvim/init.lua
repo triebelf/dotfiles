@@ -42,7 +42,7 @@ vim.opt.signcolumn = "yes"
 
 -- tokyonight.nvim
 require("tokyonight").setup({
-    style = "storm", -- day, storm, night
+    style = "night", -- day, storm, night
     sidebars = { "netrw", "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
     --day_brightness = 0.5,
 })
@@ -236,10 +236,8 @@ null_ls.setup({
         null_ls.builtins.diagnostics.mypy.with({
             args = function(params)
                 return {
-                    -- recommendations from https://blog.wolt.com/engineering/2021/09/30/professional-grade-mypy-configuration/
-                    -- prefer # type: ignore[<error-code>] over # type: ignore
                     "--strict",
-                    "--disallow-any-unimported", -- instead of ignore_missing_imports = True
+                    "--disallow-any-unimported",
                     "--hide-error-context",
                     "--no-color-output",
                     "--show-column-numbers",
