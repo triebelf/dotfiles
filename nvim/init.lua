@@ -6,6 +6,7 @@ vim.g.mapleader = ","
 
 -- toggle paste mode with ,p
 vim.opt.pastetoggle = "<leader>p"
+vim.opt.mouse = ""
 
 -- use spaces for tabs
 vim.opt.expandtab = true
@@ -163,6 +164,12 @@ end
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- nvim-lspconfig
+require("lspconfig").clangd.setup({
+    on_attach = on_attach,
+    flags = { debounce_text_changes = 150 },
+    capabilities = capabilities,
+})
+
 require("lspconfig").dockerls.setup({
     on_attach = on_attach,
     flags = { debounce_text_changes = 150 },
