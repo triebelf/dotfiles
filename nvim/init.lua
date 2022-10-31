@@ -54,8 +54,6 @@ vim.cmd("colorscheme material")
 require("nvim-treesitter.configs").setup({
     highlight = { enable = true },
 })
---vim.opt.foldmethod = "expr"
---vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- vim-gutentags
 --vim.g.gutentags_trace = 1

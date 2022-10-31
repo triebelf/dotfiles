@@ -74,10 +74,6 @@
     path = nvim/site/pack/config/start/vim-snippets
     url = https://github.com/honza/vim-snippets.git
     branch = master
-[submodule "nvim/site/pack/config/start/tokyonight.nvim"]
-    path = nvim/site/pack/config/start/tokyonight.nvim
-    url = https://github.com/folke/tokyonight.nvim.git
-    branch = main
 [submodule "nvim/site/pack/config/start/nvim-treesitter"]
     path = nvim/site/pack/config/start/nvim-treesitter
     url = https://github.com/nvim-treesitter/nvim-treesitter.git
@@ -98,3 +94,7 @@
     path = nvim/site/pack/config/start/material.nvim
     url = https://github.com/marko-cerovac/material.nvim.git
     branch = main
+[submodule "term/kitty-themes"]
+    path = term/kitty-themes
+    url = https://github.com/dexpota/kitty-themes.git
+    branch = master
