@@ -94,7 +94,7 @@
     path = nvim/site/pack/config/start/material.nvim
     url = https://github.com/marko-cerovac/material.nvim.git
     branch = main
-[submodule "term/kitty-themes"]
-    path = term/kitty-themes
-    url = https://github.com/dexpota/kitty-themes.git
+[submodule "term/selenized"]
+    path = term/selenized
+    url = https://github.com/jan-warchol/selenized.git
     branch = master
