@@ -47,8 +47,9 @@ require("lualine").setup({ options = { icons_enabled = false, theme = "material"
 -- material.nvim
 -- :lua require('material.functions').toggle_style()
 -- darker lighter oceanic palenight 'deep ocean'
-vim.g.material_style = "deep ocean"
+vim.g.material_style = "palenight"
 vim.cmd("colorscheme material")
+vim.api.nvim_set_keymap("n", "<leader>c", "<cmd>lua require('material.functions').find_style()<cr>", { noremap = true })
 
 -- nvim-treesitter
 require("nvim-treesitter.configs").setup({
