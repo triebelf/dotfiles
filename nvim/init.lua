@@ -41,15 +41,16 @@ vim.opt.termguicolors = true
 vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
 
--- lualine.nvim
-require("lualine").setup({ options = { icons_enabled = false, theme = "material" } })
+-- tokyonight.nvim
+require("tokyonight").setup({
+    style = "storm", -- day, storm, night
+    sidebars = { "netrw", "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
+    --day_brightness = 0.5,
+})
+vim.cmd([[colorscheme tokyonight]])
 
--- material.nvim
--- :lua require('material.functions').toggle_style()
--- darker lighter oceanic palenight 'deep ocean'
-vim.g.material_style = "palenight"
-vim.cmd("colorscheme material")
-vim.api.nvim_set_keymap("n", "<leader>c", "<cmd>lua require('material.functions').find_style()<cr>", { noremap = true })
+-- lualine.nvim
+require("lualine").setup({ options = { icons_enabled = false, theme = "tokyonight" } })
 
 -- nvim-treesitter
 require("nvim-treesitter.configs").setup({
