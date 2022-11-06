@@ -41,16 +41,12 @@ vim.opt.termguicolors = true
 vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
 
--- tokyonight.nvim
-require("tokyonight").setup({
-    style = "storm", -- day, storm, night
-    sidebars = { "netrw", "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
-    --day_brightness = 0.5,
-})
-vim.cmd([[colorscheme tokyonight]])
+-- theme
+-- carbonfox nightfox terafox duskfox nordfox dawnfox dayfox
+vim.cmd("colorscheme nightfox")
 
 -- lualine.nvim
-require("lualine").setup({ options = { icons_enabled = false, theme = "tokyonight" } })
+require("lualine").setup({ options = { icons_enabled = false } })
 
 -- nvim-treesitter
 require("nvim-treesitter.configs").setup({

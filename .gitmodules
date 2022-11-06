@@ -74,10 +74,6 @@
     path = nvim/site/pack/config/start/vim-snippets
     url = https://github.com/honza/vim-snippets.git
     branch = master
-[submodule "nvim/site/pack/config/start/tokyonight.nvim"]
-    path = nvim/site/pack/config/start/tokyonight.nvim
-    url = https://github.com/folke/tokyonight.nvim.git
-    branch = main
 [submodule "nvim/site/pack/config/start/nvim-treesitter"]
     path = nvim/site/pack/config/start/nvim-treesitter
     url = https://github.com/nvim-treesitter/nvim-treesitter.git
@@ -93,4 +89,8 @@
 [submodule "nvim/site/pack/config/start/cmp-nvim-lua"]
     path = nvim/site/pack/config/start/cmp-nvim-lua
     url = https://github.com/hrsh7th/cmp-nvim-lua
+    branch = main
+[submodule "nvim/site/pack/config/start/nightfox.nvim"]
+    path = nvim/site/pack/config/start/nightfox.nvim
+    url = https://github.com/EdenEast/nightfox.nvim.git
     branch = main
