@@ -94,3 +94,7 @@
     path = nvim/site/pack/config/start/nightfox.nvim
     url = https://github.com/EdenEast/nightfox.nvim.git
     branch = main
+[submodule "nvim/site/pack/config/start/melange"]
+    path = nvim/site/pack/config/start/melange
+    url = https://github.com/savq/melange.git
+    branch = master

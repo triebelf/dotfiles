@@ -42,8 +42,8 @@ vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
 
 -- theme
--- carbonfox nightfox terafox duskfox nordfox dawnfox dayfox
-vim.cmd("colorscheme nightfox")
+vim.opt.background = light
+vim.cmd("colorscheme melange")
 
 -- lualine.nvim
 require("lualine").setup({ options = { icons_enabled = false } })
