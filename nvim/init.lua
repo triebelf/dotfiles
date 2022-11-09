@@ -42,7 +42,7 @@ vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
 
 -- theme
-vim.opt.background = light
+--vim.opt.background = light
 vim.cmd("colorscheme melange")
 
 -- lualine.nvim
