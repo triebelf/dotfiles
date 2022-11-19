@@ -90,10 +90,6 @@
     path = nvim/site/pack/config/start/cmp-nvim-lua
     url = https://github.com/hrsh7th/cmp-nvim-lua
     branch = main
-[submodule "nvim/site/pack/config/start/nightfox.nvim"]
-    path = nvim/site/pack/config/start/nightfox.nvim
-    url = https://github.com/EdenEast/nightfox.nvim.git
-    branch = main
 [submodule "nvim/site/pack/config/start/melange"]
     path = nvim/site/pack/config/start/melange
     url = https://github.com/savq/melange.git
