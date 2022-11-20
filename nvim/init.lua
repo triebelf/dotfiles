@@ -49,9 +49,7 @@ vim.cmd("colorscheme melange")
 require("lualine").setup({ options = { icons_enabled = false } })
 
 -- nvim-treesitter
-require("nvim-treesitter.configs").setup({
-    highlight = { enable = true },
-})
+require("nvim-treesitter.configs").setup({ highlight = { enable = true } })
 
 -- vim-gutentags
 --vim.g.gutentags_trace = 1
@@ -65,10 +63,17 @@ vim.g.gutentags_ctags_exclude = { ".*" }
 
 -- vim-oscyank
 vim.cmd([[
-    autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endif
+		autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endif
 ]])
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
+
+-- neogen
+local neogen = require("neogen")
+require("neogen").setup({
+    languages = { python = { template = { annotation_convention = "reST" } } },
+})
+vim.api.nvim_set_keymap("n", "<leader>D", ":lua require('neogen').generate()<CR>", { noremap = true })
 
 -- nvim-cmp
 local cmp = require("cmp")
@@ -77,25 +82,35 @@ cmp.setup({
     sources = cmp.config.sources({
         -- cmp-nvim-lsp
         { name = "nvim_lsp" },
-        -- cmp-buffer
-        --{ name = "buffer" },
         -- cmp-snippy
         { name = "snippy" },
         -- cmp-treesitter
         { name = "treesitter" },
-        -- cmp-nvim-tags
-        -- { name = "tags" },
         -- cmp-nvim-lua
         { name = "nvim_lua" },
+        -- cmp-buffer
+        --{ name = "buffer" },
     }),
     mapping = cmp.mapping.preset.insert({
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        -- ["<s-tab>"] = cmp.mapping.select_prev_item(),
-        -- ["<tab>"] = cmp.mapping.select_next_item(),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        ["<tab>"] = cmp.mapping(function(fallback)
+            if neogen.jumpable() then
+                neogen.jump_next()
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+        ["<S-tab>"] = cmp.mapping(function(fallback)
+            if neogen.jumpable(true) then
+                neogen.jump_prev()
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
     }),
     snippet = {
         expand = function(args)
