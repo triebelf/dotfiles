@@ -179,6 +179,12 @@ require("lspconfig").clangd.setup({
     capabilities = capabilities,
 })
 
+require("lspconfig").rust_analyzer.setup({
+    on_attach = on_attach,
+    flags = { debounce_text_changes = 150 },
+    capabilities = capabilities,
+})
+
 require("lspconfig").dockerls.setup({
     on_attach = on_attach,
     flags = { debounce_text_changes = 150 },
@@ -219,7 +225,7 @@ require("lspconfig").sumneko_lua.setup({
     capabilities = capabilities,
     settings = {
         Lua = {
-            runtime = { version = "LuaJIT", path = runtime_path },
+            runtime = { path = runtime_path }, -- version = "LuaJIT"
             diagnostics = { globals = { "vim" } },
             workspace = { library = vim.api.nvim_get_runtime_file("", true) },
             telemetry = { enable = false },

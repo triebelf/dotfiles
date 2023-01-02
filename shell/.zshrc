@@ -52,6 +52,6 @@ alias http_share='python3 -m http.server 9999'
 ################################## ENVIRONMENT ##################################
 # automatically remove duplicates from these arrays
 typeset -U path cdpath fpath manpath
-path=("$HOME/.local/bin" $path)
+path=("$HOME/.local/bin" "$HOME/.cargo/bin" $path)
 export PATH
 export EDITOR="nvim"
