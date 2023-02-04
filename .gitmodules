@@ -98,3 +98,11 @@
     path = nvim/site/pack/config/start/neogen
     url = https://github.com/danymat/neogen.git
     branch = main
+[submodule "nvim/site/pack/config/start/rose-pine"]
+    path = nvim/site/pack/config/start/rose-pine
+    url = https://github.com/rose-pine/neovim.git
+    branch = main
+[submodule "term/rose-pine"]
+    path = term/rose-pine
+    url = https://github.com/rose-pine/kitty.git
+    branch = main

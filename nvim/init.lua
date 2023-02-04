@@ -42,8 +42,9 @@ vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
 
 -- theme
---vim.opt.background = light
-vim.cmd("colorscheme melange")
+--vim.opt.background="light"
+--vim.cmd("colorscheme melange")
+vim.cmd('colorscheme rose-pine')
 
 -- lualine.nvim
 require("lualine").setup({ options = { icons_enabled = false } })
