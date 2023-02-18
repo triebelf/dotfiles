@@ -1,12 +1,35 @@
--- persist the undo tree for each file
-vim.opt.undofile = true
-
 -- comma is the leader key
 vim.g.mapleader = ","
+
+-- custom key mappings
+local keymap_opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap("n", "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>b", "<cmd>Telescope buffers<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>,", "<cmd>Telescope live_grep<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>.", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>d", "<cmd>lua vim.lsp.buf.hover()<CR>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>D", ":lua require('neogen').generate()<CR>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua vim.lsp.buf.definition()<CR>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>j", "<cmd>lua vim.diagnostic.goto_next()<CR>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>k", "<cmd>lua vim.diagnostic.goto_prev()<CR>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>m", "<cmd>Telescope oldfiles<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>n", "<cmd>lua vim.lsp.buf.rename()<CR>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>Telescope git_files<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>r", "<cmd>lua vim.lsp.buf.references()<CR>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>s", "<cmd>Telescope git_branches<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>t", "<cmd>Telescope tags<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>x", "<cmd>Telescope diagnostics<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>y", "<cmd>Telescope registers<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>z", "<cmd>Telescope find_files<cr>", keymap_opts)
 
 -- toggle paste mode with ,p
 vim.opt.pastetoggle = "<leader>p"
 vim.opt.mouse = ""
+
+-- persist the undo tree for each file
+vim.opt.undofile = true
 
 -- use spaces for tabs
 vim.opt.expandtab = true
@@ -43,8 +66,7 @@ vim.opt.signcolumn = "yes"
 
 -- theme
 --vim.opt.background="light"
---vim.cmd("colorscheme melange")
-vim.cmd('colorscheme rose-pine')
+vim.cmd("colorscheme rose-pine")
 
 -- lualine.nvim
 require("lualine").setup({ options = { icons_enabled = false } })
@@ -67,14 +89,11 @@ vim.cmd([[
 		autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endif
 ]])
 
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
+-- plenary.nvim
+-- telescope.nvim
+require("telescope").setup({ defaults = { layout_strategy = "vertical" } })
 
--- neogen
-local neogen = require("neogen")
-require("neogen").setup({
-    languages = { python = { template = { annotation_convention = "reST" } } },
-})
-vim.api.nvim_set_keymap("n", "<leader>D", ":lua require('neogen').generate()<CR>", { noremap = true })
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 -- nvim-cmp
 local cmp = require("cmp")
@@ -98,16 +117,16 @@ cmp.setup({
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
-        ["<tab>"] = cmp.mapping(function(fallback)
-            if neogen.jumpable() then
-                neogen.jump_next()
+        ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
             else
                 fallback()
             end
         end, { "i", "s" }),
-        ["<S-tab>"] = cmp.mapping(function(fallback)
-            if neogen.jumpable(true) then
-                neogen.jump_prev()
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
             else
                 fallback()
             end
@@ -122,10 +141,11 @@ cmp.setup({
     },
 })
 
--- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline("/", { mapping = cmp.mapping.preset.cmdline(), sources = { { name = "buffer" } } })
+cmp.setup.cmdline("/", {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = { { name = "buffer" } },
+})
 
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 -- cmp-path
 -- cmp-cmdline
 cmp.setup.cmdline(":", {
@@ -133,109 +153,43 @@ cmp.setup.cmdline(":", {
     sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
 })
 
--- plenary.nvim
--- telescope.nvim
-require("telescope").setup({ defaults = { layout_strategy = "vertical" } })
-
--- opening files
-vim.api.nvim_set_keymap("n", "<leader>b", "<cmd>Telescope buffers<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>,", "<cmd>Telescope live_grep<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>.", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>m", "<cmd>Telescope oldfiles<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>Telescope git_files<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>s", "<cmd>Telescope git_branches<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>t", "<cmd>Telescope tags<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>x", "<cmd>Telescope diagnostics<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>y", "<cmd>Telescope registers<cr>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>z", "<cmd>Telescope find_files<cr>", { noremap = true })
-
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-    local function buf_set_keymap(...)
-        vim.api.nvim_buf_set_keymap(bufnr, ...)
-    end
-
-    -- Mappings.
-    local opts = { noremap = true, silent = true }
-
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    buf_set_keymap("n", "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-    buf_set_keymap("n", "<leader>d", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    buf_set_keymap("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-    buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
-    buf_set_keymap("n", "<leader>g", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    buf_set_keymap("n", "<leader>j", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-    buf_set_keymap("n", "<leader>k", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-    buf_set_keymap("n", "<leader>n", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-    buf_set_keymap("n", "<leader>r", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-end
-
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- nvim-lspconfig
-require("lspconfig").clangd.setup({
-    on_attach = on_attach,
-    flags = { debounce_text_changes = 150 },
-    capabilities = capabilities,
-})
-
-require("lspconfig").rust_analyzer.setup({
-    on_attach = on_attach,
-    flags = { debounce_text_changes = 150 },
-    capabilities = capabilities,
-})
-
-require("lspconfig").dockerls.setup({
-    on_attach = on_attach,
-    flags = { debounce_text_changes = 150 },
-    capabilities = capabilities,
-})
-
-require("lspconfig").jsonls.setup({
-    on_attach = on_attach,
-    flags = { debounce_text_changes = 150 },
-    capabilities = capabilities,
-})
-
-require("lspconfig").lemminx.setup({
-    on_attach = on_attach,
-    flags = { debounce_text_changes = 150 },
-    capabilities = capabilities,
-})
-
+require("lspconfig").clangd.setup({ flags = { debounce_text_changes = 150 }, capabilities = capabilities })
+require("lspconfig").rust_analyzer.setup({ flags = { debounce_text_changes = 150 }, capabilities = capabilities })
+require("lspconfig").dockerls.setup({ flags = { debounce_text_changes = 150 }, capabilities = capabilities })
+require("lspconfig").jsonls.setup({ flags = { debounce_text_changes = 150 }, capabilities = capabilities })
+require("lspconfig").lemminx.setup({ flags = { debounce_text_changes = 150 }, capabilities = capabilities })
 require("lspconfig").ltex.setup({
-    on_attach = on_attach,
     flags = { debounce_text_changes = 150 },
     capabilities = capabilities,
     filetypes = { "bib", "markdown", "org", "plaintex", "rst", "rnoweb", "tex" },
 })
-
-require("lspconfig").pyright.setup({
-    on_attach = on_attach,
-    flags = { debounce_text_changes = 150 },
-    capabilities = capabilities,
-})
-
-local runtime_path = vim.split(package.path, ";")
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-require("lspconfig").sumneko_lua.setup({
-    on_attach = on_attach,
-    flags = { debounce_text_changes = 150 },
-    capabilities = capabilities,
+require("lspconfig").pyright.setup({ flags = { debounce_text_changes = 150 }, capabilities = capabilities })
+require("lspconfig").lua_ls.setup({
     settings = {
         Lua = {
-            runtime = { path = runtime_path }, -- version = "LuaJIT"
-            diagnostics = { globals = { "vim" } },
-            workspace = { library = vim.api.nvim_get_runtime_file("", true) },
-            telemetry = { enable = false },
+            runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                version = "LuaJIT",
+            },
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = { "vim" },
+            },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file("", true),
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = {
+                enable = false,
+            },
         },
     },
 })
-
 require("lspconfig").yamlls.setup({
-    on_attach = on_attach,
     flags = { debounce_text_changes = 150 },
     capabilities = capabilities,
     settings = {
@@ -289,4 +243,9 @@ null_ls.setup({
             extra_args = { "--column-width", "120", "--indent-type", "Spaces" },
         }),
     },
+})
+
+-- neogen
+require("neogen").setup({
+    languages = { python = { template = { annotation_convention = "reST" } } },
 })
