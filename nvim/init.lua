@@ -5,6 +5,7 @@ vim.g.mapleader = ","
 local keymap_opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap("n", "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>b", "<cmd>Telescope buffers<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>c", "<cmd>Telescope grep_string<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>,", "<cmd>Telescope live_grep<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>.", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>d", "<cmd>lua vim.lsp.buf.hover()<CR>", keymap_opts)
@@ -65,6 +66,12 @@ vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
 
 -- theme
+require("rose-pine").setup({
+    --- @usage 'auto'|'main'|'moon'|'dawn'
+    variant = "auto",
+    --- @usage 'main'|'moon'|'dawn'
+    dark_variant = "moon",
+})
 --vim.opt.background="light"
 vim.cmd("colorscheme rose-pine")
 
@@ -91,7 +98,16 @@ vim.cmd([[
 
 -- plenary.nvim
 -- telescope.nvim
-require("telescope").setup({ defaults = { layout_strategy = "vertical" } })
+require("telescope").setup({
+    defaults = { layout_strategy = "vertical" },
+    pickers = {
+        live_grep = {
+            additional_args = function(opts)
+                return { "--hidden" }
+            end,
+        },
+    },
+})
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
