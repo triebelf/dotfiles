@@ -113,6 +113,7 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 -- nvim-cmp
 local cmp = require("cmp")
+local select_opts = { behavior = cmp.SelectBehavior.Select }
 cmp.setup({
     completion = { autocomplete = false },
     sources = cmp.config.sources({
@@ -125,7 +126,7 @@ cmp.setup({
         -- cmp-nvim-lua
         { name = "nvim_lua" },
         -- cmp-buffer
-        --{ name = "buffer" },
+        { name = "buffer" },
     }),
     mapping = cmp.mapping.preset.insert({
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -134,15 +135,18 @@ cmp.setup({
         ["<C-e>"] = cmp.mapping.abort(),
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
         ["<Tab>"] = cmp.mapping(function(fallback)
+            local col = vim.fn.col(".") - 1
             if cmp.visible() then
-                cmp.select_next_item()
-            else
+                cmp.select_next_item(select_opts)
+            elseif col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
                 fallback()
+            else
+                cmp.complete()
             end
         end, { "i", "s" }),
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
-                cmp.select_prev_item()
+                cmp.select_prev_item(select_opts)
             else
                 fallback()
             end
@@ -169,20 +173,23 @@ cmp.setup.cmdline(":", {
     sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
 })
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
 -- nvim-lspconfig
-require("lspconfig").clangd.setup({ flags = { debounce_text_changes = 150 }, capabilities = capabilities })
-require("lspconfig").rust_analyzer.setup({ flags = { debounce_text_changes = 150 }, capabilities = capabilities })
-require("lspconfig").dockerls.setup({ flags = { debounce_text_changes = 150 }, capabilities = capabilities })
-require("lspconfig").jsonls.setup({ flags = { debounce_text_changes = 150 }, capabilities = capabilities })
-require("lspconfig").lemminx.setup({ flags = { debounce_text_changes = 150 }, capabilities = capabilities })
+local lsp_defaults = require("lspconfig").util.default_config
+lsp_defaults.capabilities = vim.tbl_deep_extend(
+    "force",
+    lsp_defaults.capabilities,
+    require("cmp_nvim_lsp").default_capabilities()
+)
+require("lspconfig").clangd.setup({ flags = { debounce_text_changes = 150 } })
+require("lspconfig").rust_analyzer.setup({ flags = { debounce_text_changes = 150 } })
+require("lspconfig").dockerls.setup({ flags = { debounce_text_changes = 150 } })
+require("lspconfig").jsonls.setup({ flags = { debounce_text_changes = 150 } })
+require("lspconfig").lemminx.setup({ flags = { debounce_text_changes = 150 } })
 require("lspconfig").ltex.setup({
     flags = { debounce_text_changes = 150 },
-    capabilities = capabilities,
     filetypes = { "bib", "markdown", "org", "plaintex", "rst", "rnoweb", "tex" },
 })
-require("lspconfig").pyright.setup({ flags = { debounce_text_changes = 150 }, capabilities = capabilities })
+require("lspconfig").pyright.setup({ flags = { debounce_text_changes = 150 } })
 require("lspconfig").lua_ls.setup({
     settings = {
         Lua = {
@@ -207,7 +214,6 @@ require("lspconfig").lua_ls.setup({
 })
 require("lspconfig").yamlls.setup({
     flags = { debounce_text_changes = 150 },
-    capabilities = capabilities,
     settings = {
         yaml = { format = { enable = true, proseWrap = "Always", printWidth = 120 } },
         redhat = {
