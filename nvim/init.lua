@@ -13,6 +13,7 @@ vim.api.nvim_set_keymap("n", "<leader>D", ":lua require('neogen').generate()<CR>
 vim.api.nvim_set_keymap("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua vim.lsp.buf.definition()<CR>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>h", "<cmd>ClangdSwitchSourceHeader<CR>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>j", "<cmd>lua vim.diagnostic.goto_next()<CR>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>k", "<cmd>lua vim.diagnostic.goto_prev()<CR>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>m", "<cmd>Telescope oldfiles<cr>", keymap_opts)
@@ -264,6 +265,7 @@ null_ls.setup({
         null_ls.builtins.formatting.stylua.with({
             extra_args = { "--column-width", "120", "--indent-type", "Spaces" },
         }),
+        null_ls.builtins.formatting.clang_format,
     },
 })
 
