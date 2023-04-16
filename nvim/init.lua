@@ -130,7 +130,7 @@ cmp.setup({
         { name = "buffer" },
     }),
     mapping = cmp.mapping.preset.insert({
-        ["<C-b>"] = cmp.mapping.scroll_docs( -4),
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
@@ -252,6 +252,9 @@ null_ls.setup({
             end,
         }),
         null_ls.builtins.diagnostics.pylint.with({
+            cwd = function(params)
+                return params.root
+            end,
             args = { "--max-line-length", "120", "--from-stdin", "$FILENAME", "-f", "json" },
         }),
         null_ls.builtins.diagnostics.shellcheck,
