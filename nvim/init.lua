@@ -64,6 +64,7 @@ vim.g.netrw_keepdir = 0
 -- true color support
 vim.opt.termguicolors = true
 vim.opt.cursorline = true
+vim.opt.number = true
 vim.opt.signcolumn = "yes"
 
 -- theme
@@ -130,7 +131,7 @@ cmp.setup({
         { name = "buffer" },
     }),
     mapping = cmp.mapping.preset.insert({
-        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-b>"] = cmp.mapping.scroll_docs( -4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
@@ -190,7 +191,19 @@ require("lspconfig").ltex.setup({
     flags = { debounce_text_changes = 150 },
     filetypes = { "bib", "markdown", "org", "plaintex", "rst", "rnoweb", "tex" },
 })
-require("lspconfig").pyright.setup({ flags = { debounce_text_changes = 150 } })
+require("lspconfig").pyright.setup({
+    settings = {
+        python = {
+            analysis = {
+                autoSearchPaths = true,
+                diagnosticMode = "workspace",
+                useLibraryCodeForTypes = true,
+                typeCheckingMode = "strict",
+            },
+        },
+    },
+    flags = { debounce_text_changes = 150 },
+})
 require("lspconfig").lua_ls.setup({
     settings = {
         Lua = {
@@ -230,6 +243,9 @@ local null_ls = require("null-ls")
 null_ls.setup({
     sources = {
         null_ls.builtins.code_actions.shellcheck,
+        null_ls.builtins.diagnostics.ruff.with({
+            args = { "-n", "-e", "--line-length", "120", "--stdin-filename", "$FILENAME", "-" },
+        }),
         null_ls.builtins.diagnostics.flake8.with({
             args = { "--max-line-length", "120", "--format", "default", "--stdin-display-name", "$FILENAME", "-" },
         }),
