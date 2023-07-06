@@ -2,6 +2,7 @@
     editor = nvim
     askPass =
     autocrlf = false
+    pager = less -SFR
 [gc]
     pruneExpire = now
 [diff]
