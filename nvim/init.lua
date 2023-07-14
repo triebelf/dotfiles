@@ -3,31 +3,31 @@ vim.g.mapleader = ","
 
 -- custom key mappings
 local keymap_opts = { noremap = true, silent = true }
-vim.api.nvim_set_keymap("n", "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>b", "<cmd>Telescope buffers<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>c", "<cmd>Telescope grep_string<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>,", "<cmd>Telescope live_grep<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>.", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>d", "<cmd>lua vim.lsp.buf.hover()<CR>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>a", ":LspCodeAction<CR>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>b", ":Telescope buffers<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>,", ":Telescope live_grep<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>d", ":LspHover<CR>", keymap_opts)
+-- see also LspSignatureHelp
 vim.api.nvim_set_keymap("n", "<leader>D", ":lua require('neogen').generate()<CR>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua vim.lsp.buf.definition()<CR>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>h", "<cmd>ClangdSwitchSourceHeader<CR>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>j", "<cmd>lua vim.diagnostic.goto_next()<CR>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>k", "<cmd>lua vim.diagnostic.goto_prev()<CR>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>m", "<cmd>Telescope oldfiles<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>n", "<cmd>lua vim.lsp.buf.rename()<CR>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>o", "<cmd>Telescope git_files<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>r", "<cmd>lua vim.lsp.buf.references()<CR>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>s", "<cmd>Telescope git_branches<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>t", "<cmd>Telescope tags<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>x", "<cmd>Telescope diagnostics<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>y", "<cmd>Telescope registers<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>z", "<cmd>Telescope find_files<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>e", ":lua vim.diagnostic.open_float()<CR>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>f", ":LspFormat<CR>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>g", ":LspDefinition<CR>", keymap_opts)
+-- see also LspDeclaration, LspTypeDefinition, LspImplementation
+vim.api.nvim_set_keymap("n", "<leader>h", ":ClangdSwitchSourceHeader<CR>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>i", ":LspIncomingCalls<CR>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>j", ":lua vim.diagnostic.goto_next()<CR>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>k", ":lua vim.diagnostic.goto_prev()<CR>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>m", ":Telescope oldfiles<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>n", ":LspRename<CR>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>o", ":Telescope git_files<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>r", ":LspReferences<CR>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>s", ":Telescope git_branches<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>t", ":Telescope tags<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>x", ":Telescope diagnostics<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>y", ":Telescope registers<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>z", ":Telescope find_files<cr>", keymap_opts)
 
--- toggle paste mode with ,p
-vim.opt.pastetoggle = "<leader>p"
+-- no mouse
 vim.opt.mouse = ""
 
 -- persist the undo tree for each file
@@ -131,7 +131,7 @@ cmp.setup({
         { name = "buffer" },
     }),
     mapping = cmp.mapping.preset.insert({
-        ["<C-b>"] = cmp.mapping.scroll_docs( -4),
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
@@ -175,6 +175,13 @@ cmp.setup.cmdline(":", {
     sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
 })
 
+-- nvim-lsp-basics
+local function on_attach(client, bufnr)
+    local basics = require("lsp_basics")
+    basics.make_lsp_commands(client, bufnr)
+    basics.make_lsp_mappings(client, bufnr)
+end
+
 -- nvim-lspconfig
 local lsp_defaults = require("lspconfig").util.default_config
 lsp_defaults.capabilities = vim.tbl_deep_extend(
@@ -182,16 +189,18 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
     lsp_defaults.capabilities,
     require("cmp_nvim_lsp").default_capabilities()
 )
-require("lspconfig").clangd.setup({ flags = { debounce_text_changes = 150 } })
-require("lspconfig").rust_analyzer.setup({ flags = { debounce_text_changes = 150 } })
-require("lspconfig").dockerls.setup({ flags = { debounce_text_changes = 150 } })
-require("lspconfig").jsonls.setup({ flags = { debounce_text_changes = 150 } })
-require("lspconfig").lemminx.setup({ flags = { debounce_text_changes = 150 } })
+require("lspconfig").clangd.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
+require("lspconfig").rust_analyzer.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
+require("lspconfig").dockerls.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
+require("lspconfig").jsonls.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
+require("lspconfig").lemminx.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 require("lspconfig").ltex.setup({
+    on_attach = on_attach,
     flags = { debounce_text_changes = 150 },
     filetypes = { "bib", "markdown", "org", "plaintex", "rst", "rnoweb", "tex" },
 })
 require("lspconfig").pyright.setup({
+    on_attach = on_attach,
     settings = {
         python = {
             analysis = {
@@ -205,6 +214,7 @@ require("lspconfig").pyright.setup({
     flags = { debounce_text_changes = 150 },
 })
 require("lspconfig").lua_ls.setup({
+    on_attach = on_attach,
     settings = {
         Lua = {
             runtime = {
@@ -227,6 +237,7 @@ require("lspconfig").lua_ls.setup({
     },
 })
 require("lspconfig").yamlls.setup({
+    on_attach = on_attach,
     flags = { debounce_text_changes = 150 },
     settings = {
         yaml = { format = { enable = true, proseWrap = "Always", printWidth = 120 } },
@@ -241,6 +252,7 @@ require("lspconfig").yamlls.setup({
 -- null-ls.nvim
 local null_ls = require("null-ls")
 null_ls.setup({
+    on_attach = on_attach,
     sources = {
         null_ls.builtins.code_actions.shellcheck,
         null_ls.builtins.diagnostics.ruff.with({

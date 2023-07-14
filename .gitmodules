@@ -98,3 +98,11 @@
     path = term/rose-pine
     url = https://github.com/rose-pine/kitty.git
     branch = main
+[submodule "nvim/site/pack/config/start/lsp-status.nvim"]
+    path = nvim/site/pack/config/start/lsp-status.nvim
+    url = https://github.com/nvim-lua/lsp-status.nvim.git
+    branch = master
+[submodule "nvim/site/pack/config/start/nvim-lsp-basics"]
+    path = nvim/site/pack/config/start/nvim-lsp-basics
+    url = https://github.com/nanotee/nvim-lsp-basics.git
+    branch = main
