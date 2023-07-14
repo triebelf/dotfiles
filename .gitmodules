@@ -14,10 +14,6 @@
     path = nvim/site/pack/config/start/vim-gutentags
     url = https://github.com/ludovicchabant/vim-gutentags.git
     branch = master
-[submodule "nvim/site/pack/config/start/vim-addon-local-vimrc"]
-    path = nvim/site/pack/config/start/vim-addon-local-vimrc
-    url = https://github.com/marcweber/vim-addon-local-vimrc
-    branch = master
 [submodule "nvim/site/pack/config/start/vim-oscyank"]
     path = nvim/site/pack/config/start/vim-oscyank
     url = https://github.com/ojroques/vim-oscyank
