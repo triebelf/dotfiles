@@ -17,6 +17,7 @@ vim.api.nvim_set_keymap("n", "<leader>h", ":ClangdSwitchSourceHeader<CR>", keyma
 vim.api.nvim_set_keymap("n", "<leader>i", ":LspIncomingCalls<CR>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>j", ":lua vim.diagnostic.goto_next()<CR>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>k", ":lua vim.diagnostic.goto_prev()<CR>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>l", ":Lexplore<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>m", ":Telescope oldfiles<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>n", ":LspRename<CR>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>o", ":Telescope git_files<cr>", keymap_opts)
@@ -42,24 +43,14 @@ vim.opt.diffopt:append("iwhite")
 --  ignore case when searching
 vim.opt.ignorecase = true
 
-vim.opt.wildignore = {
-    ".*\\.egg-info",
-    "\\.eggs",
-    ".git",
-    ".mypy_cache",
-    ".*\\.pyc$",
-    "__pycache__",
-}
-
--- NERDtree like setup (commands :Ex :Sex :Vex)
-vim.g.netrw_liststyle = 3
-vim.g.netrw_browse_split = 4
+-- NERDtree like setup for netrw
 vim.g.netrw_altv = 1
-vim.g.netrw_winsize = 15
 vim.g.netrw_banner = 0
-vim.g.netrw_list_hide = table.concat(vim.opt.wildignore:get(), ",")
-vim.g.netrw_hide = 1
+vim.g.netrw_browse_split = 4
 vim.g.netrw_keepdir = 0
+vim.g.netrw_list_hide = vim.fn["netrw_gitignore#Hide"]()
+vim.g.netrw_liststyle = 3
+vim.g.netrw_winsize = 20
 
 -- true color support
 vim.opt.termguicolors = true
