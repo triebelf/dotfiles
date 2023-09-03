@@ -21,3 +21,4 @@ MichaelAquilina/zsh-autoswitch-virtualenv
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-history-substring-search
+3v1n0/zsh-bash-completions-fallback
