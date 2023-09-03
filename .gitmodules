@@ -1,108 +1,108 @@
 [submodule "nvim/site/pack/config/start/vim-mergetool"]
-    path = nvim/site/pack/config/start/vim-mergetool
+    path = nvim/.local/share/nvim/site/pack/config/start/vim-mergetool
     url = https://github.com/samoshkin/vim-mergetool.git
     branch = master
 [submodule "nvim/site/pack/config/start/vim-polyglot"]
-    path = nvim/site/pack/config/start/vim-polyglot
+    path = nvim/.local/share/nvim/site/pack/config/start/vim-polyglot
     url = https://github.com/sheerun/vim-polyglot
     branch = master
 [submodule "nvim/site/pack/config/start/vim-signify"]
-    path = nvim/site/pack/config/start/vim-signify
+    path = nvim/.local/share/nvim/site/pack/config/start/vim-signify
     url = https://github.com/mhinz/vim-signify
     branch = master
 [submodule "nvim/site/pack/config/start/vim-gutentags"]
-    path = nvim/site/pack/config/start/vim-gutentags
+    path = nvim/.local/share/nvim/site/pack/config/start/vim-gutentags
     url = https://github.com/ludovicchabant/vim-gutentags.git
     branch = master
 [submodule "nvim/site/pack/config/start/vim-oscyank"]
-    path = nvim/site/pack/config/start/vim-oscyank
+    path = nvim/.local/share/nvim/site/pack/config/start/vim-oscyank
     url = https://github.com/ojroques/vim-oscyank
     branch = main
 [submodule "nvim/site/pack/config/start/nvim-lspconfig"]
-    path = nvim/site/pack/config/start/nvim-lspconfig
+    path = nvim/.local/share/nvim/site/pack/config/start/nvim-lspconfig
     url = https://github.com/neovim/nvim-lspconfig
     branch = master
 [submodule "nvim/site/pack/config/start/nvim-cmp"]
-    path = nvim/site/pack/config/start/nvim-cmp
+    path = nvim/.local/share/nvim/site/pack/config/start/nvim-cmp
     url = https://github.com/hrsh7th/nvim-cmp/
     branch = main
 [submodule "nvim/site/pack/config/start/cmp-buffer"]
-    path = nvim/site/pack/config/start/cmp-buffer
+    path = nvim/.local/share/nvim/site/pack/config/start/cmp-buffer
     url = https://github.com/hrsh7th/cmp-buffer
     branch = main
 [submodule "nvim/site/pack/config/start/cmp-path"]
-    path = nvim/site/pack/config/start/cmp-path
+    path = nvim/.local/share/nvim/site/pack/config/start/cmp-path
     url = https://github.com/hrsh7th/cmp-path
     branch = main
 [submodule "nvim/site/pack/config/start/cmp-nvim-lsp"]
-    path = nvim/site/pack/config/start/cmp-nvim-lsp
+    path = nvim/.local/share/nvim/site/pack/config/start/cmp-nvim-lsp
     url = https://github.com/hrsh7th/cmp-nvim-lsp
     branch = main
 [submodule "nvim/site/pack/config/start/cmp-cmdline"]
-    path = nvim/site/pack/config/start/cmp-cmdline
+    path = nvim/.local/share/nvim/site/pack/config/start/cmp-cmdline
     url = https://github.com/hrsh7th/cmp-cmdline
     branch = main
 [submodule "nvim/site/pack/config/start/cmp-snippy"]
-    path = nvim/site/pack/config/start/cmp-snippy
+    path = nvim/.local/share/nvim/site/pack/config/start/cmp-snippy
     url = https://github.com/dcampos/cmp-snippy
     branch = master
 [submodule "nvim/site/pack/config/start/nvim-snippy"]
-    path = nvim/site/pack/config/start/nvim-snippy
+    path = nvim/.local/share/nvim/site/pack/config/start/nvim-snippy
     url = https://github.com/dcampos/nvim-snippy
     branch = master
 [submodule "nvim/site/pack/config/start/lualine.nvim"]
-    path = nvim/site/pack/config/start/lualine.nvim
+    path = nvim/.local/share/nvim/site/pack/config/start/lualine.nvim
     url = https://github.com/nvim-lualine/lualine.nvim
     branch = master
 [submodule "nvim/site/pack/config/start/telescope.nvim"]
-    path = nvim/site/pack/config/start/telescope.nvim
+    path = nvim/.local/share/nvim/site/pack/config/start/telescope.nvim
     url = https://github.com/nvim-telescope/telescope.nvim
     branch = master
 [submodule "nvim/site/pack/config/start/plenary.nvim"]
-    path = nvim/site/pack/config/start/plenary.nvim
+    path = nvim/.local/share/nvim/site/pack/config/start/plenary.nvim
     url = https://github.com/nvim-lua/plenary.nvim
     branch = master
 [submodule "nvim/site/pack/config/start/null-ls.nvim"]
-    path = nvim/site/pack/config/start/null-ls.nvim
+    path = nvim/.local/share/nvim/site/pack/config/start/null-ls.nvim
     url = https://github.com/jose-elias-alvarez/null-ls.nvim.git
     branch = main
 [submodule "nvim/site/pack/config/start/vim-snippets"]
-    path = nvim/site/pack/config/start/vim-snippets
+    path = nvim/.local/share/nvim/site/pack/config/start/vim-snippets
     url = https://github.com/honza/vim-snippets.git
     branch = master
 [submodule "nvim/site/pack/config/start/nvim-treesitter"]
-    path = nvim/site/pack/config/start/nvim-treesitter
+    path = nvim/.local/share/nvim/site/pack/config/start/nvim-treesitter
     url = https://github.com/nvim-treesitter/nvim-treesitter.git
     branch = master
 [submodule "nvim/site/pack/config/start/cmp-treesitter"]
-    path = nvim/site/pack/config/start/cmp-treesitter
+    path = nvim/.local/share/nvim/site/pack/config/start/cmp-treesitter
     url = https://github.com/ray-x/cmp-treesitter
     branch = master
 [submodule "nvim/site/pack/config/start/cmp-nvim-tags"]
-    path = nvim/site/pack/config/start/cmp-nvim-tags
+    path = nvim/.local/share/nvim/site/pack/config/start/cmp-nvim-tags
     url = https://github.com/quangnguyen30192/cmp-nvim-tags
     branch = main
 [submodule "nvim/site/pack/config/start/cmp-nvim-lua"]
-    path = nvim/site/pack/config/start/cmp-nvim-lua
+    path = nvim/.local/share/nvim/site/pack/config/start/cmp-nvim-lua
     url = https://github.com/hrsh7th/cmp-nvim-lua
     branch = main
 [submodule "nvim/site/pack/config/start/neogen"]
-    path = nvim/site/pack/config/start/neogen
+    path = nvim/.local/share/nvim/site/pack/config/start/neogen
     url = https://github.com/danymat/neogen.git
     branch = main
 [submodule "nvim/site/pack/config/start/rose-pine"]
-    path = nvim/site/pack/config/start/rose-pine
+    path = nvim/.local/share/nvim/site/pack/config/start/rose-pine
     url = https://github.com/rose-pine/neovim.git
     branch = main
 [submodule "term/rose-pine"]
-    path = term/rose-pine
+    path = kitty/.config/kitty/rose-pine
     url = https://github.com/rose-pine/kitty.git
     branch = main
 [submodule "nvim/site/pack/config/start/lsp-status.nvim"]
-    path = nvim/site/pack/config/start/lsp-status.nvim
+    path = nvim/.local/share/nvim/site/pack/config/start/lsp-status.nvim
     url = https://github.com/nvim-lua/lsp-status.nvim.git
     branch = master
 [submodule "nvim/site/pack/config/start/nvim-lsp-basics"]
-    path = nvim/site/pack/config/start/nvim-lsp-basics
+    path = nvim/.local/share/nvim/site/pack/config/start/nvim-lsp-basics
     url = https://github.com/nanotee/nvim-lsp-basics.git
     branch = main
