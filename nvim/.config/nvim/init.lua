@@ -5,6 +5,7 @@ vim.g.mapleader = ","
 local keymap_opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap("n", "<leader>a", ":LspCodeAction<CR>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>b", ":Telescope buffers<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>c", ":lua ToggleDarkMode()<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>,", ":Telescope live_grep<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>d", ":LspHover<CR>", keymap_opts)
 -- see also LspSignatureHelp
@@ -59,13 +60,20 @@ vim.opt.number = true
 vim.opt.signcolumn = "yes"
 
 -- theme
+function ToggleDarkMode()
+    if vim.o.background == "light" then
+        vim.opt.background = "dark"
+    else
+        vim.opt.background = "light"
+    end
+end
+
 require("rose-pine").setup({
     --- @usage 'auto'|'main'|'moon'|'dawn'
     variant = "auto",
     --- @usage 'main'|'moon'|'dawn'
     dark_variant = "moon",
 })
---vim.opt.background="light"
 vim.cmd("colorscheme rose-pine")
 
 -- lualine.nvim
@@ -122,7 +130,7 @@ cmp.setup({
         { name = "buffer" },
     }),
     mapping = cmp.mapping.preset.insert({
-        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-b>"] = cmp.mapping.scroll_docs( -4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
