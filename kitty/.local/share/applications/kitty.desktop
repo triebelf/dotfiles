@@ -1,0 +1,16 @@
+[Desktop Entry]
+Type=Application
+TryExec=/home/ftr8fe/.local/kitty.app/bin/kitty
+Exec=/home/ftr8fe/.local/kitty.app/bin/kitty
+Icon=/home/ftr8fe/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png
+Terminal=false
+Categories=System;TerminalEmulator;
+Name=kitty
+GenericName=Terminal
+Comment=A fast, cross-platform, OpenGL terminal emulator
+#StartupWMClass=kitty
+Actions=New;
+
+[Desktop Action New]
+Name=New Terminal
+Exec=/home/ftr8fe/.local/kitty.app/bin/kitty
