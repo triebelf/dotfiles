@@ -54,6 +54,4 @@ alias http_share='python3 -m http.server 9999'
 typeset -gU path cdpath fpath manpath
 path=("$HOME/.local/bin" "$HOME/.cargo/bin" $path)
 export PATH
-export EDITOR="${EDITOR:-nvim}"
-export VISUAL="${VISUAL:-nvim}"
 export PAGER="${PAGER:-less}"
