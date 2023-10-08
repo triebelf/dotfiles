@@ -130,7 +130,7 @@ cmp.setup({
         { name = "buffer" },
     }),
     mapping = cmp.mapping.preset.insert({
-        ["<C-b>"] = cmp.mapping.scroll_docs( -4),
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
@@ -191,6 +191,7 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
 require("lspconfig").clangd.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 require("lspconfig").rust_analyzer.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 require("lspconfig").dockerls.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
+require("lspconfig").taplo.setup({})
 require("lspconfig").jsonls.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 require("lspconfig").lemminx.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 require("lspconfig").ltex.setup({
