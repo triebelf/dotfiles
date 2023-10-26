@@ -255,9 +255,9 @@ null_ls.setup({
     on_attach = on_attach,
     sources = {
         null_ls.builtins.code_actions.shellcheck,
-        null_ls.builtins.diagnostics.ruff.with({
-            args = { "-n", "-e", "--line-length", "120", "--stdin-filename", "$FILENAME", "-" },
-        }),
+        -- null_ls.builtins.diagnostics.ruff.with({
+        --     args = { "-n", "-e", "--line-length", "120", "--stdin-filename", "$FILENAME", "-" },
+        -- }),
         null_ls.builtins.diagnostics.flake8.with({
             args = { "--max-line-length", "120", "--format", "default", "--stdin-display-name", "$FILENAME", "-" },
         }),
