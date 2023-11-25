@@ -22,7 +22,6 @@ bindkey -v
 prompt pure
 compstyle 'prezto'
 autoload -U zmv
-export AUTOSWITCH_SILENT=1
 
 ################################## ALIASES ##################################
 alias open="xdg-open"

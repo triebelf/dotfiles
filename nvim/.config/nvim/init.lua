@@ -49,7 +49,7 @@ vim.g.netrw_altv = 1
 vim.g.netrw_banner = 0
 vim.g.netrw_browse_split = 4
 vim.g.netrw_keepdir = 0
-vim.g.netrw_list_hide = vim.fn["netrw_gitignore#Hide"]()
+--vim.g.netrw_list_hide = vim.fn["netrw_gitignore#Hide"]()
 vim.g.netrw_liststyle = 3
 vim.g.netrw_winsize = 20
 
@@ -236,18 +236,7 @@ require("lspconfig").lua_ls.setup({
         },
     },
 })
-require("lspconfig").yamlls.setup({
-    on_attach = on_attach,
-    flags = { debounce_text_changes = 150 },
-    settings = {
-        yaml = { format = { enable = true, proseWrap = "Always", printWidth = 120 } },
-        redhat = {
-            telemetry = {
-                enabled = false,
-            },
-        },
-    },
-})
+require("lspconfig").yamlls.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 
 -- null-ls.nvim
 local null_ls = require("null-ls")
