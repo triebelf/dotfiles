@@ -61,20 +61,18 @@ vim.opt.signcolumn = "yes"
 
 -- theme
 function ToggleDarkMode()
-    if vim.o.background == "light" then
-        vim.opt.background = "dark"
+    if vim.g.light_switch == true then
+        vim.g.light_switch = false
+        --vim.cmd("colorscheme kanagawa")
+        vim.cmd("colorscheme kanagawa-dragon")
     else
-        vim.opt.background = "light"
+        vim.g.light_switch = true
+        vim.cmd("colorscheme kanagawa-lotus")
     end
 end
 
-require("rose-pine").setup({
-    --- @usage 'auto'|'main'|'moon'|'dawn'
-    variant = "auto",
-    --- @usage 'main'|'moon'|'dawn'
-    dark_variant = "moon",
-})
-vim.cmd("colorscheme rose-pine")
+--vim.cmd("colorscheme kanagawa")
+vim.cmd("colorscheme kanagawa-dragon")
 
 -- lualine.nvim
 require("lualine").setup({ options = { icons_enabled = false } })
