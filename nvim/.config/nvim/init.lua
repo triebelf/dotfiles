@@ -37,6 +37,7 @@ vim.opt.undofile = true
 
 -- use spaces for tabs
 vim.opt.expandtab = true
+vim.opt.textwidth = 120
 
 -- ignore whitespace in diff
 vim.opt.diffopt:append("iwhite")
@@ -49,6 +50,7 @@ vim.g.netrw_altv = 1
 vim.g.netrw_banner = 0
 vim.g.netrw_browse_split = 4
 vim.g.netrw_keepdir = 0
+vim.g.netrw_list_hide = "__pycache__"
 --vim.g.netrw_list_hide = vim.fn["netrw_gitignore#Hide"]()
 vim.g.netrw_liststyle = 3
 vim.g.netrw_winsize = 20
@@ -71,8 +73,8 @@ function ToggleDarkMode()
     end
 end
 
---vim.cmd("colorscheme kanagawa")
-vim.cmd("colorscheme kanagawa-dragon")
+vim.cmd("colorscheme kanagawa")
+--vim.cmd("colorscheme kanagawa-dragon")
 
 -- lualine.nvim
 require("lualine").setup({ options = { icons_enabled = false } })
@@ -99,13 +101,13 @@ vim.cmd([[
 -- telescope.nvim
 require("telescope").setup({
     defaults = { layout_strategy = "vertical" },
-    pickers = {
-        live_grep = {
-            additional_args = function(opts)
-                return { "--hidden" }
-            end,
-        },
-    },
+    --pickers = {
+    --    live_grep = {
+    --        additional_args = function(opts)
+    --            return { "--hidden" }
+    --        end,
+    --    },
+    --},
 })
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
@@ -273,7 +275,7 @@ null_ls.setup({
             args = { "--max-line-length", "120", "--from-stdin", "$FILENAME", "-f", "json" },
         }),
         null_ls.builtins.diagnostics.shellcheck,
-        --null_ls.builtins.diagnostics.yamllint,
+        null_ls.builtins.diagnostics.yamllint,
         null_ls.builtins.diagnostics.zsh,
         null_ls.builtins.formatting.black,
         null_ls.builtins.formatting.isort.with({
