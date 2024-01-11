@@ -189,6 +189,7 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
     require("cmp_nvim_lsp").default_capabilities()
 )
 require("lspconfig").clangd.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
+require("lspconfig").cmake.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 require("lspconfig").rust_analyzer.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 require("lspconfig").dockerls.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 require("lspconfig").taplo.setup({})
