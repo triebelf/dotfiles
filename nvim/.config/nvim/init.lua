@@ -11,7 +11,7 @@ vim.api.nvim_set_keymap("n", "<leader>d", ":LspHover<CR>", keymap_opts)
 -- see also LspSignatureHelp
 vim.api.nvim_set_keymap("n", "<leader>D", ":lua require('neogen').generate()<CR>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>e", ":lua vim.diagnostic.open_float()<CR>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>f", ":LspFormat<CR>", keymap_opts)
+vim.keymap.set({ "n", "v", "o" }, "<leader>f", vim.lsp.buf.format, keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>g", ":LspDefinition<CR>", keymap_opts)
 -- see also LspDeclaration, LspTypeDefinition, LspImplementation
 vim.api.nvim_set_keymap("n", "<leader>h", ":ClangdSwitchSourceHeader<CR>", keymap_opts)
@@ -25,6 +25,8 @@ vim.api.nvim_set_keymap("n", "<leader>o", ":Telescope git_files<cr>", keymap_opt
 vim.api.nvim_set_keymap("n", "<leader>r", ":LspReferences<CR>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>s", ":Telescope git_branches<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>t", ":Telescope tags<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>v", ":Telescope treesitter<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>w", ":Telescope lsp_workspace_symbols<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>x", ":Telescope diagnostics<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>y", ":Telescope registers<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>z", ":Telescope find_files<cr>", keymap_opts)
@@ -65,8 +67,8 @@ vim.opt.signcolumn = "yes"
 function ToggleDarkMode()
     if vim.g.light_switch == true then
         vim.g.light_switch = false
-        --vim.cmd("colorscheme kanagawa")
-        vim.cmd("colorscheme kanagawa-dragon")
+        vim.cmd("colorscheme kanagawa")
+        --vim.cmd("colorscheme kanagawa-dragon")
     else
         vim.g.light_switch = true
         vim.cmd("colorscheme kanagawa-lotus")
@@ -81,6 +83,9 @@ require("lualine").setup({ options = { icons_enabled = false } })
 
 -- nvim-treesitter
 require("nvim-treesitter.configs").setup({ highlight = { enable = true } })
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.cmd([[ set nofoldenable]])
 
 -- vim-gutentags
 --vim.g.gutentags_trace = 1
@@ -130,7 +135,7 @@ cmp.setup({
         { name = "buffer" },
     }),
     mapping = cmp.mapping.preset.insert({
-        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-b>"] = cmp.mapping.scroll_docs( -4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
