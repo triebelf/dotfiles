@@ -62,10 +62,6 @@
     path = nvim/.local/share/nvim/site/pack/config/start/plenary.nvim
     url = https://github.com/nvim-lua/plenary.nvim
     branch = master
-[submodule "null-ls.nvim"]
-    path = nvim/.local/share/nvim/site/pack/config/start/null-ls.nvim
-    url = https://github.com/jose-elias-alvarez/null-ls.nvim.git
-    branch = main
 [submodule "vim-snippets"]
     path = nvim/.local/share/nvim/site/pack/config/start/vim-snippets
     url = https://github.com/honza/vim-snippets.git
@@ -102,3 +98,7 @@
     path = nvim/.local/share/nvim/site/pack/config/start/kanagawa.nvim
     url = https://github.com/rebelot/kanagawa.nvim
     branch = master
+[submodule "nvim/.local/share/nvim/site/pack/config/start/none-ls.nvim"]
+    path = nvim/.local/share/nvim/site/pack/config/start/none-ls.nvim
+    url = https://github.com/nvimtools/none-ls.nvim
+    branch = main

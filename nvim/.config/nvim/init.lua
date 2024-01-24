@@ -135,7 +135,7 @@ cmp.setup({
         { name = "buffer" },
     }),
     mapping = cmp.mapping.preset.insert({
-        ["<C-b>"] = cmp.mapping.scroll_docs( -4),
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
@@ -250,9 +250,6 @@ null_ls.setup({
     on_attach = on_attach,
     sources = {
         null_ls.builtins.code_actions.shellcheck,
-        -- null_ls.builtins.diagnostics.ruff.with({
-        --     args = { "-n", "-e", "--line-length", "120", "--stdin-filename", "$FILENAME", "-" },
-        -- }),
         null_ls.builtins.diagnostics.flake8.with({
             args = { "--max-line-length", "120", "--format", "default", "--stdin-display-name", "$FILENAME", "-" },
         }),
@@ -292,6 +289,7 @@ null_ls.setup({
             extra_args = { "--column-width", "120", "--indent-type", "Spaces" },
         }),
         null_ls.builtins.formatting.clang_format,
+        null_ls.builtins.formatting.jq,
     },
 })
 
