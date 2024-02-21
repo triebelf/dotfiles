@@ -3,8 +3,8 @@
     askPass =
     autocrlf = false
     pager = less -SFR
-[gc]
-    pruneExpire = now
+[init]
+    defaultBranch = main
 [diff]
     # characters to ignore in word diff mode
     wordRegex = "[^[:space:].,;]+"
@@ -39,6 +39,9 @@
     cmd = nvim -f -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
     trustExitCode = true
     prompt = false
+[rerere]
+    enabled = true
+    autoUpdate = true
 [commit]
     template = ~/.gitmessage
 [include]
@@ -53,5 +56,5 @@
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
-[init]
-    defaultBranch = main
+[gc]
+    pruneExpire = now
