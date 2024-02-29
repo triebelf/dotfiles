@@ -193,6 +193,7 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
     lsp_defaults.capabilities,
     require("cmp_nvim_lsp").default_capabilities()
 )
+require("lspconfig").bashls.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 require("lspconfig").clangd.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 require("lspconfig").cmake.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 require("lspconfig").rust_analyzer.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
@@ -249,10 +250,6 @@ local null_ls = require("null-ls")
 null_ls.setup({
     on_attach = on_attach,
     sources = {
-        null_ls.builtins.code_actions.shellcheck,
-        null_ls.builtins.diagnostics.flake8.with({
-            args = { "--max-line-length", "120", "--format", "default", "--stdin-display-name", "$FILENAME", "-" },
-        }),
         null_ls.builtins.diagnostics.mypy.with({
             args = function(params)
                 return {
@@ -277,7 +274,6 @@ null_ls.setup({
             end,
             args = { "--max-line-length", "120", "--from-stdin", "$FILENAME", "-f", "json" },
         }),
-        null_ls.builtins.diagnostics.shellcheck,
         null_ls.builtins.diagnostics.yamllint,
         null_ls.builtins.diagnostics.zsh,
         null_ls.builtins.formatting.black,
@@ -289,7 +285,6 @@ null_ls.setup({
             extra_args = { "--column-width", "120", "--indent-type", "Spaces" },
         }),
         null_ls.builtins.formatting.clang_format,
-        null_ls.builtins.formatting.jq,
     },
 })
 
