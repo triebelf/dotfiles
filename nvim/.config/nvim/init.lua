@@ -77,6 +77,7 @@ end
 
 vim.cmd("colorscheme kanagawa")
 --vim.cmd("colorscheme kanagawa-dragon")
+--vim.cmd("colorscheme kanagawa-lotus")
 
 -- lualine.nvim
 require("lualine").setup({ options = { icons_enabled = false } })
