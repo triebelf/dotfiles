@@ -5,11 +5,9 @@ vim.g.mapleader = ","
 local keymap_opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap("n", "<leader>a", ":LspCodeAction<CR>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>b", ":Telescope buffers<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>c", ":lua ToggleDarkMode()<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>,", ":Telescope live_grep<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>d", ":LspHover<CR>", keymap_opts)
 -- see also LspSignatureHelp
-vim.api.nvim_set_keymap("n", "<leader>D", ":lua require('neogen').generate()<CR>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>e", ":lua vim.diagnostic.open_float()<CR>", keymap_opts)
 vim.keymap.set({ "n", "v", "o" }, "<leader>f", vim.lsp.buf.format, keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>g", ":LspDefinition<CR>", keymap_opts)
@@ -23,10 +21,9 @@ vim.api.nvim_set_keymap("n", "<leader>m", ":Telescope oldfiles<cr>", keymap_opts
 vim.api.nvim_set_keymap("n", "<leader>n", ":LspRename<CR>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>o", ":Telescope git_files<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>r", ":LspReferences<CR>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>s", ":Telescope git_branches<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>t", ":Telescope tags<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>v", ":Telescope treesitter<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>w", ":Telescope lsp_workspace_symbols<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>v", ":Outline<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>w", ":Telescope lsp_document_symbols<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>x", ":Telescope diagnostics<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>y", ":Telescope registers<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>z", ":Telescope find_files<cr>", keymap_opts)
@@ -37,8 +34,14 @@ vim.opt.mouse = ""
 -- persist the undo tree for each file
 vim.opt.undofile = true
 
--- use spaces for tabs
+-- place spaces upon receiving a whitespace command or a tab keypress
 vim.opt.expandtab = true
+-- How many columns wide is a tab character worth?
+vim.opt.tabstop = 4
+-- Referred to for “levels of indentation”
+vim.opt.shiftwidth = 4
+
+vim.opt.smartindent = true
 vim.opt.textwidth = 120
 
 -- ignore whitespace in diff
@@ -289,7 +292,5 @@ null_ls.setup({
     },
 })
 
--- neogen
-require("neogen").setup({
-    languages = { python = { template = { annotation_convention = "reST" } } },
-})
+-- outline
+require("outline").setup({ symbol_folding = { markers = { "+", "⌄" } } })

@@ -2,10 +2,6 @@
     path = nvim/.local/share/nvim/site/pack/config/start/vim-mergetool
     url = https://github.com/samoshkin/vim-mergetool.git
     branch = master
-[submodule "vim-polyglot"]
-    path = nvim/.local/share/nvim/site/pack/config/start/vim-polyglot
-    url = https://github.com/sheerun/vim-polyglot
-    branch = master
 [submodule "vim-signify"]
     path = nvim/.local/share/nvim/site/pack/config/start/vim-signify
     url = https://github.com/mhinz/vim-signify
@@ -82,10 +78,6 @@
     path = nvim/.local/share/nvim/site/pack/config/start/cmp-nvim-lua
     url = https://github.com/hrsh7th/cmp-nvim-lua
     branch = main
-[submodule "neogen"]
-    path = nvim/.local/share/nvim/site/pack/config/start/neogen
-    url = https://github.com/danymat/neogen.git
-    branch = main
 [submodule "lsp-status.nvim"]
     path = nvim/.local/share/nvim/site/pack/config/start/lsp-status.nvim
     url = https://github.com/nvim-lua/lsp-status.nvim.git
@@ -101,4 +93,8 @@
 [submodule "nvim/.local/share/nvim/site/pack/config/start/none-ls.nvim"]
     path = nvim/.local/share/nvim/site/pack/config/start/none-ls.nvim
     url = https://github.com/nvimtools/none-ls.nvim
+    branch = main
+[submodule "nvim/.local/share/nvim/site/pack/config/start/outline.nvim"]
+    path = nvim/.local/share/nvim/site/pack/config/start/outline.nvim
+    url = https://github.com/hedyhli/outline.nvim.git
     branch = main
