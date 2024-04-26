@@ -20,6 +20,7 @@ vim.api.nvim_set_keymap("n", "<leader>l", ":Lexplore<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>m", ":Telescope oldfiles<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>n", ":LspRename<CR>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>o", ":Telescope git_files<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>q", ":Telescope marks<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>r", ":LspReferences<CR>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>t", ":Telescope tags<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>v", ":Outline<cr>", keymap_opts)
@@ -27,6 +28,7 @@ vim.api.nvim_set_keymap("n", "<leader>w", ":Telescope lsp_document_symbols<cr>",
 vim.api.nvim_set_keymap("n", "<leader>x", ":Telescope diagnostics<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>y", ":Telescope registers<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>z", ":Telescope find_files<cr>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader><tab><tab>", ":tabnew<cr>", keymap_opts)
 
 -- no mouse
 vim.opt.mouse = ""
@@ -47,8 +49,13 @@ vim.opt.textwidth = 120
 -- ignore whitespace in diff
 vim.opt.diffopt:append("iwhite")
 
---  ignore case when searching
+-- ignore case when searching
 vim.opt.ignorecase = true
+
+-- enable spell checking
+vim.opt.spelllang = "en_us"
+vim.opt.spell = true
+vim.opt.spelloptions = "camel"
 
 -- NERDtree like setup for netrw
 vim.g.netrw_altv = 1
@@ -139,7 +146,7 @@ cmp.setup({
         { name = "buffer" },
     }),
     mapping = cmp.mapping.preset.insert({
-        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-b>"] = cmp.mapping.scroll_docs( -4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
