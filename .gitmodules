@@ -98,3 +98,9 @@
     path = nvim/.local/share/nvim/site/pack/config/start/outline.nvim
     url = https://github.com/hedyhli/outline.nvim.git
     branch = main
+[submodule "nvim/.local/share/nvim/site/pack/config/start/papercolor-theme"]
+	path = nvim/.local/share/nvim/site/pack/config/start/papercolor-theme
+	url = https://github.com/NLKNguyen/papercolor-theme.git
+[submodule "nvim/.local/share/nvim/site/pack/config/start/tokyonight.nvim"]
+	path = nvim/.local/share/nvim/site/pack/config/start/tokyonight.nvim
+	url = https://github.com/folke/tokyonight.nvim.git

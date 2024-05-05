@@ -74,23 +74,15 @@ vim.opt.number = true
 vim.opt.signcolumn = "yes"
 
 -- theme
-function ToggleDarkMode()
-    if vim.g.light_switch == true then
-        vim.g.light_switch = false
-        vim.cmd("colorscheme kanagawa")
-        --vim.cmd("colorscheme kanagawa-dragon")
-    else
-        vim.g.light_switch = true
-        vim.cmd("colorscheme kanagawa-lotus")
-    end
-end
-
-vim.cmd("colorscheme kanagawa")
---vim.cmd("colorscheme kanagawa-dragon")
---vim.cmd("colorscheme kanagawa-lotus")
+vim.cmd("colorscheme tokyonight-moon")
+-- colorscheme tokyonight
+-- colorscheme tokyonight-night
+-- colorscheme tokyonight-storm
+-- colorscheme tokyonight-day
+-- colorscheme tokyonight-moon
 
 -- lualine.nvim
-require("lualine").setup({ options = { icons_enabled = false } })
+require("lualine").setup({ options = { icons_enabled = false, theme = "tokyonight" } })
 
 -- nvim-treesitter
 require("nvim-treesitter.configs").setup({ highlight = { enable = true } })
@@ -146,7 +138,7 @@ cmp.setup({
         { name = "buffer" },
     }),
     mapping = cmp.mapping.preset.insert({
-        ["<C-b>"] = cmp.mapping.scroll_docs( -4),
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
