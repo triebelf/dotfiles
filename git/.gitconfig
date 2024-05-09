@@ -7,7 +7,7 @@
     defaultBranch = main
 [diff]
     # characters to ignore in word diff mode
-    wordRegex = "[^[:space:].,;]+"
+    wordRegex = "\\w+"
     # https://link.springer.com/article/10.1007%2Fs10664-019-09772-z
     algorithm = histogram
 [pull]

@@ -74,7 +74,7 @@ vim.opt.number = true
 vim.opt.signcolumn = "yes"
 
 -- theme
-vim.cmd("colorscheme tokyonight-moon")
+vim.cmd("colorscheme tokyonight")
 -- colorscheme tokyonight
 -- colorscheme tokyonight-night
 -- colorscheme tokyonight-storm
