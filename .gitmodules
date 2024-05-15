@@ -86,10 +86,6 @@
     path = nvim/.local/share/nvim/site/pack/config/start/nvim-lsp-basics
     url = https://github.com/nanotee/nvim-lsp-basics.git
     branch = main
-[submodule "kanagawa.nvim"]
-    path = nvim/.local/share/nvim/site/pack/config/start/kanagawa.nvim
-    url = https://github.com/rebelot/kanagawa.nvim
-    branch = master
 [submodule "nvim/.local/share/nvim/site/pack/config/start/none-ls.nvim"]
     path = nvim/.local/share/nvim/site/pack/config/start/none-ls.nvim
     url = https://github.com/nvimtools/none-ls.nvim
@@ -98,9 +94,6 @@
     path = nvim/.local/share/nvim/site/pack/config/start/outline.nvim
     url = https://github.com/hedyhli/outline.nvim.git
     branch = main
-[submodule "nvim/.local/share/nvim/site/pack/config/start/papercolor-theme"]
-	path = nvim/.local/share/nvim/site/pack/config/start/papercolor-theme
-	url = https://github.com/NLKNguyen/papercolor-theme.git
 [submodule "nvim/.local/share/nvim/site/pack/config/start/tokyonight.nvim"]
 	path = nvim/.local/share/nvim/site/pack/config/start/tokyonight.nvim
 	url = https://github.com/folke/tokyonight.nvim.git

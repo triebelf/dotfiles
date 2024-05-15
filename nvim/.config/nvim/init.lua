@@ -7,13 +7,15 @@ vim.api.nvim_set_keymap("n", "<leader>a", ":LspCodeAction<CR>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>b", ":Telescope buffers<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>,", ":Telescope live_grep<cr>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>d", ":LspHover<CR>", keymap_opts)
--- see also LspSignatureHelp
 vim.api.nvim_set_keymap("n", "<leader>e", ":lua vim.diagnostic.open_float()<CR>", keymap_opts)
 vim.keymap.set({ "n", "v", "o" }, "<leader>f", vim.lsp.buf.format, keymap_opts)
+-- LspDeclaration
+-- LspTypeDefinition
 vim.api.nvim_set_keymap("n", "<leader>g", ":LspDefinition<CR>", keymap_opts)
--- see also LspDeclaration, LspTypeDefinition, LspImplementation
 vim.api.nvim_set_keymap("n", "<leader>h", ":ClangdSwitchSourceHeader<CR>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>i", ":LspIncomingCalls<CR>", keymap_opts)
+vim.api.nvim_set_keymap("n", "<leader>i", ":LspImplementation<CR>", keymap_opts)
+-- LspIncomingCalls
+-- LspOutgoingCalls
 vim.api.nvim_set_keymap("n", "<leader>j", ":lua vim.diagnostic.goto_next()<CR>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>k", ":lua vim.diagnostic.goto_prev()<CR>", keymap_opts)
 vim.api.nvim_set_keymap("n", "<leader>l", ":Lexplore<cr>", keymap_opts)
@@ -236,8 +238,8 @@ require("lspconfig").lua_ls.setup({
                 globals = { "vim" },
             },
             workspace = {
-                -- Make the server aware of Neovim runtime files
-                library = vim.api.nvim_get_runtime_file("", true),
+                checkThirdParty = true,
+                library = { vim.env.VIMRUNTIME },
             },
             -- Do not send telemetry data containing a randomized but unique identifier
             telemetry = {
