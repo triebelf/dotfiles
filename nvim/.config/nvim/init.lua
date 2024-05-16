@@ -191,19 +191,18 @@ local function on_attach(client, bufnr)
     basics.make_lsp_mappings(client, bufnr)
 end
 
+-- mason
+require("mason").setup()
+require("mason-lspconfig").setup({ automatic_installation = true })
+
 -- nvim-lspconfig
 local lsp_defaults = require("lspconfig").util.default_config
-lsp_defaults.capabilities = vim.tbl_deep_extend(
-    "force",
-    lsp_defaults.capabilities,
-    require("cmp_nvim_lsp").default_capabilities()
-)
+lsp_defaults.capabilities =
+    vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 require("lspconfig").bashls.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 require("lspconfig").clangd.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 require("lspconfig").cmake.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
-require("lspconfig").rust_analyzer.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 require("lspconfig").dockerls.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
-require("lspconfig").taplo.setup({})
 require("lspconfig").jsonls.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 require("lspconfig").lemminx.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 require("lspconfig").ltex.setup({
