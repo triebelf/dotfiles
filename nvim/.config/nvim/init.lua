@@ -56,7 +56,7 @@ vim.opt.ignorecase = true
 
 -- enable spell checking
 vim.opt.spelllang = "en_us"
-vim.opt.spell = true
+--vim.opt.spell = true
 vim.opt.spelloptions = "camel"
 
 -- NERDtree like setup for netrw
@@ -203,6 +203,8 @@ require("lspconfig").bashls.setup({ on_attach = on_attach, flags = { debounce_te
 require("lspconfig").clangd.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 require("lspconfig").cmake.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 require("lspconfig").dockerls.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
+require("lspconfig").esbonio.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
+require("lspconfig").typos_lsp.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 require("lspconfig").jsonls.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 require("lspconfig").lemminx.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 require("lspconfig").ltex.setup({
