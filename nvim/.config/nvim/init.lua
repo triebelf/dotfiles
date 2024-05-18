@@ -3,34 +3,39 @@ vim.g.mapleader = ","
 
 -- custom key mappings
 local keymap_opts = { noremap = true, silent = true }
-vim.api.nvim_set_keymap("n", "<leader>a", ":LspCodeAction<CR>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>b", ":Telescope buffers<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>,", ":Telescope live_grep<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>d", ":LspHover<CR>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>e", ":lua vim.diagnostic.open_float()<CR>", keymap_opts)
+local tele = require("telescope.builtin")
+-- open files
+vim.keymap.set("n", "<leader>b", tele.buffers, keymap_opts)
+vim.keymap.set("n", "<leader>m", tele.oldfiles, keymap_opts)
+vim.keymap.set("n", "<leader>o", tele.git_files, keymap_opts)
+vim.keymap.set("n", "<leader>z", tele.find_files, keymap_opts)
+vim.keymap.set("n", "<leader>l", vim.cmd.Lexplore, keymap_opts)
+vim.keymap.set("n", "<leader><tab><tab>", vim.cmd.tabnew, keymap_opts)
+
+-- search
+vim.keymap.set("n", "<leader>,", tele.live_grep, keymap_opts)
+vim.keymap.set("n", "<leader>q", tele.lsp_dynamic_workspace_symbols, keymap_opts)
+
+-- navigation
+vim.keymap.set("n", "<leader>h", vim.cmd.ClangdSwitchSourceHeader, keymap_opts)
+vim.keymap.set("n", "<leader>v", vim.cmd.Outline, keymap_opts)
+vim.keymap.set("n", "<leader>t", vim.cmd.ClangdTypeHierarchy, keymap_opts)
+vim.keymap.set("n", "<leader>c", vim.cmd.ClangdAST, keymap_opts)
+vim.keymap.set("n", "<leader>g", tele.lsp_definitions, keymap_opts)
+vim.keymap.set("n", "<leader>r", tele.lsp_references, keymap_opts)
+
+-- editing
+vim.keymap.set("n", "<leader>a", vim.cmd.LspCodeAction, keymap_opts)
 vim.keymap.set({ "n", "v", "o" }, "<leader>f", vim.lsp.buf.format, keymap_opts)
--- LspDeclaration
--- LspTypeDefinition
-vim.api.nvim_set_keymap("n", "<leader>g", ":LspDefinition<CR>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>h", ":ClangdSwitchSourceHeader<CR>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>i", ":LspImplementation<CR>", keymap_opts)
--- LspIncomingCalls
--- LspOutgoingCalls
-vim.api.nvim_set_keymap("n", "<leader>j", ":lua vim.diagnostic.goto_next()<CR>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>k", ":lua vim.diagnostic.goto_prev()<CR>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>l", ":Lexplore<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>m", ":Telescope oldfiles<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>n", ":LspRename<CR>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>o", ":Telescope git_files<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>q", ":Telescope marks<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>r", ":LspReferences<CR>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>t", ":Telescope tags<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>v", ":Outline<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>w", ":Telescope lsp_document_symbols<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>x", ":Telescope diagnostics<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>y", ":Telescope registers<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader>z", ":Telescope find_files<cr>", keymap_opts)
-vim.api.nvim_set_keymap("n", "<leader><tab><tab>", ":tabnew<cr>", keymap_opts)
+vim.keymap.set("n", "<leader>n", vim.cmd.LspRename, keymap_opts)
+vim.keymap.set("n", "<leader>y", tele.registers, keymap_opts)
+
+-- info
+vim.keymap.set("n", "<leader>d", vim.cmd.LspHover, keymap_opts)
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, keymap_opts)
+vim.keymap.set("n", "<leader>x", tele.diagnostics, keymap_opts)
+vim.keymap.set("n", "<leader>j", vim.diagnostic.goto_next, keymap_opts)
+vim.keymap.set("n", "<leader>k", vim.diagnostic.goto_prev, keymap_opts)
 
 -- no mouse
 vim.opt.mouse = ""
@@ -201,6 +206,7 @@ lsp_defaults.capabilities =
     vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 require("lspconfig").bashls.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 require("lspconfig").clangd.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
+require("clangd_extensions").setup({})
 require("lspconfig").cmake.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 require("lspconfig").dockerls.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
 require("lspconfig").esbonio.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
@@ -242,7 +248,7 @@ require("lspconfig").lua_ls.setup({
             workspace = {
                 -- Make the server aware of Neovim runtime files and plugins
                 library = { vim.env.VIMRUNTIME },
-                checkThirdParty = false,
+                checkThirdParty = true,
             },
             -- Do not send telemetry data containing a randomized but unique identifier
             telemetry = {

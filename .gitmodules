@@ -106,3 +106,7 @@
     path = nvim/.local/share/nvim/site/pack/config/start/mason-lspconfig.nvim
     url = https://github.com/williamboman/mason-lspconfig.nvim
     branch = main
+[submodule "nvim/.local/share/nvim/site/pack/config/start/clangd_extensions.nvim"]
+    path = nvim/.local/share/nvim/site/pack/config/start/clangd_extensions.nvim
+    url = https://github.com/p00f/clangd_extensions.nvim.git
+    branch = main
