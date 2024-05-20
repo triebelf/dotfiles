@@ -1,45 +1,41 @@
 -- comma is the leader key
 vim.g.mapleader = ","
 
--- custom key mappings
+-- key mappings ordered by NEO keyboard layout
 local keymap_opts = { noremap = true, silent = true }
 local tele = require("telescope.builtin")
--- open files
-vim.keymap.set({ "n", "v" }, "<leader>b", tele.buffers, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>m", tele.oldfiles, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>o", tele.git_files, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>z", tele.find_files, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader><tab><tab>", vim.cmd.tabnew, keymap_opts)
-
--- side bars
-vim.keymap.set({ "n", "v" }, "<leader>l", vim.cmd.Lexplore, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>x", tele.diagnostics, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>v", vim.cmd.Outline, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>l", vim.cmd.Lexplore, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>c", tele.commands, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>w", tele.builtin, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>k", vim.diagnostic.goto_prev, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>h", vim.cmd.ClangdSwitchSourceHeader, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>g", tele.lsp_definitions, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>f", vim.lsp.buf.format, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>q", tele.builtin, keymap_opts)
+
+vim.keymap.set({ "n", "v" }, "<leader>u", tele.resume, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>i", tele.lsp_implementations, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>e", vim.diagnostic.open_float, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>o", tele.git_files, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>s", tele.lsp_dynamic_workspace_symbols, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>n", vim.lsp.buf.rename, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>r", tele.lsp_references, keymap_opts)
 -- open type hierarchy, then use "gd" to just to type
 vim.keymap.set({ "n", "v" }, "<leader>t", vim.cmd.ClangdTypeHierarchy, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>d", vim.lsp.buf.hover, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>y", tele.registers, keymap_opts)
 
--- search
+vim.keymap.set({ "n", "v" }, "<leader>p", tele.builtin, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>z", tele.find_files, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>b", tele.buffers, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>m", tele.oldfiles, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>,", tele.live_grep, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>.", tele.grep_string, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>s", tele.lsp_dynamic_workspace_symbols, keymap_opts)
-
--- navigation
-vim.keymap.set({ "n", "v" }, "<leader>h", vim.cmd.ClangdSwitchSourceHeader, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>c", tele.commands, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>g", tele.lsp_definitions, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>r", tele.lsp_references, keymap_opts)
-
--- editing
-vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>f", vim.lsp.buf.format, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>n", vim.lsp.buf.rename, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>p", tele.registers, keymap_opts)
-
--- info
-vim.keymap.set({ "n", "v" }, "<leader>d", vim.lsp.buf.hover, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>e", vim.diagnostic.open_float, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>x", tele.diagnostics, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>j", vim.diagnostic.goto_next, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>k", vim.diagnostic.goto_prev, keymap_opts)
 
 -- no mouse
 vim.opt.mouse = ""
@@ -216,7 +212,10 @@ local lsp_defaults = require("lspconfig").util.default_config
 lsp_defaults.capabilities =
     vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 require("lspconfig").bashls.setup({ flags = { debounce_text_changes = 150 } })
-require("lspconfig").clangd.setup({ flags = { debounce_text_changes = 150 } })
+require("lspconfig").clangd.setup({
+    cmd = { "clangd", "--offset-encoding=utf-16" },
+    flags = { debounce_text_changes = 150 },
+})
 require("clangd_extensions").setup({})
 require("lspconfig").cmake.setup({ flags = { debounce_text_changes = 150 } })
 require("lspconfig").dockerls.setup({ flags = { debounce_text_changes = 150 } })
