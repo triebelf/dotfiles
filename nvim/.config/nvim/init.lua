@@ -5,37 +5,41 @@ vim.g.mapleader = ","
 local keymap_opts = { noremap = true, silent = true }
 local tele = require("telescope.builtin")
 -- open files
-vim.keymap.set("n", "<leader>b", tele.buffers, keymap_opts)
-vim.keymap.set("n", "<leader>m", tele.oldfiles, keymap_opts)
-vim.keymap.set("n", "<leader>o", tele.git_files, keymap_opts)
-vim.keymap.set("n", "<leader>z", tele.find_files, keymap_opts)
-vim.keymap.set("n", "<leader>l", vim.cmd.Lexplore, keymap_opts)
-vim.keymap.set("n", "<leader><tab><tab>", vim.cmd.tabnew, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>b", tele.buffers, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>m", tele.oldfiles, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>o", tele.git_files, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>z", tele.find_files, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader><tab><tab>", vim.cmd.tabnew, keymap_opts)
+
+-- side bars
+vim.keymap.set({ "n", "v" }, "<leader>l", vim.cmd.Lexplore, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>v", vim.cmd.Outline, keymap_opts)
+-- open type hierarchy, then use "gd" to just to type
+vim.keymap.set({ "n", "v" }, "<leader>t", vim.cmd.ClangdTypeHierarchy, keymap_opts)
 
 -- search
-vim.keymap.set("n", "<leader>,", tele.live_grep, keymap_opts)
-vim.keymap.set("n", "<leader>q", tele.lsp_dynamic_workspace_symbols, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>,", tele.live_grep, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>.", tele.grep_string, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>s", tele.lsp_dynamic_workspace_symbols, keymap_opts)
 
 -- navigation
-vim.keymap.set("n", "<leader>h", vim.cmd.ClangdSwitchSourceHeader, keymap_opts)
-vim.keymap.set("n", "<leader>v", vim.cmd.Outline, keymap_opts)
-vim.keymap.set("n", "<leader>t", vim.cmd.ClangdTypeHierarchy, keymap_opts)
-vim.keymap.set("n", "<leader>c", vim.cmd.ClangdAST, keymap_opts)
-vim.keymap.set("n", "<leader>g", tele.lsp_definitions, keymap_opts)
-vim.keymap.set("n", "<leader>r", tele.lsp_references, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>h", vim.cmd.ClangdSwitchSourceHeader, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>c", tele.commands, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>g", tele.lsp_definitions, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>r", tele.lsp_references, keymap_opts)
 
 -- editing
-vim.keymap.set("n", "<leader>a", vim.cmd.LspCodeAction, keymap_opts)
-vim.keymap.set({ "n", "v", "o" }, "<leader>f", vim.lsp.buf.format, keymap_opts)
-vim.keymap.set("n", "<leader>n", vim.cmd.LspRename, keymap_opts)
-vim.keymap.set("n", "<leader>y", tele.registers, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>f", vim.lsp.buf.format, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>n", vim.lsp.buf.rename, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>p", tele.registers, keymap_opts)
 
 -- info
-vim.keymap.set("n", "<leader>d", vim.cmd.LspHover, keymap_opts)
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, keymap_opts)
-vim.keymap.set("n", "<leader>x", tele.diagnostics, keymap_opts)
-vim.keymap.set("n", "<leader>j", vim.diagnostic.goto_next, keymap_opts)
-vim.keymap.set("n", "<leader>k", vim.diagnostic.goto_prev, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>d", vim.lsp.buf.hover, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>e", vim.diagnostic.open_float, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>x", tele.diagnostics, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>j", vim.diagnostic.goto_next, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>k", vim.diagnostic.goto_prev, keymap_opts)
 
 -- no mouse
 vim.opt.mouse = ""
@@ -175,6 +179,20 @@ cmp.setup({
             require("snippy").expand_snippet(args.body)
         end,
     },
+    sorting = {
+        comparators = {
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            cmp.config.compare.recently_used,
+            require("clangd_extensions.cmp_scores"),
+            cmp.config.compare.locality,
+            cmp.config.compare.kind,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
+        },
+    },
 })
 
 cmp.setup.cmdline("/", {
@@ -189,13 +207,6 @@ cmp.setup.cmdline(":", {
     sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
 })
 
--- nvim-lsp-basics
-local function on_attach(client, bufnr)
-    local basics = require("lsp_basics")
-    basics.make_lsp_commands(client, bufnr)
-    basics.make_lsp_mappings(client, bufnr)
-end
-
 -- mason
 require("mason").setup()
 require("mason-lspconfig").setup({ automatic_installation = true })
@@ -204,22 +215,20 @@ require("mason-lspconfig").setup({ automatic_installation = true })
 local lsp_defaults = require("lspconfig").util.default_config
 lsp_defaults.capabilities =
     vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
-require("lspconfig").bashls.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
-require("lspconfig").clangd.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
+require("lspconfig").bashls.setup({ flags = { debounce_text_changes = 150 } })
+require("lspconfig").clangd.setup({ flags = { debounce_text_changes = 150 } })
 require("clangd_extensions").setup({})
-require("lspconfig").cmake.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
-require("lspconfig").dockerls.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
-require("lspconfig").esbonio.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
-require("lspconfig").typos_lsp.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
-require("lspconfig").jsonls.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
-require("lspconfig").lemminx.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
+require("lspconfig").cmake.setup({ flags = { debounce_text_changes = 150 } })
+require("lspconfig").dockerls.setup({ flags = { debounce_text_changes = 150 } })
+require("lspconfig").esbonio.setup({ flags = { debounce_text_changes = 150 } })
+require("lspconfig").typos_lsp.setup({ flags = { debounce_text_changes = 150 } })
+require("lspconfig").jsonls.setup({ flags = { debounce_text_changes = 150 } })
+require("lspconfig").lemminx.setup({ flags = { debounce_text_changes = 150 } })
 require("lspconfig").ltex.setup({
-    on_attach = on_attach,
     flags = { debounce_text_changes = 150 },
     filetypes = { "bib", "markdown", "org", "plaintex", "rst", "rnoweb", "tex" },
 })
 require("lspconfig").pyright.setup({
-    on_attach = on_attach,
     settings = {
         python = {
             analysis = {
@@ -233,7 +242,6 @@ require("lspconfig").pyright.setup({
     flags = { debounce_text_changes = 150 },
 })
 require("lspconfig").lua_ls.setup({
-    on_attach = on_attach,
     settings = {
         Lua = {
             runtime = {
@@ -257,12 +265,11 @@ require("lspconfig").lua_ls.setup({
         },
     },
 })
-require("lspconfig").yamlls.setup({ on_attach = on_attach, flags = { debounce_text_changes = 150 } })
+require("lspconfig").yamlls.setup({ flags = { debounce_text_changes = 150 } })
 
 -- null-ls.nvim
 local null_ls = require("null-ls")
 null_ls.setup({
-    on_attach = on_attach,
     sources = {
         null_ls.builtins.diagnostics.mypy.with({
             args = function(params)
