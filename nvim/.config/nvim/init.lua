@@ -37,6 +37,8 @@ vim.keymap.set({ "n", "v" }, "<leader>,", tele.live_grep, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>.", tele.grep_string, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>j", vim.diagnostic.goto_next, keymap_opts)
 
+vim.opt.clipboard = vim.opt.clipboard + "unnamedplus"
+
 -- no mouse
 vim.opt.mouse = ""
 
@@ -96,21 +98,6 @@ require("nvim-treesitter.configs").setup({ highlight = { enable = true } })
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.cmd([[ set nofoldenable]])
-
--- vim-gutentags
---vim.g.gutentags_trace = 1
-vim.g.gutentags_cache_dir = vim.fn.expand("~/.cache/nvim/ctags/")
-vim.g.gutentags_ctags_extra_args = { "--tag-relative=yes", "--fields=+ailmnS" }
-vim.g.gutentags_generate_on_new = true
-vim.g.gutentags_generate_on_missing = true
-vim.g.gutentags_generate_on_write = true
-vim.g.gutentags_generate_on_empty_buffer = true
-vim.g.gutentags_ctags_exclude = { ".*" }
-
--- vim-oscyank
-vim.cmd([[
-		autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankRegister "' | endif
-]])
 
 -- plenary.nvim
 -- telescope.nvim

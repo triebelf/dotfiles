@@ -6,14 +6,6 @@
     path = nvim/.local/share/nvim/site/pack/config/start/vim-signify
     url = https://github.com/mhinz/vim-signify
     branch = master
-[submodule "vim-gutentags"]
-    path = nvim/.local/share/nvim/site/pack/config/start/vim-gutentags
-    url = https://github.com/ludovicchabant/vim-gutentags.git
-    branch = master
-[submodule "vim-oscyank"]
-    path = nvim/.local/share/nvim/site/pack/config/start/vim-oscyank
-    url = https://github.com/ojroques/vim-oscyank
-    branch = main
 [submodule "nvim-lspconfig"]
     path = nvim/.local/share/nvim/site/pack/config/start/nvim-lspconfig
     url = https://github.com/neovim/nvim-lspconfig
