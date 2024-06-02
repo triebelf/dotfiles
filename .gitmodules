@@ -98,3 +98,7 @@
     path = nvim/.local/share/nvim/site/pack/config/start/clangd_extensions.nvim
     url = https://github.com/p00f/clangd_extensions.nvim.git
     branch = main
+[submodule "nvim/.local/share/nvim/site/pack/config/start/mason-null-ls.nvim"]
+    path = nvim/.local/share/nvim/site/pack/config/start/mason-null-ls.nvim
+    url = https://github.com/jay-babu/mason-null-ls.nvim.git
+    branch = main
