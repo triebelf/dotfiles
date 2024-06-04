@@ -195,6 +195,7 @@ require("mason").setup()
 require("mason-lspconfig").setup({ automatic_installation = true })
 
 -- nvim-lspconfig
+vim.lsp.set_log_level("off")
 local lsp_defaults = require("lspconfig").util.default_config
 lsp_defaults.capabilities =
     vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
