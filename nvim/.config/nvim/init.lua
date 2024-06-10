@@ -102,14 +102,15 @@ vim.cmd([[ set nofoldenable]])
 -- plenary.nvim
 -- telescope.nvim
 require("telescope").setup({
-    defaults = { layout_strategy = "vertical" },
-    --pickers = {
-    --    live_grep = {
-    --        additional_args = function(opts)
-    --            return { "--hidden" }
-    --        end,
-    --    },
-    --},
+    defaults = { layout_strategy = "vertical", layout_config = { width = 0.95 } },
+    pickers = {
+        lsp_dynamic_workspace_symbols = { fname_width = 60 },
+        --    live_grep = {
+        --        additional_args = function(opts)
+        --            return { "--hidden" }
+        --        end,
+        --    },
+    },
 })
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
@@ -208,12 +209,25 @@ require("clangd_extensions").setup({})
 require("lspconfig").cmake.setup({ flags = { debounce_text_changes = 150 } })
 require("lspconfig").dockerls.setup({ flags = { debounce_text_changes = 150 } })
 require("lspconfig").esbonio.setup({ flags = { debounce_text_changes = 150 } })
-require("lspconfig").typos_lsp.setup({ flags = { debounce_text_changes = 150 } })
+require("lspconfig").typos_lsp.setup({
+    root_dir = require("lspconfig").util.root_pattern("pyproject.toml"),
+    flags = { debounce_text_changes = 150 },
+})
 require("lspconfig").jsonls.setup({ flags = { debounce_text_changes = 150 } })
 require("lspconfig").lemminx.setup({ flags = { debounce_text_changes = 150 } })
+require("lspconfig").taplo.setup({ flags = { debounce_text_changes = 150 } })
 require("lspconfig").ltex.setup({
     flags = { debounce_text_changes = 150 },
-    filetypes = { "bib", "markdown", "org", "plaintex", "rst", "rnoweb", "tex" },
+    settings = {
+        ltex = {
+            enabled = false,
+            language = "en-US",
+            additionalRules = { motherTongue = "de-DE" },
+            dictionary = {
+                ["en-US"] = { "deserializability", "deserializable", "deserialization", "serializability" },
+            },
+        },
+    },
 })
 require("lspconfig").pyright.setup({
     settings = {
@@ -302,4 +316,4 @@ require("mason-null-ls").setup({
 })
 
 -- outline
-require("outline").setup({ symbol_folding = { markers = { "+", "⌄" } } })
+require("outline").setup({ outline_window = { width = 20 }, symbol_folding = { markers = { "+", "⌄" } } })
