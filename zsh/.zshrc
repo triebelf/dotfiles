@@ -26,7 +26,7 @@ autoload -U zmv
 ################################## ALIASES ##################################
 alias open="xdg-open"
 alias top='htop'
-alias _='sudo -E'
+alias _='doas'
 alias ll='ls -lh'					# long format and human-readable sizes
 alias l='ll -A'						# long format, all files
 alias lm="l | ${PAGER}"		# long format, all files, use pager
