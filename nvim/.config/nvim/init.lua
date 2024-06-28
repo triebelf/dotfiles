@@ -105,11 +105,11 @@ require("telescope").setup({
     defaults = { layout_strategy = "vertical", layout_config = { width = 0.95 } },
     pickers = {
         lsp_dynamic_workspace_symbols = { fname_width = 60 },
-        --    live_grep = {
-        --        additional_args = function(opts)
-        --            return { "--hidden" }
-        --        end,
-        --    },
+        live_grep = {
+            additional_args = function(opts)
+                return { "--hidden" }
+            end,
+        },
     },
 })
 
