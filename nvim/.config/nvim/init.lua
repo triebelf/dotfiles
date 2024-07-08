@@ -107,7 +107,7 @@ require("telescope").setup({
         lsp_dynamic_workspace_symbols = { fname_width = 60 },
         live_grep = {
             additional_args = function(opts)
-                return { "--hidden" }
+                return { "--hidden", "--iglob", "!.git" }
             end,
         },
     },
@@ -316,4 +316,4 @@ require("mason-null-ls").setup({
 })
 
 -- outline
-require("outline").setup({ outline_window = { width = 20 }, symbol_folding = { markers = { "+", "⌄" } } })
+require("outline").setup({ symbol_folding = { markers = { "+", "⌄" } } })
