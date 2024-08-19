@@ -102,3 +102,7 @@
     path = nvim/.local/share/nvim/site/pack/config/start/mason-null-ls.nvim
     url = https://github.com/jay-babu/mason-null-ls.nvim.git
     branch = main
+[submodule "nvim/.local/share/nvim/site/pack/config/start/cspell.nvim"]
+    path = nvim/.local/share/nvim/site/pack/config/start/cspell.nvim
+    url = https://github.com/davidmh/cspell.nvim.git
+    branch = main

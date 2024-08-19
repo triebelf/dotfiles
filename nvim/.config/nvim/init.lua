@@ -269,9 +269,13 @@ require("lspconfig").lua_ls.setup({
 require("lspconfig").yamlls.setup({ flags = { debounce_text_changes = 150 } })
 
 -- null-ls.nvim
+local cspell = require("cspell")
 local null_ls = require("null-ls")
 null_ls.setup({
     sources = {
+        cspell.diagnostics,
+        -- codespell cannot automatically find pyproject.toml
+        --null_ls.builtins.diagnostics.codespell.with({ extra_args = { "--toml", "$ROOT/../pyproject.toml" } }),
         null_ls.builtins.diagnostics.mypy.with({
             args = function(params)
                 return {
