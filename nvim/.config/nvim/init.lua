@@ -83,15 +83,13 @@ vim.opt.number = true
 vim.opt.signcolumn = "yes"
 
 -- theme
+--require("github-theme").setup({ options = { styles = { comments = "italic" } } })
+--vim.cmd("colorscheme github_light_high_contrast")
 vim.cmd("colorscheme tokyonight-moon")
--- colorscheme tokyonight
--- colorscheme tokyonight-night
--- colorscheme tokyonight-storm
--- colorscheme tokyonight-day
--- colorscheme tokyonight-moon
+--tokyonight tokyonight-night tokyonight-storm tokyonight-day tokyonight-moon
 
 -- lualine.nvim
-require("lualine").setup({ options = { icons_enabled = false, theme = "tokyonight" } })
+require("lualine").setup({ options = { icons_enabled = false } })
 
 -- nvim-treesitter
 require("nvim-treesitter.configs").setup({ highlight = { enable = true } })
@@ -320,4 +318,4 @@ require("mason-null-ls").setup({
 })
 
 -- outline
-require("outline").setup({ symbol_folding = { markers = { "+", "⌄" } } })
+require("outline").setup({ outline_window = { width = 20 }, symbol_folding = { markers = { "+", "⌄" } } })
