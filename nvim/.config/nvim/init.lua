@@ -44,6 +44,8 @@ vim.opt.mouse = ""
 
 -- persist the undo tree for each file
 vim.opt.undofile = true
+-- think about automatically saving files:
+-- autocmd InsertLeave * silent! update
 
 -- place spaces upon receiving a whitespace command or a tab keypress
 vim.opt.expandtab = true
