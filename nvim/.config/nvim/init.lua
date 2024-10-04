@@ -86,9 +86,13 @@ vim.opt.signcolumn = "yes"
 
 -- theme
 --require("github-theme").setup({ options = { styles = { comments = "italic" } } })
---vim.cmd("colorscheme github_light_high_contrast")
+--vim.cmd("colorscheme github_dark_tritanopia")
+--vim.cmd("colorscheme github_light_tritanopia")
+
+--vim.cmd("colorscheme tokyonight-day")
 vim.cmd("colorscheme tokyonight-moon")
---tokyonight tokyonight-night tokyonight-storm tokyonight-day tokyonight-moon
+--vim.cmd("colorscheme tokyonight-night")
+--vim.cmd("colorscheme tokyonight-storm")
 
 -- lualine.nvim
 require("lualine").setup({ options = { icons_enabled = false } })
