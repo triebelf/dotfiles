@@ -1,3 +1,5 @@
+-- spell-checker: disable
+
 -- comma is the leader key
 vim.g.mapleader = ","
 
@@ -85,12 +87,11 @@ vim.opt.number = true
 vim.opt.signcolumn = "yes"
 
 -- theme
---require("github-theme").setup({ options = { styles = { comments = "italic" } } })
---vim.cmd("colorscheme github_dark_tritanopia")
---vim.cmd("colorscheme github_light_tritanopia")
+vim.cmd([[colorscheme modus]]) -- modus_operandi, modus_vivendi
+--vim.o.background = "light"
 
 --vim.cmd("colorscheme tokyonight-day")
-vim.cmd("colorscheme tokyonight-moon")
+--vim.cmd("colorscheme tokyonight-moon")
 --vim.cmd("colorscheme tokyonight-night")
 --vim.cmd("colorscheme tokyonight-storm")
 

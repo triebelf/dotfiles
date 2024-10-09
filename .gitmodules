@@ -106,7 +106,7 @@
     path = nvim/.local/share/nvim/site/pack/config/start/cspell.nvim
     url = https://github.com/davidmh/cspell.nvim.git
     branch = main
-[submodule "nvim/.local/share/nvim/site/pack/config/start/github-nvim-theme"]
-    path = nvim/.local/share/nvim/site/pack/config/start/github-nvim-theme
-    url = https://github.com/projekt0n/github-nvim-theme.git
-    branch = main
+[submodule "nvim/.local/share/nvim/site/pack/config/start/modus-themes.nvim"]
+    path = nvim/.local/share/nvim/site/pack/config/start/modus-themes.nvim
+    url = https://github.com/miikanissi/modus-themes.nvim.git
+    branch = master
