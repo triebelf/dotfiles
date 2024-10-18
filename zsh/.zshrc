@@ -57,3 +57,5 @@ export PAGER="${PAGER:-less}"
 
 export ZSTD_CLEVEL="7"
 export ZSTD_NBTHREADS="0"
+
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=250"
