@@ -1,5 +1,3 @@
--- spell-checker: disable
-
 -- comma is the leader key
 vim.g.mapleader = ","
 
@@ -207,7 +205,13 @@ lsp_defaults.capabilities =
     vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 require("lspconfig").bashls.setup({ flags = { debounce_text_changes = 150 } })
 require("lspconfig").clangd.setup({
-    cmd = { "clangd-18", "--offset-encoding=utf-16", "--limit-references=0", "--limit-results=0", "--rename-file-limit=0" },
+    cmd = {
+        "clangd-18",
+        "--offset-encoding=utf-16",
+        "--limit-references=0",
+        "--limit-results=0",
+        "--rename-file-limit=0",
+    },
     flags = { debounce_text_changes = 150 },
 })
 require("clangd_extensions").setup({})
@@ -278,9 +282,7 @@ local cspell = require("cspell")
 local null_ls = require("null-ls")
 null_ls.setup({
     sources = {
-        cspell.diagnostics,
-        -- codespell cannot automatically find pyproject.toml
-        --null_ls.builtins.diagnostics.codespell.with({ extra_args = { "--toml", "$ROOT/../pyproject.toml" } }),
+        cspell.diagnostics.with({ filetypes = { "cpp", "c", "python", "sh", "rst", "markdown" } }),
         null_ls.builtins.diagnostics.mypy.with({
             args = function(params)
                 return {
