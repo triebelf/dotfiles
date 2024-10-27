@@ -134,6 +134,8 @@ cmp.setup({
         { name = "nvim_lua" },
         -- cmp-buffer
         { name = "buffer" },
+        -- cmp-digraphs
+        { name = "digraphs" },
     }),
     mapping = cmp.mapping.preset.insert({
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),

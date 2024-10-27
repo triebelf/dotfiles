@@ -110,3 +110,7 @@
     path = nvim/.local/share/nvim/site/pack/config/start/modus-themes.nvim
     url = https://github.com/miikanissi/modus-themes.nvim.git
     branch = master
+[submodule "nvim/.local/share/nvim/site/pack/config/start/cmp-digraphs"]
+    path = nvim/.local/share/nvim/site/pack/config/start/cmp-digraphs
+    url = https://github.com/dmitmel/cmp-digraphs
+    branch = master
