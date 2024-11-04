@@ -20,6 +20,8 @@ bindkey -v
 [[ -n "${key_info[Down]}" ]] && bindkey -- "${key_info[Down]}" history-substring-search-down
 
 prompt pure
+zstyle :prompt:pure:git:stash show yes
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 compstyle 'prezto'
 autoload -U zmv
 

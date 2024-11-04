@@ -14,7 +14,7 @@ vim.keymap.set({ "n", "v" }, "<leader>k", vim.diagnostic.goto_prev, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>h", vim.cmd.ClangdSwitchSourceHeader, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>g", tele.lsp_definitions, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>f", vim.lsp.buf.format, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>q", tele.builtin, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>q", tele.builtin, keymap_opts) -- TODO
 
 vim.keymap.set({ "n", "v" }, "<leader>u", tele.resume, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>i", tele.lsp_implementations, keymap_opts)
@@ -29,7 +29,7 @@ vim.keymap.set({ "n", "v" }, "<leader>t", vim.cmd.ClangdTypeHierarchy, keymap_op
 vim.keymap.set({ "n", "v" }, "<leader>d", vim.lsp.buf.hover, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>y", tele.registers, keymap_opts)
 
-vim.keymap.set({ "n", "v" }, "<leader>p", tele.builtin, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>p", tele.lsp_incoming_calls, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>z", tele.find_files, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>b", tele.buffers, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>m", tele.oldfiles, keymap_opts)
@@ -62,6 +62,7 @@ vim.opt.diffopt:append("iwhite")
 
 -- ignore case when searching
 vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- enable spell checking
 vim.opt.spelllang = "en_us"
@@ -284,7 +285,7 @@ local cspell = require("cspell")
 local null_ls = require("null-ls")
 null_ls.setup({
     sources = {
-        cspell.diagnostics.with({ filetypes = { "cpp", "c", "python", "sh", "rst", "markdown" } }),
+        cspell.diagnostics.with({ filetypes = { "cpp", "c", "sh", "rst", "markdown" } }),
         null_ls.builtins.diagnostics.mypy.with({
             args = function(params)
                 return {
