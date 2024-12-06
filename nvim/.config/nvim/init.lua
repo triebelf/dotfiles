@@ -116,6 +116,7 @@ require("telescope").setup({
         },
     },
 })
+require("telescope").load_extension("emoji")
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
@@ -209,7 +210,7 @@ lsp_defaults.capabilities =
 require("lspconfig").bashls.setup({ flags = { debounce_text_changes = 150 } })
 require("lspconfig").clangd.setup({
     cmd = {
-        "clangd-18",
+        "clangd",
         "--offset-encoding=utf-16",
         "--limit-references=0",
         "--limit-results=0",

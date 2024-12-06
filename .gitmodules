@@ -114,3 +114,7 @@
     path = nvim/.local/share/nvim/site/pack/config/start/cmp-digraphs
     url = https://github.com/dmitmel/cmp-digraphs
     branch = master
+[submodule "nvim/.local/share/nvim/site/pack/config/start/telescope-emoji.nvim"]
+    path = nvim/.local/share/nvim/site/pack/config/start/telescope-emoji.nvim
+    url = https://github.com/xiyaowong/telescope-emoji.nvim.git
+    branch = master
