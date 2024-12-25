@@ -14,7 +14,7 @@
     # don't create merge nodes during git pull
     ff = only
 [push]
-    default = current
+    default = upstream
     autoSetupRemote = true
 [fetch]
     prune = true
