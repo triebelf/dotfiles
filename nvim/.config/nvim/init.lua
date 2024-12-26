@@ -101,8 +101,12 @@ require("lualine").setup({ options = { icons_enabled = false } })
 require("nvim-treesitter.configs").setup({ highlight = { enable = true } })
 
 -- folding
-vim.opt.foldmethod = "syntax"
-vim.cmd([[ set nofoldenable]])
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldtext = ""
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 2
+vim.opt.foldnestmax = 4
 
 -- plenary.nvim
 -- telescope.nvim
