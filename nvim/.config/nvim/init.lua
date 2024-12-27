@@ -89,11 +89,6 @@ vim.opt.signcolumn = "yes"
 vim.cmd([[colorscheme modus]]) -- modus_operandi, modus_vivendi
 --vim.o.background = "light"
 
---vim.cmd("colorscheme tokyonight-day")
---vim.cmd("colorscheme tokyonight-moon")
---vim.cmd("colorscheme tokyonight-night")
---vim.cmd("colorscheme tokyonight-storm")
-
 -- lualine.nvim
 require("lualine").setup({ options = { icons_enabled = false } })
 

@@ -9,20 +9,12 @@ import = [
 decorations = "None"
 
 [font]
-# NARROW
-#normal = { family = "Iosevka Term", style = "Regular" }
-#normal = { family = "PragmataPro", style = "Regular" }
+normal = { family = "MonoLisa", style = "Book" }
+bold = { family = "MonoLisa", style = "Bold" }
+italic = { family = "MonoLisa", style = "Book Italic" }
+bold_italic = { family = "MonoLisa", style = "Bold Italic" }
 
-# WIDE
-#normal = { family = "Hasklig", style = "Regular" }
-normal = { family = "JetBrains Mono", style = "Regular" }
-
-#normal = { family = "MonoLisa", style = "Book" }
-#bold = { family = "MonoLisa", style = "Bold" }
-#italic = { family = "MonoLisa", style = "Book Italic" }
-#bold_italic = { family = "MonoLisa", style = "Bold Italic" }
-
-size = 12
+size = 13
 
 [selection]
 save_to_clipboard = true
