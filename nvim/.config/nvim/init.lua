@@ -37,15 +37,14 @@ vim.keymap.set({ "n", "v" }, "<leader>,", tele.live_grep, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>.", tele.grep_string, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>j", vim.diagnostic.goto_next, keymap_opts)
 
-vim.opt.clipboard = vim.opt.clipboard + "unnamedplus"
+-- repeat key stops working
+--vim.opt.clipboard = vim.opt.clipboard + "unnamedplus"
 
 -- no mouse
 vim.opt.mouse = ""
 
 -- persist the undo tree for each file
 vim.opt.undofile = true
--- think about automatically saving files:
--- autocmd InsertLeave * silent! update
 
 -- place spaces upon receiving a whitespace command or a tab keypress
 vim.opt.expandtab = true
@@ -93,7 +92,12 @@ vim.cmd([[colorscheme modus]]) -- modus_operandi, modus_vivendi
 require("lualine").setup({ options = { icons_enabled = false } })
 
 -- nvim-treesitter
-require("nvim-treesitter.configs").setup({ highlight = { enable = true } })
+require("nvim-treesitter.configs").setup({
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+    },
+})
 
 -- folding
 vim.opt.foldmethod = "expr"

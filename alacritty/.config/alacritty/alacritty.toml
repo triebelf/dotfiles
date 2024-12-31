@@ -9,15 +9,33 @@ import = [
 decorations = "None"
 
 [font]
-normal = { family = "MonoLisa", style = "Book" }
-bold = { family = "MonoLisa", style = "Bold" }
-italic = { family = "MonoLisa", style = "Book Italic" }
-bold_italic = { family = "MonoLisa", style = "Bold Italic" }
+#normal = { family = "Cascadia Code" }
+#normal = { family = "Dank Mono" }
+#normal = { family = "Fantasque Sans Mono" }
+#normal = { family = "Fira Code" }
+#normal = { family = "Hasklig" }
+#normal = { family = "IBM Plex Mono" }
+#normal = { family = "Inconsolata" }
+#normal = { family = "Iosevka Term" }
+#normal = { family = "JetBrains Mono" }
+#normal = { family = "Monoid" }
+normal = { family = "MonoLisa" }
+#normal = { family = "PragmataPro" }
+#normal = { family = "PT Mono" }
+#normal = { family = "Roboto Mono" }
+#normal = { family = "SF Mono" }
+#normal = { family = "Source Code Pro" }
+#normal = { family = "Victor Mono" }
 
-size = 13
+#normal = { family = "Operator Mono", style = "Book" }
+#bold = { family = "Operator Mono", style = "Bold" }
+#italic = { family = "Operator Mono", style = "Book Italic" }
+#bold_italic = { family = "Operator Mono", style = "Bold Italic" }
+
+size = 12
 
 [selection]
 save_to_clipboard = true
 
 [terminal]
-shell = "zsh"
+shell = { program = "tmux", args = [ "new", "-As", "main" ] }
