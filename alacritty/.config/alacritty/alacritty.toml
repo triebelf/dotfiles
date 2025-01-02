@@ -9,28 +9,16 @@ import = [
 decorations = "None"
 
 [font]
-#normal = { family = "Cascadia Code" }
-#normal = { family = "Dank Mono" }
+normal = { family = "Cascadia Code" }
 #normal = { family = "Fantasque Sans Mono" }
 #normal = { family = "Fira Code" }
 #normal = { family = "Hasklig" }
-#normal = { family = "IBM Plex Mono" }
 #normal = { family = "Inconsolata" }
 #normal = { family = "Iosevka Term" }
 #normal = { family = "JetBrains Mono" }
-#normal = { family = "Monoid" }
-normal = { family = "MonoLisa" }
 #normal = { family = "PragmataPro" }
 #normal = { family = "PT Mono" }
-#normal = { family = "Roboto Mono" }
 #normal = { family = "SF Mono" }
-#normal = { family = "Source Code Pro" }
-#normal = { family = "Victor Mono" }
-
-#normal = { family = "Operator Mono", style = "Book" }
-#bold = { family = "Operator Mono", style = "Bold" }
-#italic = { family = "Operator Mono", style = "Book Italic" }
-#bold_italic = { family = "Operator Mono", style = "Bold Italic" }
 
 size = 12
 

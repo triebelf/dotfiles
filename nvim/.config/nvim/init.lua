@@ -10,7 +10,7 @@ vim.keymap.set({ "n", "v" }, "<leader>v", vim.cmd.Outline, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>l", vim.cmd.Lexplore, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>c", tele.commands, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>w", vim.cmd.OutlineFocus, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>k", vim.diagnostic.goto_prev, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>k", vim.cmd.cprev, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>h", vim.cmd.ClangdSwitchSourceHeader, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>g", tele.lsp_definitions, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>f", vim.lsp.buf.format, keymap_opts)
@@ -35,7 +35,7 @@ vim.keymap.set({ "n", "v" }, "<leader>b", tele.buffers, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>m", tele.oldfiles, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>,", tele.live_grep, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>.", tele.grep_string, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>j", vim.diagnostic.goto_next, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>j", vim.cmd.cnext, keymap_opts)
 
 -- repeat key stops working
 --vim.opt.clipboard = vim.opt.clipboard + "unnamedplus"
