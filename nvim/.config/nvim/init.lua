@@ -37,8 +37,7 @@ vim.keymap.set({ "n", "v" }, "<leader>,", tele.live_grep, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>.", tele.grep_string, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>j", vim.cmd.cnext, keymap_opts)
 
--- repeat key stops working
---vim.opt.clipboard = vim.opt.clipboard + "unnamedplus"
+vim.opt.clipboard = vim.opt.clipboard + "unnamedplus"
 
 -- no mouse
 vim.opt.mouse = ""
@@ -104,7 +103,7 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldtext = ""
 vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 2
+vim.opt.foldlevelstart = 3
 vim.opt.foldnestmax = 4
 
 -- plenary.nvim
