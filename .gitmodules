@@ -74,10 +74,6 @@
     path = nvim/.local/share/nvim/site/pack/config/start/lsp-status.nvim
     url = https://github.com/nvim-lua/lsp-status.nvim.git
     branch = master
-[submodule "nvim/.local/share/nvim/site/pack/config/start/none-ls.nvim"]
-    path = nvim/.local/share/nvim/site/pack/config/start/none-ls.nvim
-    url = https://github.com/nvimtools/none-ls.nvim
-    branch = main
 [submodule "nvim/.local/share/nvim/site/pack/config/start/outline.nvim"]
     path = nvim/.local/share/nvim/site/pack/config/start/outline.nvim
     url = https://github.com/hedyhli/outline.nvim.git
@@ -98,23 +94,15 @@
     path = nvim/.local/share/nvim/site/pack/config/start/clangd_extensions.nvim
     url = https://github.com/p00f/clangd_extensions.nvim.git
     branch = main
-[submodule "nvim/.local/share/nvim/site/pack/config/start/mason-null-ls.nvim"]
-    path = nvim/.local/share/nvim/site/pack/config/start/mason-null-ls.nvim
-    url = https://github.com/jay-babu/mason-null-ls.nvim.git
-    branch = main
-[submodule "nvim/.local/share/nvim/site/pack/config/start/cspell.nvim"]
-    path = nvim/.local/share/nvim/site/pack/config/start/cspell.nvim
-    url = https://github.com/davidmh/cspell.nvim.git
-    branch = main
 [submodule "nvim/.local/share/nvim/site/pack/config/start/modus-themes.nvim"]
     path = nvim/.local/share/nvim/site/pack/config/start/modus-themes.nvim
     url = https://github.com/miikanissi/modus-themes.nvim.git
     branch = master
-[submodule "nvim/.local/share/nvim/site/pack/config/start/cmp-digraphs"]
-    path = nvim/.local/share/nvim/site/pack/config/start/cmp-digraphs
-    url = https://github.com/dmitmel/cmp-digraphs
+[submodule "nvim/.local/share/nvim/site/pack/config/start/nvim-lint"]
+    path = nvim/.local/share/nvim/site/pack/config/start/nvim-lint
+    url = https://github.com/mfussenegger/nvim-lint.git
     branch = master
-[submodule "nvim/.local/share/nvim/site/pack/config/start/telescope-emoji.nvim"]
-    path = nvim/.local/share/nvim/site/pack/config/start/telescope-emoji.nvim
-    url = https://github.com/xiyaowong/telescope-emoji.nvim.git
+[submodule "nvim/.local/share/nvim/site/pack/config/start/conform.nvim"]
+    path = nvim/.local/share/nvim/site/pack/config/start/conform.nvim
+    url = https://github.com/stevearc/conform.nvim.git
     branch = master

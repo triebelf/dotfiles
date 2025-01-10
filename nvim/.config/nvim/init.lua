@@ -104,7 +104,6 @@ vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldtext = ""
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 3
-vim.opt.foldnestmax = 4
 
 -- plenary.nvim
 -- telescope.nvim
@@ -119,7 +118,6 @@ require("telescope").setup({
         },
     },
 })
-require("telescope").load_extension("emoji")
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
@@ -139,8 +137,6 @@ cmp.setup({
         { name = "nvim_lua" },
         -- cmp-buffer
         { name = "buffer" },
-        -- cmp-digraphs
-        { name = "digraphs" },
     }),
     mapping = cmp.mapping.preset.insert({
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -284,53 +280,26 @@ require("lspconfig").lua_ls.setup({
 })
 require("lspconfig").yamlls.setup({ flags = { debounce_text_changes = 150 } })
 
--- null-ls.nvim
-local cspell = require("cspell")
-local null_ls = require("null-ls")
-null_ls.setup({
-    sources = {
-        cspell.diagnostics.with({ filetypes = { "cpp", "c", "sh", "rst", "markdown" } }),
-        null_ls.builtins.diagnostics.mypy.with({
-            args = function(params)
-                return {
-                    "--strict",
-                    "--disallow-any-unimported",
-                    "--hide-error-context",
-                    "--no-color-output",
-                    "--show-column-numbers",
-                    "--show-error-codes",
-                    "--no-error-summary",
-                    "--no-pretty",
-                    "--shadow-file",
-                    params.bufname,
-                    params.temp_path,
-                    params.bufname,
-                }
-            end,
-        }),
-        null_ls.builtins.diagnostics.pylint.with({
-            cwd = function(params)
-                return params.root
-            end,
-            args = { "--max-line-length", "120", "--from-stdin", "$FILENAME", "-f", "json" },
-        }),
-        null_ls.builtins.diagnostics.yamllint,
-        null_ls.builtins.diagnostics.zsh,
-        null_ls.builtins.formatting.black,
-        null_ls.builtins.formatting.isort.with({
-            args = { "--quiet", "--profile", "black", "--line-width", "120", "-" },
-        }),
-        null_ls.builtins.formatting.shellharden,
-        null_ls.builtins.formatting.stylua.with({
-            extra_args = { "--column-width", "120", "--indent-type", "Spaces" },
-        }),
-        null_ls.builtins.formatting.clang_format,
-    },
+-- nvim-lint
+require("lint").linters_by_ft = {
+    cpp = { "cspell" },
+    python = { "mypy", "pylint" },
+    yaml = { "yamllint" },
+}
+vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave" }, {
+    callback = function()
+        require("lint").try_lint()
+    end,
 })
 
-require("mason-null-ls").setup({
-    ensure_installed = nil,
-    automatic_installation = true,
+-- conform.nvim
+require("conform").setup({
+    formatters_by_ft = {
+        cpp = { "clang_format" },
+        lua = { "stylua" },
+        python = { "isort", "black" },
+        sh = { "shellharden" },
+    },
 })
 
 -- outline
