@@ -7,6 +7,7 @@ import = [
 
 [window]
 decorations = "None"
+#dimensions = { columns = 160, lines = 45 }
 startup_mode = "Maximized"
 
 [font]
@@ -29,7 +30,7 @@ shell = { program = "tmux", args = ["new", "-As", "main"] }
 save_to_clipboard = true
 
 [scrolling]
-multiplier = 0  # disable mouse wheel
+multiplier = 0 # disable mouse wheel
 
 [keyboard]
 bindings = [{ key = "F11", action = "ToggleFullscreen" }]
