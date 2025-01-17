@@ -13,8 +13,8 @@ vim.keymap.set({ "n", "v" }, "<leader>w", vim.cmd.OutlineFocus, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>k", vim.cmd.cprev, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>h", vim.cmd.ClangdSwitchSourceHeader, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>g", tele.lsp_definitions, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>f", vim.lsp.buf.format, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>q", tele.builtin, keymap_opts) -- TODO
+vim.keymap.set({ "n", "v" }, "<leader>f", require("conform").format, keymap_opts)
+--vim.keymap.set({ "n", "v" }, "<leader>q", tele.builtin, keymap_opts)
 
 vim.keymap.set({ "n", "v" }, "<leader>u", tele.resume, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>i", tele.lsp_implementations, keymap_opts)
@@ -243,38 +243,17 @@ require("lspconfig").ltex.setup({
 })
 require("lspconfig").pyright.setup({
     settings = {
-        python = {
-            analysis = {
-                autoSearchPaths = true,
-                diagnosticMode = "workspace",
-                useLibraryCodeForTypes = true,
-                --typeCheckingMode = "strict",
-            },
-        },
+        python = { analysis = { autoSearchPaths = true, diagnosticMode = "workspace", useLibraryCodeForTypes = true } },
     },
     flags = { debounce_text_changes = 150 },
 })
 require("lspconfig").lua_ls.setup({
     settings = {
         Lua = {
-            runtime = {
-                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                version = "LuaJIT",
-                path = vim.split(package.path, ";"),
-            },
-            diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = { "vim" },
-            },
-            workspace = {
-                -- Make the server aware of Neovim runtime files and plugins
-                library = { vim.env.VIMRUNTIME },
-                checkThirdParty = true,
-            },
-            -- Do not send telemetry data containing a randomized but unique identifier
-            telemetry = {
-                enable = false,
-            },
+            runtime = { version = "LuaJIT", path = vim.split(package.path, ";") },
+            diagnostics = { globals = { "vim" } },
+            workspace = { library = { vim.env.VIMRUNTIME }, checkThirdParty = true },
+            telemetry = { enable = false },
         },
     },
 })
@@ -299,6 +278,7 @@ require("conform").setup({
         lua = { "stylua" },
         python = { "isort", "black" },
         sh = { "shellharden" },
+        yaml = { "yq" },
     },
 })
 
