@@ -252,7 +252,7 @@ require("lspconfig").lua_ls.setup({
         Lua = {
             runtime = { version = "LuaJIT", path = vim.split(package.path, ";") },
             diagnostics = { globals = { "vim" } },
-            workspace = { library = { vim.env.VIMRUNTIME }, checkThirdParty = true },
+            workspace = { library = { vim.env.VIMRUNTIME }, checkThirdParty = true, preloadFileSize = 10000 },
             telemetry = { enable = false },
         },
     },
@@ -264,6 +264,9 @@ require("lint").linters_by_ft = {
     cpp = { "cspell" },
     python = { "mypy", "pylint" },
     yaml = { "yamllint" },
+    sh = { "bash" },
+    make = { "checkmake" },
+    cmake = { "cmakelint" },
 }
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
     callback = function()
