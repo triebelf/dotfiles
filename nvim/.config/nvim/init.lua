@@ -1,3 +1,6 @@
+-- allow project-specific configuration
+vim.opt.exrc = true
+
 -- comma is the leader key
 vim.g.mapleader = ","
 
