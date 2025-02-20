@@ -267,16 +267,16 @@ require("lspconfig").yamlls.setup({ flags = { debounce_text_changes = 150 } })
 
 -- nvim-lint
 require("lint").linters_by_ft = {
-    cpp = { "cspell" },
-    python = { "mypy", "pylint" },
-    yaml = { "yamllint" },
-    sh = { "bash" },
-    make = { "checkmake" },
     cmake = { "cmakelint" },
+    make = { "checkmake" },
+    python = { "mypy", "pylint" },
+    sh = { "bash" },
+    yaml = { "yamllint" },
 }
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
     callback = function()
         require("lint").try_lint()
+        require("lint").try_lint("cspell")
     end,
 })
 
