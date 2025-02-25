@@ -3,29 +3,42 @@
     askPass =
     autocrlf = false
     pager = less -SFR
+[column]
+    ui = auto
+[tag]
+    sort = version:refname
+[help]
+    autocorrect = prompt
+[credential]
+    helper = cache --timeout=259200
 [init]
     defaultBranch = main
-[diff]
-    # characters to ignore in word diff mode
-    wordRegex = "\\w+"
-    # https://link.springer.com/article/10.1007%2Fs10664-019-09772-z
-    algorithm = histogram
+[commit]
+    template = ~/.gitmessage
+    verbose = true
 [pull]
-    # don't create merge nodes during git pull
     ff = only
 [push]
     default = upstream
     autoSetupRemote = true
 [fetch]
     prune = true
+    pruneTags = true
+    all = true
 [branch]
-    # always create new tracking branches
     autosetupmerge = always
-    # rebase instead of merge when pulling
     autosetuprebase = always
+    sort = -committerdate
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
 [rebase]
-    # short commands in rebase editor
     abbreviateCommands = true
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
 [merge]
     # based on vim mergetool plugin
     tool = vim_mergetool
@@ -39,20 +52,16 @@
     prompt = false
 [rerere]
     enabled = true
-    autoUpdate = true
-[commit]
-    template = ~/.gitmessage
-[include]
-    # include local configuration with stuff like user and http certificates
-    path = ~/.gitlocal
-[credential]
-    helper = cache --timeout=259200
-[url "https://github.com"]
-    insteadOf = git://github.com
+    autoupdate = true
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
+[url "https://github.com"]
+    insteadOf = git://github.com
 [gc]
     pruneExpire = now
+[include]
+    # include local configuration
+    path = ~/.gitlocal

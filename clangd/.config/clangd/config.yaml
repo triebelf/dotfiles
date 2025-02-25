@@ -4,3 +4,4 @@ CompileFlags:
     - -ferror-limit=0
     - -Wall
     - -Wextra
+    - -Wpedantic
