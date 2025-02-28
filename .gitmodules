@@ -38,10 +38,6 @@
     path = nvim/.local/share/nvim/site/pack/config/start/nvim-snippy
     url = https://github.com/dcampos/nvim-snippy
     branch = master
-[submodule "lualine.nvim"]
-    path = nvim/.local/share/nvim/site/pack/config/start/lualine.nvim
-    url = https://github.com/nvim-lualine/lualine.nvim
-    branch = master
 [submodule "telescope.nvim"]
     path = nvim/.local/share/nvim/site/pack/config/start/telescope.nvim
     url = https://github.com/nvim-telescope/telescope.nvim
@@ -82,14 +78,6 @@
     path = nvim/.local/share/nvim/site/pack/config/start/tokyonight.nvim
     url = https://github.com/folke/tokyonight.nvim.git
     branch = main
-[submodule "nvim/.local/share/nvim/site/pack/config/start/mason.nvim"]
-    path = nvim/.local/share/nvim/site/pack/config/start/mason.nvim
-    url = https://github.com/williamboman/mason.nvim
-    branch = main
-[submodule "nvim/.local/share/nvim/site/pack/config/start/mason-lspconfig.nvim"]
-    path = nvim/.local/share/nvim/site/pack/config/start/mason-lspconfig.nvim
-    url = https://github.com/williamboman/mason-lspconfig.nvim
-    branch = main
 [submodule "nvim/.local/share/nvim/site/pack/config/start/clangd_extensions.nvim"]
     path = nvim/.local/share/nvim/site/pack/config/start/clangd_extensions.nvim
     url = https://github.com/p00f/clangd_extensions.nvim.git
@@ -106,3 +94,15 @@
     path = nvim/.local/share/nvim/site/pack/config/start/conform.nvim
     url = https://github.com/stevearc/conform.nvim.git
     branch = master
+[submodule "nvim/.local/share/nvim/site/pack/config/start/lualine.nvim"]
+    path = nvim/.local/share/nvim/site/pack/config/start/lualine.nvim
+    url = https://github.com/nvim-lualine/lualine.nvim
+    branch = master
+[submodule "nvim/.local/share/nvim/site/pack/config/start/mason-lspconfig.nvim"]
+    path = nvim/.local/share/nvim/site/pack/config/start/mason-lspconfig.nvim
+    url = https://github.com/williamboman/mason-lspconfig.nvim
+    branch = main
+[submodule "nvim/.local/share/nvim/site/pack/config/start/mason.nvim"]
+    path = nvim/.local/share/nvim/site/pack/config/start/mason.nvim
+    url = https://github.com/williamboman/mason.nvim.git
+    branch = main
