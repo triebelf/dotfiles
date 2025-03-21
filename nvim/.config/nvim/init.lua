@@ -257,6 +257,7 @@ require("lint").linters_by_ft = {
 	cmake = { "cmakelint" },
 	make = { "checkmake" },
 	python = { "mypy", "pylint" },
+	rst = { "rstcheck" },
 	sh = { "bash" },
 	yaml = { "yamllint" },
 }
