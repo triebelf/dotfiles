@@ -1,5 +1,8 @@
-[ -z "$PS1" ] && return
-export PS1='\w> '
+[[ $- == *i* ]] || return
+export PS1='\W> '
+
+set -o vi
+export EDITOR=vi
 
 HISTCONTROL=erasedups:ignoredups:ignorespace
 HISTSIZE=1000
