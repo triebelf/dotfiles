@@ -1,3 +1,5 @@
+-- spellchecker: disable
+
 -- allow project-specific configuration
 vim.opt.exrc = true
 
@@ -7,17 +9,18 @@ vim.g.mapleader = ","
 -- key mappings ordered by NEO keyboard layout
 local keymap_opts = { noremap = true, silent = true }
 local tele = require("telescope.builtin")
-vim.keymap.set({ "n", "v" }, "<leader><tab><tab>", vim.cmd.tabnew, keymap_opts)
+--<tab>
 vim.keymap.set({ "n", "v" }, "<leader>x", tele.diagnostics, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>v", vim.cmd.Outline, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>l", vim.cmd.Lexplore, keymap_opts)
+--l
 vim.keymap.set({ "n", "v" }, "<leader>c", tele.commands, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>w", vim.cmd.OutlineFocus, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>k", vim.cmd.cprev, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>h", vim.cmd.ClangdSwitchSourceHeader, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>g", tele.lsp_definitions, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>f", require("conform").format, keymap_opts)
---vim.keymap.set({ "n", "v" }, "<leader>q", tele.builtin, keymap_opts)
+vim.keymap.set({ "n", "v" }, "<leader>q", tele.builtin, keymap_opts)
+--ß
 
 vim.keymap.set({ "n", "v" }, "<leader>u", tele.resume, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>i", tele.lsp_implementations, keymap_opts)
@@ -32,6 +35,9 @@ vim.keymap.set({ "n", "v" }, "<leader>t", vim.cmd.ClangdTypeHierarchy, keymap_op
 vim.keymap.set({ "n", "v" }, "<leader>d", vim.lsp.buf.hover, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>y", tele.registers, keymap_opts)
 
+-- ü
+-- ö
+-- ä
 vim.keymap.set({ "n", "v" }, "<leader>p", tele.lsp_incoming_calls, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>z", tele.find_files, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>b", tele.buffers, keymap_opts)
