@@ -1,7 +1,12 @@
+# vi: filetype=yaml
+# spellchecker: disable
 ---
 CompileFlags:
   Add:
     - -ferror-limit=0
-    - -Wall
-    - -Wextra
-    - -Wpedantic
+    - -Weverything
+    - -Werror
+    - -Wno-c++98-compat
+    - -Wno-c++98-compat-pedantic
+  Remove:
+    - -W*
