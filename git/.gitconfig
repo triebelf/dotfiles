@@ -10,7 +10,7 @@
 [help]
     autocorrect = prompt
 [credential]
-    helper = cache --timeout=259200
+    helper = store
 [init]
     defaultBranch = main
 [commit]

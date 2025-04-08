@@ -20,7 +20,7 @@ vim.keymap.set({ "n", "v" }, "<leader>h", vim.cmd.ClangdSwitchSourceHeader, keym
 vim.keymap.set({ "n", "v" }, "<leader>g", tele.lsp_definitions, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>f", require("conform").format, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>q", tele.builtin, keymap_opts)
---ß
+vim.keymap.set({ "n", "v" }, "<leader>ß", tele.spell_suggest, keymap_opts)
 
 vim.keymap.set({ "n", "v" }, "<leader>u", tele.resume, keymap_opts)
 vim.keymap.set({ "n", "v" }, "<leader>i", tele.lsp_implementations, keymap_opts)
@@ -260,7 +260,6 @@ require("lspconfig").yamlls.setup({ flags = { debounce_text_changes = 150 } })
 
 -- nvim-lint
 require("lint").linters_by_ft = {
-	cmake = { "cmakelint" },
 	make = { "checkmake" },
 	python = { "mypy", "pylint" },
 	rst = { "rstcheck" },
