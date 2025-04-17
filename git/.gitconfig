@@ -60,6 +60,9 @@
     required = true
 [url "https://github.com"]
     insteadOf = git://github.com
+[url "https://git.savannah.gnu.org/git"]
+    insteadOf = git://git.savannah.gnu.org
+    insteadOf = git://git.sv.gnu.org
 [gc]
     pruneExpire = now
 [include]
