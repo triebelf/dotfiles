@@ -64,6 +64,13 @@ vim.opt.shiftwidth = 4
 vim.opt.smartindent = true
 vim.opt.textwidth = 120
 
+vim.filetype.add({
+    pattern = {
+        [".+cpp.*"] = "cpp",
+        [".+hpp.*"] = "cpp",
+    },
+})
+
 -- ignore whitespace in diff
 vim.opt.diffopt:append("iwhite")
 
