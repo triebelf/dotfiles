@@ -54,14 +54,16 @@ vim.opt.mouse = ""
 -- persist the undo tree for each file
 vim.opt.undofile = true
 
--- place spaces upon receiving a whitespace command or a tab keypress
-vim.opt.expandtab = true
--- How many columns wide is a tab character worth?
+-- length of an actual \t character:
 vim.opt.tabstop = 4
--- Referred to for “levels of indentation”
-vim.opt.shiftwidth = 4
-
-vim.opt.smartindent = true
+-- length to use when editing text (eg. TAB and BS keys) (0 for ‘tabstop’, -1 for ‘shiftwidth’):
+vim.opt.softtabstop = -1
+-- length to use when shifting text (eg. <<, >> and == commands) (0 for ‘tabstop’):
+vim.opt.shiftwidth = 0
+-- round indentation to multiples of 'shiftwidth' when shifting text (so that it behaves like Ctrl-D / Ctrl-T):
+vim.opt.shiftround = true
+-- if set, only insert spaces; otherwise insert \t and complete with spaces:
+vim.opt.expandtab = true
 vim.opt.textwidth = 120
 
 vim.filetype.add({
@@ -123,9 +125,7 @@ require("nvim-treesitter.configs").setup({
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldtext = ""
-vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 3
-vim.opt.foldnestmax = 4
+vim.opt.foldlevelstart = 2
 
 -- plenary.nvim
 -- telescope.nvim
