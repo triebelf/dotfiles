@@ -1,91 +1,8 @@
 -- spellchecker: disable
 
--- allow project-specific configuration
-vim.opt.exrc = true
+vim.cmd([[colorscheme modus]])
+--vim.o.background = "light"
 
--- comma is the leader key
-vim.g.mapleader = ","
-
--- key mappings ordered by NEO keyboard layout
-local keymap_opts = { noremap = true, silent = true }
-local tele = require("telescope.builtin")
---<tab>
-vim.keymap.set({ "n", "v" }, "<leader>x", tele.diagnostics, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>v", vim.cmd.Outline, keymap_opts)
---l
-vim.keymap.set({ "n", "v" }, "<leader>c", tele.commands, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>w", vim.cmd.OutlineFocus, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>k", vim.cmd.cprev, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>h", vim.cmd.ClangdSwitchSourceHeader, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>g", tele.lsp_definitions, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>f", require("conform").format, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>q", tele.builtin, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>ß", tele.spell_suggest, keymap_opts)
-
-vim.keymap.set({ "n", "v" }, "<leader>u", tele.resume, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>i", tele.lsp_implementations, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>e", vim.diagnostic.open_float, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>o", tele.git_files, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>s", tele.lsp_dynamic_workspace_symbols, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>n", vim.lsp.buf.rename, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>r", tele.lsp_references, keymap_opts)
--- open type hierarchy, then use "gd" to just to type
-vim.keymap.set({ "n", "v" }, "<leader>t", vim.cmd.ClangdTypeHierarchy, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>d", vim.lsp.buf.hover, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>y", tele.registers, keymap_opts)
-
--- ü
--- ö
--- ä
-vim.keymap.set({ "n", "v" }, "<leader>p", tele.lsp_incoming_calls, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>z", tele.find_files, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>b", tele.buffers, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>m", tele.oldfiles, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>,", tele.live_grep, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>.", tele.grep_string, keymap_opts)
-vim.keymap.set({ "n", "v" }, "<leader>j", vim.cmd.cnext, keymap_opts)
-
-vim.opt.clipboard = vim.opt.clipboard + "unnamedplus"
-
--- no mouse
-vim.opt.mouse = ""
-
--- persist the undo tree for each file
-vim.opt.undofile = true
-
--- length of an actual \t character:
-vim.opt.tabstop = 4
--- length to use when editing text (eg. TAB and BS keys) (0 for ‘tabstop’, -1 for ‘shiftwidth’):
-vim.opt.softtabstop = -1
--- length to use when shifting text (eg. <<, >> and == commands) (0 for ‘tabstop’):
-vim.opt.shiftwidth = 0
--- round indentation to multiples of 'shiftwidth' when shifting text (so that it behaves like Ctrl-D / Ctrl-T):
-vim.opt.shiftround = true
--- if set, only insert spaces; otherwise insert \t and complete with spaces:
-vim.opt.expandtab = true
-vim.opt.textwidth = 120
-
-vim.filetype.add({
-    pattern = {
-        [".+cpp.*"] = "cpp",
-        [".+hpp.*"] = "cpp",
-    },
-})
-
--- ignore whitespace in diff
-vim.opt.diffopt:append("iwhite")
-
--- ignore case when searching
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-
--- enable spell checking
-vim.opt.spelllang = "en_us"
---vim.opt.spell = true
-vim.opt.spelloptions = "camel"
-
--- NERDtree like setup for netrw
 vim.g.netrw_altv = 1
 vim.g.netrw_banner = 0
 vim.g.netrw_browse_split = 4
@@ -95,40 +12,46 @@ vim.g.netrw_list_hide = "__pycache__"
 vim.g.netrw_liststyle = 3
 vim.g.netrw_winsize = 20
 
--- true color support
-vim.opt.termguicolors = true
-vim.opt.cursorline = true
-vim.opt.number = true
-vim.opt.signcolumn = "yes"
+vim.opt.clipboard:append("unnamedplus")
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+vim.o.cursorline = true
+vim.opt.diffopt:append("iwhite")
+vim.o.expandtab = true
+vim.o.exrc = true
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.o.foldlevelstart = 3
+vim.o.foldmethod = "expr"
+vim.o.foldtext = ""
+vim.o.ignorecase = true
+vim.o.mouse = ""
+vim.o.number = true
+vim.o.shiftround = true
+vim.o.shiftwidth = 0
+vim.o.signcolumn = "yes"
+vim.o.smartcase = true
+vim.o.softtabstop = -1
+vim.o.tabstop = 4
+vim.o.termguicolors = true
+vim.o.textwidth = 120
+vim.o.undofile = true
 
-vim.diagnostic.config({
-    --virtual_lines = true,
-    virtual_text = { current_line = true },
-})
-
--- theme
-vim.cmd([[colorscheme modus]])
---vim.o.background = "light"
-
--- lualine.nvim
-require("lualine").setup({ options = { icons_enabled = false } })
-
--- nvim-treesitter
-require("nvim-treesitter.configs").setup({
-    highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
+vim.filetype.add({
+    pattern = {
+        [".+cpp.*"] = "cpp",
+        [".+hpp.*"] = "cpp",
     },
 })
 
--- folding
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldtext = ""
-vim.opt.foldlevelstart = 2
+vim.diagnostic.config({ virtual_text = true })
 
--- plenary.nvim
--- telescope.nvim
+require("lualine").setup({ options = { icons_enabled = false } })
+
+require("outline").setup({ outline_window = { width = 20 }, symbol_folding = { markers = { "+", "⌄" } } })
+
+require("nvim-treesitter.configs").setup({
+    highlight = { enable = true, additional_vim_regex_highlighting = false },
+})
+
 require("telescope").setup({
     defaults = { layout_strategy = "vertical", layout_config = { width = 0.95 } },
     pickers = {
@@ -141,9 +64,7 @@ require("telescope").setup({
     },
 })
 
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
-
--- nvim-cmp
+-- LSPs configuration
 local cmp = require("cmp")
 local select_opts = { behavior = cmp.SelectBehavior.Select }
 cmp.setup({
@@ -212,24 +133,22 @@ cmp.setup.cmdline("/", {
     sources = { { name = "buffer" } },
 })
 
--- cmp-path
--- cmp-cmdline
 cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
 })
 
--- mason
-require("mason").setup()
-require("mason-lspconfig").setup({ automatic_installation = true })
-
--- nvim-lspconfig
 vim.lsp.set_log_level("off")
-local lsp_defaults = require("lspconfig").util.default_config
-lsp_defaults.capabilities =
-    vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
-require("lspconfig").bashls.setup({ flags = { debounce_text_changes = 150 } })
-require("lspconfig").clangd.setup({
+
+vim.lsp.config("*", {
+    capabilities = vim.tbl_deep_extend(
+        "force",
+        vim.lsp.protocol.make_client_capabilities(),
+        require("cmp_nvim_lsp").default_capabilities() -- TODO seems to be deprecated
+    ),
+})
+
+vim.lsp.config("clangd", {
     cmd = {
         "clangd",
         "--offset-encoding=utf-16",
@@ -238,27 +157,24 @@ require("lspconfig").clangd.setup({
         "--rename-file-limit=0",
         "--completion-style=detailed",
     },
-    flags = { debounce_text_changes = 150 },
 })
-require("clangd_extensions").setup({})
 
-require("lspconfig").cmake.setup({ flags = { debounce_text_changes = 150 } })
-require("lspconfig").dockerls.setup({ flags = { debounce_text_changes = 150 } })
-require("lspconfig").esbonio.setup({ flags = { debounce_text_changes = 150 } })
-require("lspconfig").jsonls.setup({ flags = { debounce_text_changes = 150 } })
-require("lspconfig").lemminx.setup({ flags = { debounce_text_changes = 150 } })
-require("lspconfig").taplo.setup({ flags = { debounce_text_changes = 150 } })
-require("lspconfig").ltex.setup({
-    flags = { debounce_text_changes = 150 },
-    settings = { ltex = { enabled = false, language = "en-US", additionalRules = { motherTongue = "de-DE" } } },
-})
-require("lspconfig").pyright.setup({
+vim.lsp.config("ltex", {
     settings = {
-        python = { analysis = { autoSearchPaths = true, diagnosticMode = "workspace", useLibraryCodeForTypes = true } },
+        ltex = { enabled = false, language = "en-US", additionalRules = { motherTongue = "de-DE" } },
     },
-    flags = { debounce_text_changes = 150 },
 })
-require("lspconfig").lua_ls.setup({
+
+-- TODO test
+vim.lsp.config("pyright", {
+    settings = {
+        python = {
+            analysis = { autoSearchPaths = true, diagnosticMode = "workspace", useLibraryCodeForTypes = true },
+        },
+    },
+})
+
+vim.lsp.config("lua_ls", {
     settings = {
         Lua = {
             runtime = { version = "LuaJIT", path = vim.split(package.path, ";") },
@@ -268,9 +184,26 @@ require("lspconfig").lua_ls.setup({
         },
     },
 })
-require("lspconfig").yamlls.setup({ flags = { debounce_text_changes = 150 } })
 
--- nvim-lint
+require("mason").setup()
+require("mason-lspconfig").setup({
+    ensure_installed = {
+        "bashls",
+        "clangd",
+        "cmake",
+        "dockerls",
+        "esbonio",
+        "jsonls",
+        "lemminx",
+        "ltex",
+        "lua_ls",
+        "pyright",
+        "taplo",
+        "yamlls",
+    },
+})
+require("clangd_extensions").setup({})
+
 require("lint").linters_by_ft = {
     make = { "checkmake" },
     python = { "mypy", "pylint" },
@@ -278,6 +211,7 @@ require("lint").linters_by_ft = {
     sh = { "bash" },
     yaml = { "yamllint" },
 }
+-- TODO this doesn't work on fresh installation
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
     callback = function()
         require("lint").try_lint()
@@ -285,7 +219,6 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
     end,
 })
 
--- conform.nvim
 require("conform").setup({
     formatters_by_ft = {
         cpp = { "clang_format" },
@@ -296,5 +229,34 @@ require("conform").setup({
     },
 })
 
--- outline
-require("outline").setup({ outline_window = { width = 20 }, symbol_folding = { markers = { "+", "⌄" } } })
+-- key mappings ordered by NEO keyboard layout
+vim.g.mapleader = ","
+local tele = require("telescope.builtin")
+vim.keymap.set({ "n", "v" }, "<leader>x", tele.diagnostics)
+vim.keymap.set({ "n", "v" }, "<leader>v", vim.cmd.Outline)
+vim.keymap.set({ "n", "v" }, "<leader>c", tele.commands)
+vim.keymap.set({ "n", "v" }, "<leader>w", vim.cmd.OutlineFocus)
+vim.keymap.set({ "n", "v" }, "<leader>k", vim.cmd.cprev)
+vim.keymap.set({ "n", "v" }, "<leader>h", vim.cmd.ClangdSwitchSourceHeader)
+vim.keymap.set({ "n", "v" }, "<leader>g", tele.lsp_definitions)
+vim.keymap.set({ "n", "v" }, "<leader>f", require("conform").format)
+vim.keymap.set({ "n", "v" }, "<leader>q", tele.builtin)
+vim.keymap.set({ "n", "v" }, "<leader>ß", tele.spell_suggest)
+vim.keymap.set({ "n", "v" }, "<leader>u", tele.resume)
+vim.keymap.set({ "n", "v" }, "<leader>i", tele.lsp_implementations) -- gri
+vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action) -- gra
+vim.keymap.set({ "n", "v" }, "<leader>e", vim.diagnostic.open_float) -- Ctrl-W d
+vim.keymap.set({ "n", "v" }, "<leader>o", tele.git_files)
+vim.keymap.set({ "n", "v" }, "<leader>s", tele.lsp_dynamic_workspace_symbols)
+vim.keymap.set({ "n", "v" }, "<leader>n", vim.lsp.buf.rename) -- grn
+vim.keymap.set({ "n", "v" }, "<leader>r", tele.lsp_references) -- grr
+vim.keymap.set({ "n", "v" }, "<leader>t", vim.cmd.ClangdTypeHierarchy) -- use "gd" to just to entry
+vim.keymap.set({ "n", "v" }, "<leader>d", vim.lsp.buf.hover) -- K or gO or Ctrl-S
+vim.keymap.set({ "n", "v" }, "<leader>y", tele.registers)
+vim.keymap.set({ "n", "v" }, "<leader>p", tele.lsp_incoming_calls)
+vim.keymap.set({ "n", "v" }, "<leader>z", tele.find_files)
+vim.keymap.set({ "n", "v" }, "<leader>b", tele.buffers)
+vim.keymap.set({ "n", "v" }, "<leader>m", tele.oldfiles)
+vim.keymap.set({ "n", "v" }, "<leader>,", tele.live_grep)
+vim.keymap.set({ "n", "v" }, "<leader>.", tele.grep_string)
+vim.keymap.set({ "n", "v" }, "<leader>j", vim.cmd.cnext)
