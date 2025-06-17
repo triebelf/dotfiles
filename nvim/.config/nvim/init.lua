@@ -19,7 +19,7 @@ vim.opt.diffopt:append("iwhite")
 vim.o.expandtab = true
 vim.o.exrc = true
 vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.o.foldlevelstart = 3
+vim.o.foldlevelstart = 4
 vim.o.foldmethod = "expr"
 vim.o.foldtext = ""
 vim.o.ignorecase = true
