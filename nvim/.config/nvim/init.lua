@@ -42,7 +42,7 @@ vim.filetype.add({
     },
 })
 
-vim.diagnostic.config({ virtual_text = true })
+vim.diagnostic.config({ underline = false, signs = false, severity_sort = true, virtual_text = true })
 
 require("lualine").setup({ options = { icons_enabled = false } })
 
@@ -241,6 +241,9 @@ require("conform").setup({
 vim.g.mapleader = ","
 local tele = require("telescope.builtin")
 vim.keymap.set({ "n", "v" }, "<leader>x", tele.diagnostics)
+vim.keymap.set({ "n", "v" }, "<leader>X", function()
+    vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { desc = "Toggle diagnostic" })
 vim.keymap.set({ "n", "v" }, "<leader>v", vim.cmd.Outline)
 vim.keymap.set({ "n", "v" }, "<leader>c", tele.commands)
 vim.keymap.set({ "n", "v" }, "<leader>w", vim.cmd.OutlineFocus)
