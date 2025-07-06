@@ -53,9 +53,17 @@ require("nvim-treesitter.configs").setup({
 })
 
 require("telescope").setup({
-    defaults = { layout_strategy = "vertical", layout_config = { width = 0.95 } },
+    defaults = {
+        layout_config = {
+            horizontal = {
+                width = { padding = 0 },
+                height = { padding = 0 },
+                preview_width = 0.5,
+            },
+        },
+        path_display = { "smart" },
+    },
     pickers = {
-        lsp_dynamic_workspace_symbols = { fname_width = 60 },
         live_grep = {
             additional_args = function(opts)
                 return { "--hidden", "--iglob", "!.git" }
