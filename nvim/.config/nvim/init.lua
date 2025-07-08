@@ -1,7 +1,7 @@
 -- spellchecker: disable
 
 vim.cmd([[colorscheme modus]])
---vim.o.background = "light"
+vim.o.background = "light"
 
 vim.g.netrw_altv = 1
 vim.g.netrw_banner = 0
@@ -61,7 +61,7 @@ require("telescope").setup({
                 preview_width = 0.5,
             },
         },
-        path_display = { "smart" },
+        path_display = { "filename_first" },
     },
     pickers = {
         live_grep = {

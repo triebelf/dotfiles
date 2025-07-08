@@ -1,8 +1,8 @@
 [general]
 live_config_reload = true
 import = [
-    "~/.local/share/nvim/site/pack/config/start/modus-themes.nvim/extras/alacritty/modus_vivendi.toml",
-    #"~/.local/share/nvim/site/pack/config/start/modus-themes.nvim/extras/alacritty/modus_operandi.toml"
+    #"~/.local/share/nvim/site/pack/config/start/modus-themes.nvim/extras/alacritty/modus_vivendi.toml",
+    "~/.local/share/nvim/site/pack/config/start/modus-themes.nvim/extras/alacritty/modus_operandi.toml"
 ]
 
 [window]
