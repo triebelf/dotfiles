@@ -167,9 +167,9 @@ vim.lsp.config("clangd", {
     },
 })
 
-vim.lsp.config("ltex", {
+vim.lsp.config("ltex_plus", {
     settings = {
-        ltex = { enabled = false, language = "en-US", additionalRules = { motherTongue = "de-DE" } },
+        ltex = { enabled = true, language = "en-US", additionalRules = { motherTongue = "de-DE" } },
     },
 })
 
@@ -203,7 +203,7 @@ require("mason-lspconfig").setup({
         "esbonio",
         "jsonls",
         "lemminx",
-        "ltex",
+        "ltex_plus",
         "lua_ls",
         "pyright",
         "taplo",
