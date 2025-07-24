@@ -46,7 +46,31 @@ vim.diagnostic.config({ underline = false, signs = false, severity_sort = true, 
 
 require("lualine").setup({ options = { icons_enabled = false } })
 
-require("outline").setup({ outline_window = { width = 20 }, symbol_folding = { markers = { "+", "⌄" } } })
+require("outline").setup({
+    guides = { enabled = false },
+    --outline_window = { width = 20 },
+    symbol_folding = { markers = { "▹", "▿" } },
+    symbols = {
+        icons = {
+            Array = { icon = "▦", hl = "Constant" },
+            Class = { icon = "⚬", hl = "Type" },
+            Constructor = { icon = "⚙", hl = "Special" },
+            Enum = { icon = "∑", hl = "Type" },
+            EnumMember = { icon = "⋅", hl = "Identifier" },
+            Field = { icon = "▪", hl = "Identifier" },
+            Function = { icon = "λ", hl = "Function" },
+            Method = { icon = "→", hl = "Function" },
+            Module = { icon = "⬚", hl = "Include" },
+            Namespace = { icon = "∷", hl = "Include" },
+            Null = { icon = "␀", hl = "Type" },
+            Property = { icon = "▣", hl = "Identifier" },
+            String = { icon = "“", hl = "String" },
+            Struct = { icon = "⚬", hl = "Structure" },
+            TypeAlias = { icon = "≡", hl = "Type" },
+            Variable = { icon = "⬞", hl = "Constant" },
+        },
+    },
+})
 
 require("nvim-treesitter.configs").setup({
     highlight = { enable = true, additional_vim_regex_highlighting = false },
