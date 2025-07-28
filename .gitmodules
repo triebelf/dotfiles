@@ -53,7 +53,7 @@
 [submodule "nvim-treesitter"]
     path = nvim/.local/share/nvim/site/pack/config/start/nvim-treesitter
     url = https://github.com/nvim-treesitter/nvim-treesitter.git
-    branch = master
+    branch = main
 [submodule "cmp-treesitter"]
     path = nvim/.local/share/nvim/site/pack/config/start/cmp-treesitter
     url = https://github.com/ray-x/cmp-treesitter
