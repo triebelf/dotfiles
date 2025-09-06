@@ -29,6 +29,7 @@ vim.o.shiftround = true
 vim.o.shiftwidth = 0
 vim.o.signcolumn = "yes"
 vim.o.smartcase = true
+vim.opt.inccommand = "split"
 vim.o.softtabstop = -1
 vim.o.tabstop = 4
 vim.o.termguicolors = true
