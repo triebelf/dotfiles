@@ -7,21 +7,39 @@ import = [
 
 [window]
 decorations = "None"
-#dimensions = { columns = 160, lines = 45 }
 startup_mode = "Maximized"
 
 [font]
-normal = { family = "Cascadia Code" }
-#normal = { family = "Fantasque Sans Mono" }
-#normal = { family = "Fira Code" }
-#normal = { family = "Hasklig" }
-#normal = { family = "Inconsolata" }
-#normal = { family = "Iosevka Term" }
-#normal = { family = "JetBrains Mono" }
-#normal = { family = "PragmataPro" }
-#normal = { family = "PT Mono" }
-#normal = { family = "SF Mono" }
-size = 12
+size = 16.0
+
+[font.normal]
+family = "Fantasque Sans Mono"
+style = "Regular"
+# fc-list : family style | grep -i fanta
+# family = "Agave"
+# family = "Cascadia Code"
+# family = "Fantasque Sans Mono"
+# family = "Fira Code"
+# family = "Hasklig"
+# family = "Inconsolata"
+# family = "Iosevka Term"
+# family = "JetBrains Mono"
+# family = "PragmataPro"
+# family = "PT Mono"
+# family = "Roboto Mono"
+# family = "SF Mono"
+
+[font.italic]
+family = "Fantasque Sans Mono"
+style = "Italic"
+
+[font.bold]
+family = "Fantasque Sans Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "Fantasque Sans Mono"
+style = "Bold Italic"
 
 [terminal]
 shell = { program = "tmux", args = ["new", "-As", "main"] }

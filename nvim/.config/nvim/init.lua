@@ -4,7 +4,7 @@ vim.cmd([[colorscheme modus]])
 vim.o.background = "light"
 
 vim.g.netrw_altv = 1
-vim.g.netrw_banner = 0
+--vim.g.netrw_banner = 0
 vim.g.netrw_browse_split = 4
 vim.g.netrw_keepdir = 0
 vim.g.netrw_list_hide = "__pycache__"
@@ -12,7 +12,7 @@ vim.g.netrw_list_hide = "__pycache__"
 vim.g.netrw_liststyle = 3
 vim.g.netrw_winsize = 20
 
-vim.opt.clipboard:append("unnamedplus")
+--vim.opt.clipboard:append("unnamedplus")
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.o.cursorline = true
 vim.opt.diffopt:append("iwhite")
