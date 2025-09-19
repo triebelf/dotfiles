@@ -1,18 +1,48 @@
 -- spellchecker: disable
+require("paq")({
+    "savq/paq-nvim",
+    "https://github.com/miikanissi/modus-themes.nvim.git",
+    "https://github.com/nvim-lualine/lualine.nvim",
+    "https://github.com/hedyhli/outline.nvim.git",
+    "https://github.com/nvim-lua/plenary.nvim",
+    "https://github.com/nvim-telescope/telescope.nvim",
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+
+    "https://github.com/mhinz/vim-signify",
+    "https://github.com/samoshkin/vim-mergetool.git",
+
+    { "https://github.com/nvim-treesitter/nvim-treesitter.git", branch = "main", build = ":TSUpdate" },
+
+    "https://github.com/hrsh7th/nvim-cmp",
+    "https://github.com/hrsh7th/cmp-nvim-lsp",
+    "https://github.com/dcampos/cmp-snippy",
+    "https://github.com/ray-x/cmp-treesitter",
+    "https://github.com/hrsh7th/cmp-nvim-lua",
+    "https://github.com/hrsh7th/cmp-buffer",
+    "https://github.com/dcampos/nvim-snippy",
+    "https://github.com/honza/vim-snippets.git",
+    "https://github.com/hrsh7th/cmp-path",
+    "https://github.com/hrsh7th/cmp-cmdline",
+
+    "https://github.com/neovim/nvim-lspconfig",
+    "https://github.com/williamboman/mason.nvim.git",
+    "https://github.com/williamboman/mason-lspconfig.nvim",
+    "https://github.com/p00f/clangd_extensions.nvim.git",
+
+    "https://github.com/mfussenegger/nvim-lint.git",
+    "https://github.com/stevearc/conform.nvim.git",
+})
 
 vim.cmd([[colorscheme modus]])
 vim.o.background = "light"
 
 vim.g.netrw_altv = 1
---vim.g.netrw_banner = 0
 vim.g.netrw_browse_split = 4
 vim.g.netrw_keepdir = 0
 vim.g.netrw_list_hide = "__pycache__"
---vim.g.netrw_list_hide = vim.fn["netrw_gitignore#Hide"]()
 vim.g.netrw_liststyle = 3
 vim.g.netrw_winsize = 20
 
---vim.opt.clipboard:append("unnamedplus")
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.o.cursorline = true
 vim.opt.diffopt:append("iwhite")
@@ -102,7 +132,16 @@ require("telescope").setup({
             end,
         },
     },
+    extensions = {
+        fzf = {
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+            case_mode = "smart_case",
+        },
+    },
 })
+require("telescope").load_extension("fzf")
 
 -- LSPs configuration
 local cmp = require("cmp")

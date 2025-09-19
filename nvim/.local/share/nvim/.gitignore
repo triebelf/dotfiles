@@ -1,3 +1,7 @@
 mason
 .netrwhist
+paq-lock.json
+site/parser/
+site/parser-info/
+site/queries/
 telescope_history
