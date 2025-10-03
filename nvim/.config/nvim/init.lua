@@ -33,8 +33,10 @@ require("paq")({
     "https://github.com/stevearc/conform.nvim.git",
 })
 
-vim.cmd([[colorscheme modus]])
+vim.o.termguicolors = true
 vim.o.background = "light"
+require("modus-themes").setup({ style = "auto", variant = "tinted" })
+vim.cmd([[colorscheme modus]])
 
 vim.g.netrw_altv = 1
 vim.g.netrw_browse_split = 4
@@ -62,7 +64,6 @@ vim.o.smartcase = true
 vim.opt.inccommand = "split"
 vim.o.softtabstop = -1
 vim.o.tabstop = 4
-vim.o.termguicolors = true
 vim.o.textwidth = 120
 vim.o.undofile = true
 
