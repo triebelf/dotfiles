@@ -3,7 +3,6 @@ require("paq")({
     "savq/paq-nvim",
     "https://github.com/miikanissi/modus-themes.nvim.git",
     "https://github.com/nvim-lualine/lualine.nvim",
-    "https://github.com/webhooked/kanso.nvim.git",
     "https://github.com/hedyhli/outline.nvim.git",
     "https://github.com/nvim-lua/plenary.nvim",
     "https://github.com/nvim-telescope/telescope.nvim",
@@ -35,13 +34,10 @@ require("paq")({
 })
 
 vim.o.termguicolors = true
-vim.o.background = "dark"
+vim.o.background = "light"
 require("lualine").setup({ options = { icons_enabled = false } })
-require("kanso").setup({
-    foreground = { dark = "default", light = "saturated" },
-    background = { dark = "zen", light = "pearl" },
-})
-vim.cmd("colorscheme kanso")
+require("modus-themes").setup({ style = "auto", variant = "tinted" })
+vim.cmd([[colorscheme modus]])
 
 vim.g.netrw_altv = 1
 vim.g.netrw_browse_split = 4

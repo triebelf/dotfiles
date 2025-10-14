@@ -3,13 +3,11 @@ live_config_reload = true
 import = [
     # light
     #"~/.local/share/nvim/site/pack/paqs/start/modus-themes.nvim/extras/alacritty/modus_operandi.toml"
-    #"~/.local/share/nvim/site/pack/paqs/start/modus-themes.nvim/extras/alacritty/modus_operandi_tinted.toml"
-    #~/.local/share/nvim/site/pack/paqs/start/kanso.nvim/extras/alacritty/kanso_pearl.toml
+    "~/.local/share/nvim/site/pack/paqs/start/modus-themes.nvim/extras/alacritty/modus_operandi_tinted.toml"
 
     # dark
     #"~/.local/share/nvim/site/pack/paqs/start/modus-themes.nvim/extras/alacritty/modus_vivendi.toml"
     #"~/.local/share/nvim/site/pack/paqs/start/modus-themes.nvim/extras/alacritty/modus_vivendi_tinted.toml"
-    "~/.local/share/nvim/site/pack/paqs/start/kanso.nvim/extras/alacritty/kanso_zen.toml"
 ]
 
 [window]
