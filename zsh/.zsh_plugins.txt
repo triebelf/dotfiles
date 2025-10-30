@@ -14,7 +14,6 @@ nekofar/zsh-git-lfs
 ohmyzsh/ohmyzsh path:plugins/gpg-agent
 ohmyzsh/ohmyzsh path:plugins/direnv
 
-trapd00r/LS_COLORS path:lscolors.sh
 zpm-zsh/colorize
 
 MichaelAquilina/zsh-you-should-use
