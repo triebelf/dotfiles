@@ -62,4 +62,4 @@ export ZSTD_NBTHREADS="0"
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=250"
 export EDITOR=nvim
-export LS_COLORS="$(vivid generate modus-operandi)"
+export LS_COLORS="$(vivid generate tokyonight-night)"
