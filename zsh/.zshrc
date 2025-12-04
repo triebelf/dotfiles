@@ -21,6 +21,8 @@ bindkey -v
 
 prompt pure
 zstyle :prompt:pure:git:stash show yes
+export PURE_PROMPT_SYMBOL="»"
+export PURE_PROMPT_VICMD_SYMBOL="«"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 compstyle 'prezto'
 autoload -U zmv
@@ -62,4 +64,4 @@ export ZSTD_NBTHREADS="0"
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=250"
 export EDITOR=nvim
-export LS_COLORS="$(vivid generate tokyonight-night)"
+export LS_COLORS="$(vivid generate one-light)"
