@@ -35,7 +35,7 @@ require("paq")({
 
 vim.o.termguicolors = true
 vim.o.background = "light"
-require("lualine").setup({ options = { icons_enabled = false } })
+require("lualine").setup()
 require("modus-themes").setup({ style = "auto" })
 vim.cmd([[colorscheme modus]])
 
@@ -300,6 +300,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
 
 require("conform").setup({
     formatters_by_ft = {
+        bzl = { "buildifier" },
         cpp = { "clang_format" },
         json = { "jq" },
         lua = { "stylua" },

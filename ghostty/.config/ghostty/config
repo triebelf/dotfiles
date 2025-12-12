@@ -1,0 +1,8 @@
+theme = light:modus_operandi,dark:modus_vivendi
+minimum-contrast = 4.5
+window-decoration = none
+font-family = "Cascadia Code NF"
+font-shaping-break = no-cursor
+
+initial-command = "tmux new -As main"
+confirm-close-surface = false
