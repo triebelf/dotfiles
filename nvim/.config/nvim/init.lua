@@ -2,6 +2,7 @@
 require("paq")({
     "savq/paq-nvim",
     "https://github.com/miikanissi/modus-themes.nvim.git",
+    "https://github.com/marko-cerovac/material.nvim.git",
     "https://github.com/nvim-lualine/lualine.nvim",
     "https://github.com/hedyhli/outline.nvim.git",
     "https://github.com/nvim-lua/plenary.nvim",
@@ -34,10 +35,23 @@ require("paq")({
 })
 
 vim.o.termguicolors = true
-vim.o.background = "dark"
-require("lualine").setup()
-require("modus-themes").setup({ style = "auto" })
-vim.cmd([[colorscheme modus]])
+require("lualine").setup({ options = { theme = "auto" } })
+
+--vim.o.background = "light"
+--vim.o.background = "dark"
+--require("modus-themes").setup({ style = "auto" })
+--vim.cmd([[colorscheme modus]])
+
+--vim.g.material_style = "lighter"
+vim.g.material_style = "deep ocean"
+require("material").setup({
+    contrast = { floating_windows = true, cursor_line = true },
+    styles = { comments = { italic = true } },
+    plugins = { "nvim-cmp", "telescope" },
+    disable = { colored_cursor = true },
+    high_visibility = { lighter = true, darker = true },
+})
+vim.cmd([[colorscheme material]])
 
 vim.g.netrw_altv = 1
 vim.g.netrw_browse_split = 4
@@ -51,9 +65,7 @@ vim.o.cursorline = true
 vim.opt.diffopt:append("iwhite")
 vim.o.expandtab = true
 vim.o.exrc = true
-vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.o.foldlevelstart = 4
-vim.o.foldmethod = "expr"
 vim.o.foldtext = ""
 vim.o.ignorecase = true
 vim.o.mouse = ""
@@ -110,6 +122,9 @@ for _, parser in pairs(parsersInstalled) do
         pattern = filetypes,
         callback = function()
             vim.treesitter.start()
+            vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+            vim.wo[0][0].foldmethod = "expr"
+            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end,
     })
 end

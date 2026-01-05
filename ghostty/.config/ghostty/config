@@ -1,4 +1,6 @@
-theme = light:modus_operandi,dark:modus_vivendi
+theme = light:modus_operandi,dark:Dimidium
+# dark:modus_vivendi
+maximize = true
 window-decoration = none
 font-family = "Cascadia Code NF"
 shell-integration = zsh
