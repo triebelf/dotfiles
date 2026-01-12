@@ -43,13 +43,12 @@ require("lualine").setup({ options = { theme = "auto" } })
 --vim.cmd([[colorscheme modus]])
 
 --vim.g.material_style = "lighter"
-vim.g.material_style = "deep ocean"
+vim.g.material_style = "palenight"
 require("material").setup({
-    contrast = { floating_windows = true, cursor_line = true },
+    contrast = { floating_windows = true },
     styles = { comments = { italic = true } },
     plugins = { "nvim-cmp", "telescope" },
-    disable = { colored_cursor = true },
-    high_visibility = { lighter = true, darker = true },
+    disable = { background = true },
 })
 vim.cmd([[colorscheme material]])
 
@@ -61,7 +60,6 @@ vim.g.netrw_liststyle = 3
 vim.g.netrw_winsize = 20
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
-vim.o.cursorline = true
 vim.opt.diffopt:append("iwhite")
 vim.o.expandtab = true
 vim.o.exrc = true
@@ -124,7 +122,6 @@ for _, parser in pairs(parsersInstalled) do
             vim.treesitter.start()
             vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
             vim.wo[0][0].foldmethod = "expr"
-            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end,
     })
 end
