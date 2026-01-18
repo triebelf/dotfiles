@@ -1,4 +1,0 @@
-[submodule "alacritty/.config/alacritty/dimidium"]
-    path = alacritty/.config/alacritty/dimidium
-    url = https://github.com/dofuuz/dimidium.git
-    branch = main

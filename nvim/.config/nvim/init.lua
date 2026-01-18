@@ -1,8 +1,7 @@
 -- spellchecker: disable
 require("paq")({
     "savq/paq-nvim",
-    "https://github.com/miikanissi/modus-themes.nvim.git",
-    "https://github.com/marko-cerovac/material.nvim.git",
+    "https://github.com/scottmckendry/cyberdream.nvim.git",
     "https://github.com/nvim-lualine/lualine.nvim",
     "https://github.com/hedyhli/outline.nvim.git",
     "https://github.com/nvim-lua/plenary.nvim",
@@ -38,19 +37,13 @@ vim.o.termguicolors = true
 require("lualine").setup({ options = { theme = "auto" } })
 
 --vim.o.background = "light"
---vim.o.background = "dark"
---require("modus-themes").setup({ style = "auto" })
---vim.cmd([[colorscheme modus]])
-
---vim.g.material_style = "lighter"
-vim.g.material_style = "palenight"
-require("material").setup({
-    contrast = { floating_windows = true },
-    styles = { comments = { italic = true } },
-    plugins = { "nvim-cmp", "telescope" },
-    disable = { background = true },
+vim.o.background = "dark"
+require("cyberdream").setup({
+    variant = "auto",
+    saturation = 0.6, -- accepts a value between 0 and 1. 0 will be fully desaturated (greyscale) and 1 will be the full color (default)
+    italic_comments = true,
 })
-vim.cmd([[colorscheme material]])
+vim.cmd("colorscheme cyberdream")
 
 vim.g.netrw_altv = 1
 vim.g.netrw_browse_split = 4

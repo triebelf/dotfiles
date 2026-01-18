@@ -2,8 +2,10 @@
 live_config_reload = true
 import = [
     #"~/.local/share/nvim/site/pack/paqs/start/modus-themes.nvim/extras/alacritty/modus_operandi.toml"
+    #"~/.local/share/nvim/site/pack/paqs/start/cyberdream.nvim/extras/alacritty/cyberdream-light.toml"
+
     #"~/.local/share/nvim/site/pack/paqs/start/modus-themes.nvim/extras/alacritty/modus_vivendi.toml"
-    "dimidium/config/dimidium-alacritty.toml"
+    "~/.local/share/nvim/site/pack/paqs/start/cyberdream.nvim/extras/alacritty/cyberdream.toml"
 ]
 
 [window]
@@ -11,7 +13,7 @@ decorations = "None"
 startup_mode = "Maximized"
 
 [font]
-size = 12.0
+size = 14.0
 normal = { family = "Cascadia Code NF" }
 
 [terminal]
