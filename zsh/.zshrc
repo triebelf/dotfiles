@@ -24,6 +24,7 @@ zstyle :prompt:pure:git:stash show yes
 export PURE_PROMPT_SYMBOL="»"
 export PURE_PROMPT_VICMD_SYMBOL="«"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=250"
 compstyle 'prezto'
 autoload -U zmv
 
