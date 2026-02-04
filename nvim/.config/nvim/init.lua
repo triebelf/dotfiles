@@ -13,16 +13,8 @@ require("paq")({
 
     { "https://github.com/nvim-treesitter/nvim-treesitter.git", branch = "main", build = ":TSUpdate" },
 
-    "https://github.com/hrsh7th/nvim-cmp",
-    "https://github.com/hrsh7th/cmp-nvim-lsp",
-    "https://github.com/dcampos/cmp-snippy",
-    "https://github.com/ray-x/cmp-treesitter",
-    "https://github.com/hrsh7th/cmp-nvim-lua",
-    "https://github.com/hrsh7th/cmp-buffer",
-    "https://github.com/dcampos/nvim-snippy",
-    "https://github.com/honza/vim-snippets.git",
-    "https://github.com/hrsh7th/cmp-path",
-    "https://github.com/hrsh7th/cmp-cmdline",
+    "https://github.com/saghen/blink.cmp.git",
+    "https://github.com/rafamadriz/friendly-snippets.git",
 
     "https://github.com/neovim/nvim-lspconfig",
     "https://github.com/williamboman/mason.nvim.git",
@@ -75,6 +67,15 @@ vim.filetype.add({
 })
 
 vim.diagnostic.config({ underline = false, signs = false, severity_sort = true, virtual_text = true })
+
+require("blink.cmp").setup({
+    completion = {
+        menu = { auto_show = false },
+        documentation = { auto_show = true, auto_show_delay_ms = 500 },
+    },
+    fuzzy = { prebuilt_binaries = { force_version = "v1.9.1" } },
+    keymap = { preset = "enter" },
+})
 
 require("outline").setup({
     guides = { enabled = false },
@@ -145,88 +146,8 @@ require("telescope").setup({
 require("telescope").load_extension("fzf")
 
 -- LSPs configuration
-local cmp = require("cmp")
-local select_opts = { behavior = cmp.SelectBehavior.Select }
-cmp.setup({
-    completion = { autocomplete = false },
-    sources = cmp.config.sources({
-        -- cmp-nvim-lsp
-        { name = "nvim_lsp" },
-        -- cmp-snippy
-        { name = "snippy" },
-        -- cmp-treesitter
-        { name = "treesitter" },
-        -- cmp-nvim-lua
-        { name = "nvim_lua" },
-        -- cmp-buffer
-        { name = "buffer" },
-    }),
-    mapping = cmp.mapping.preset.insert({
-        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete(),
-        ["<C-e>"] = cmp.mapping.abort(),
-        ["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-        ["<Tab>"] = cmp.mapping(function(fallback)
-            local col = vim.fn.col(".") - 1
-            if cmp.visible() then
-                cmp.select_next_item(select_opts)
-            elseif col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
-                fallback()
-            else
-                cmp.complete()
-            end
-        end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item(select_opts)
-            else
-                fallback()
-            end
-        end, { "i", "s" }),
-    }),
-    snippet = {
-        expand = function(args)
-            -- nvim-snippy
-            -- vim-snippets
-            require("snippy").expand_snippet(args.body)
-        end,
-    },
-    sorting = {
-        comparators = {
-            cmp.config.compare.offset,
-            cmp.config.compare.exact,
-            cmp.config.compare.score,
-            cmp.config.compare.recently_used,
-            require("clangd_extensions.cmp_scores"),
-            cmp.config.compare.locality,
-            cmp.config.compare.kind,
-            cmp.config.compare.sort_text,
-            cmp.config.compare.length,
-            cmp.config.compare.order,
-        },
-    },
-})
-
-cmp.setup.cmdline("/", {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = { { name = "buffer" } },
-})
-
-cmp.setup.cmdline(":", {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
-})
 
 vim.lsp.set_log_level("off")
-
-vim.lsp.config("*", {
-    capabilities = vim.tbl_deep_extend(
-        "force",
-        vim.lsp.protocol.make_client_capabilities(),
-        require("cmp_nvim_lsp").default_capabilities() -- TODO seems to be deprecated
-    ),
-})
 
 vim.lsp.config("clangd", {
     cmd = {
