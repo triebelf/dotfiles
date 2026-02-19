@@ -32,20 +32,14 @@ autoload -U zmv
 alias open="xdg-open"
 alias top='htop'
 alias _='doas'
-alias ll='ls -lh'					# long format and human-readable sizes
-alias l='ll -A'						# long format, all files
-alias lm="l | ${PAGER}"		# long format, all files, use pager
-alias lr='ll -R'					# long format, recursive
-alias lk='ll -Sr'					# long format, largest file size last
-alias lt='ll -tr'					# long format, newest modification time last
-alias lc='lt -c'					# long format, newest status change (ctime) last
+alias ll='ls -lh'
+alias l='ll -A'
 alias ls='ls --group-directories-first --color=auto'
 alias df='df -h'
 alias du='du -h'
 alias chmod='chmod --preserve-root -v'
 alias chown='chown --preserve-root -v'
 alias grep='grep --color'
-alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
