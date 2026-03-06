@@ -41,7 +41,7 @@ vim.g.netrw_list_hide = "__pycache__"
 vim.g.netrw_liststyle = 3
 vim.g.netrw_winsize = 20
 
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
+vim.opt.completeopt = { "menu", "menuone", "noinsert", "noselect", "popup" }
 vim.opt.diffopt:append("iwhite")
 vim.o.expandtab = true
 vim.o.exrc = true
@@ -256,7 +256,7 @@ vim.keymap.set({ "n", "v" }, "<leader>o", tele.git_files)
 vim.keymap.set({ "n", "v" }, "<leader>s", tele.lsp_dynamic_workspace_symbols)
 vim.keymap.set({ "n", "v" }, "<leader>n", vim.lsp.buf.rename) -- grn
 vim.keymap.set({ "n", "v" }, "<leader>r", tele.lsp_references) -- grr
-vim.keymap.set({ "n", "v" }, "<leader>t", vim.cmd.ClangdTypeHierarchy) -- use "gd" to just to entry
+vim.keymap.set({ "n", "v" }, "<leader>t", vim.cmd.ClangdTypeHierarchy) -- use "gd" to jump to entry
 vim.keymap.set({ "n", "v" }, "<leader>d", vim.lsp.buf.hover) -- K or gO or Ctrl-S
 vim.keymap.set({ "n", "v" }, "<leader>y", tele.registers)
 vim.keymap.set({ "n", "v" }, "<leader>p", tele.lsp_incoming_calls)
