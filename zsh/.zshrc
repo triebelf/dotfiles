@@ -28,6 +28,8 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=250"
 compstyle 'prezto'
 autoload -U zmv
 
+export LS_COLORS="di=01;36:ln=01;35:so=01;33:pi=01;33:bd=01;33:ex=01;32:or=01;31:mi=00;su=01;31:sg=01;31:tw=01;34:ow=01;34"
+
 ################################## ALIASES ##################################
 alias open="xdg-open"
 alias top='htop'
