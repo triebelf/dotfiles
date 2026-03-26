@@ -27,9 +27,7 @@ require("paq")({
 })
 
 vim.o.termguicolors = true
-vim.o.background = "light"
---vim.o.background = "dark"
-require("modus-themes").setup({ style = "auto", variant = "tinted" })
+require("modus-themes").setup({ style = "auto", variants = { modus_vivendi = "tinted" } })
 vim.cmd("colorscheme modus")
 
 require("lualine").setup({ options = { theme = "auto" } })

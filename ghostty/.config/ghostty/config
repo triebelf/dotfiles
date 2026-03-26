@@ -1,8 +1,8 @@
-theme = light:modus_operandi,dark:Dimidium
-# dark:modus_vivendi
+theme = light:modus_operandi,dark:modus_vivendi_tinted
 maximize = true
 window-decoration = none
 font-family = "Cascadia Code NF"
+font-size = 12
 shell-integration = zsh
 initial-command = "tmux new -As main"
 confirm-close-surface = false
