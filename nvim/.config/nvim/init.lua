@@ -145,7 +145,7 @@ require("telescope").load_extension("ui-select")
 
 -- LSPs configuration
 
-vim.lsp.set_log_level("off")
+vim.lsp.log.set_level("off")
 
 vim.lsp.config("clangd", {
     cmd = {
