@@ -14,7 +14,13 @@ require("paq")({
 
     { "https://github.com/nvim-treesitter/nvim-treesitter.git", branch = "main", build = ":TSUpdate" },
 
-    "https://github.com/saghen/blink.cmp.git",
+    {
+        "https://github.com/saghen/blink.cmp.git",
+        build = function()
+            require("blink.cmp").build():wait(60000)
+        end,
+    },
+    "https://github.com/saghen/blink.lib.git",
     "https://github.com/rafamadriz/friendly-snippets.git",
 
     "https://github.com/neovim/nvim-lspconfig",
@@ -72,7 +78,6 @@ require("blink.cmp").setup({
         menu = { auto_show = false },
         documentation = { auto_show = true, auto_show_delay_ms = 500 },
     },
-    fuzzy = { prebuilt_binaries = { force_version = "v1.9.1" } },
     keymap = { preset = "enter" },
 })
 
