@@ -1,8 +1,11 @@
 theme = light:modus_operandi,dark:modus_vivendi_tinted
 maximize = true
 window-decoration = none
-font-family = "Cascadia Code NF"
-font-size = 12
+font-family = "JetBrains Mono"
+font-style = "Light"
+font-style-italic = "Light Italic"
+font-style-bold = "Medium"
+font-style-bold-italic = "Medium Italic"
 shell-integration = zsh
 initial-command = "tmux new -As main"
 confirm-close-surface = false

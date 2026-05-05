@@ -63,6 +63,7 @@ vim.o.softtabstop = -1
 vim.o.tabstop = 4
 vim.o.textwidth = 120
 vim.o.undofile = true
+vim.api.nvim_set_option("clipboard", "unnamedplus")
 
 vim.filetype.add({
     pattern = {
@@ -78,6 +79,7 @@ require("blink.cmp").setup({
         menu = { auto_show = false },
         documentation = { auto_show = true, auto_show_delay_ms = 500 },
     },
+    cmdline = { completion = { menu = { auto_show = false } } },
     keymap = { preset = "enter" },
 })
 
@@ -183,7 +185,7 @@ vim.lsp.config("lua_ls", {
         Lua = {
             runtime = { version = "LuaJIT", path = vim.split(package.path, ";") },
             diagnostics = { globals = { "vim" } },
-            workspace = { library = { vim.env.VIMRUNTIME }, checkThirdParty = true, preloadFileSize = 10000 },
+            workspace = { library = { vim.env.VIMRUNTIME }, checkThirdParty = false, preloadFileSize = 10000 },
             telemetry = { enable = false },
         },
     },
