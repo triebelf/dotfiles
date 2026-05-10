@@ -1,36 +1,81 @@
 -- spellchecker: disable
-require("paq")({
-    "savq/paq-nvim",
-    "https://github.com/miikanissi/modus-themes.nvim.git",
-    "https://github.com/nvim-lualine/lualine.nvim",
-    "https://github.com/hedyhli/outline.nvim.git",
-    "https://github.com/nvim-lua/plenary.nvim",
-    "https://github.com/nvim-telescope/telescope.nvim",
+local fn = vim.fn
+local install_path = fn.stdpath("data") .. "/site/pack/paqs/start/paq-nvim"
+
+-- Bootstrap Paq if missing
+if fn.empty(fn.glob(install_path)) > 0 then
+    print("Bootstrapping Paq...")
+    fn.system({ "git", "clone", "https://github.com/savq/paq-nvim.git", install_path })
+end
+
+-- Load Paq
+vim.cmd("packadd paq-nvim")
+local paq = require("paq")
+
+-- Define plugins
+local plugins = {
+    "savq/paq-nvim", -- Paq manages itself
+    "miikanissi/modus-themes.nvim",
+    "nvim-lualine/lualine.nvim",
+    "hedyhli/outline.nvim",
+    "nvim-lua/plenary.nvim",
+    "nvim-telescope/telescope.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-    "https://github.com/nvim-telescope/telescope-ui-select.nvim.git",
+    "nvim-telescope/telescope-ui-select.nvim",
 
-    "https://github.com/mhinz/vim-signify",
-    "https://github.com/samoshkin/vim-mergetool.git",
+    "mhinz/vim-signify",
+    "samoshkin/vim-mergetool",
 
-    { "https://github.com/nvim-treesitter/nvim-treesitter.git", branch = "main", build = ":TSUpdate" },
+    { "nvim-treesitter/nvim-treesitter", branch = "main", build = ":TSUpdate" },
 
     {
-        "https://github.com/saghen/blink.cmp.git",
+        "saghen/blink.cmp",
         build = function()
             require("blink.cmp").build():wait(60000)
         end,
     },
-    "https://github.com/saghen/blink.lib.git",
-    "https://github.com/rafamadriz/friendly-snippets.git",
+    "saghen/blink.lib",
+    "rafamadriz/friendly-snippets",
 
-    "https://github.com/neovim/nvim-lspconfig",
-    "https://github.com/williamboman/mason.nvim.git",
-    "https://github.com/williamboman/mason-lspconfig.nvim",
-    "https://github.com/p00f/clangd_extensions.nvim.git",
+    "neovim/nvim-lspconfig",
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "p00f/clangd_extensions.nvim",
 
-    "https://github.com/mfussenegger/nvim-lint.git",
-    "https://github.com/stevearc/conform.nvim.git",
-})
+    "mfussenegger/nvim-lint",
+    "stevearc/conform.nvim",
+}
+
+-- Register plugins with Paq
+paq(plugins)
+
+-- Auto-install missing plugins
+local missing = false
+for _, plugin in ipairs(plugins) do
+    -- Determine plugin name
+    local name
+    if type(plugin) == "string" then
+        name = plugin:match(".*/(.*)")
+    elseif type(plugin) == "table" and type(plugin[1]) == "string" then
+        name = plugin[1]:match(".*/(.*)")
+    end
+
+    -- Skip if we couldn't determine a name
+    if name then
+        local plugin_path = fn.stdpath("data") .. "/site/pack/paqs/start/" .. name
+        if fn.empty(fn.glob(plugin_path)) > 0 then
+            missing = true
+            break
+        end
+    end
+end
+
+if missing then
+    print("Installing missing plugins...")
+    paq.install()
+    print("Plugins installed. Please restart Neovim.")
+    return
+end
 
 vim.o.termguicolors = true
 require("modus-themes").setup({ style = "auto", variants = { modus_vivendi = "tinted" } })
@@ -196,7 +241,6 @@ require("mason-lspconfig").setup({
     ensure_installed = {
         "bashls",
         "clangd",
-        "cmake",
         "dockerls",
         "esbonio",
         "jsonls",
