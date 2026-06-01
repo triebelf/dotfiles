@@ -44,6 +44,10 @@ local plugins = {
 
     "mfussenegger/nvim-lint",
     "stevearc/conform.nvim",
+
+    "zbirenbaum/copilot.lua",
+    "olimorris/codecompanion.nvim",
+    --"ravitemer/mcphub.nvim",
 }
 
 -- Register plugins with Paq
@@ -98,7 +102,7 @@ vim.o.foldlevelstart = 4
 vim.o.foldtext = ""
 vim.o.ignorecase = true
 vim.o.mouse = ""
-vim.o.number = true
+--vim.o.number = true
 vim.o.shiftround = true
 vim.o.shiftwidth = 0
 vim.o.signcolumn = "yes"
@@ -118,6 +122,42 @@ vim.filetype.add({
 })
 
 vim.diagnostic.config({ underline = false, signs = false, severity_sort = true, virtual_text = true })
+
+require("copilot").setup({})
+require("codecompanion").setup({
+    interactions = {
+        -- chat = { adapter = { name = "ollama", model = "qwen3-coder" } },
+        chat = {
+            adapter = "copilot",
+        },
+    },
+    display = { chat = { fold_reasoning = false, show_reasoning = false } },
+    strategies = {
+        chat = {
+            tools = {
+                -- Never prompt for read-only tools
+                read_file = { opts = { require_approval_before = false } },
+                grep_search = { opts = { require_approval_before = false } },
+                file_search = { opts = { require_approval_before = false } },
+                get_changed_files = { opts = { require_approval_before = false } },
+                get_diagnostics = { opts = { require_approval_before = false } },
+                fetch_webpage = { opts = { require_approval_before = false } },
+                -- auto-approve all shell commands in YOLO mode:
+                run_command = { opts = { allowed_in_yolo_mode = true } },
+            },
+        },
+    },
+    -- extensions = {
+    --     mcphub = {
+    --         callback = "mcphub.extensions.codecompanion",
+    --         opts = {
+    --             make_tools = true,
+    --             make_vars = false,
+    --         },
+    --     },
+    -- },
+})
+-- require("mcphub").setup()
 
 require("blink.cmp").setup({
     completion = {
@@ -189,7 +229,9 @@ require("telescope").setup({
             override_file_sorter = true,
             case_mode = "smart_case",
         },
-        ["ui-select"] = { require("telescope.themes").get_dropdown({}) },
+        ["ui-select"] = {
+            require("telescope.themes").get_dropdown({ layout_config = { width = 0.8 } }),
+        },
     },
 })
 require("telescope").load_extension("fzf")
@@ -289,17 +331,18 @@ vim.keymap.set({ "n", "v" }, "<leader>X", function()
     vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = "Toggle diagnostic" })
 vim.keymap.set({ "n", "v" }, "<leader>v", vim.cmd.Outline)
-vim.keymap.set({ "n", "v" }, "<leader>c", tele.commands)
+vim.keymap.set({ "n", "v" }, "<leader>l", ":set nu!<CR>")
+vim.keymap.set({ "n", "v" }, "<leader>c", "<cmd>CodeCompanionChat Toggle<cr>")
 vim.keymap.set({ "n", "v" }, "<leader>w", vim.cmd.OutlineFocus)
 vim.keymap.set({ "n", "v" }, "<leader>k", vim.cmd.cprev)
 vim.keymap.set({ "n", "v" }, "<leader>h", vim.cmd.ClangdSwitchSourceHeader)
 vim.keymap.set({ "n", "v" }, "<leader>g", tele.lsp_definitions)
 vim.keymap.set({ "n", "v" }, "<leader>f", require("conform").format)
 vim.keymap.set({ "n", "v" }, "<leader>q", tele.builtin)
-vim.keymap.set({ "n", "v" }, "<leader>ß", tele.spell_suggest)
 vim.keymap.set({ "n", "v" }, "<leader>u", tele.resume)
 vim.keymap.set({ "n", "v" }, "<leader>i", tele.lsp_implementations) -- gri
-vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action) -- gra
+--vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action) -- gra
+vim.keymap.set({ "n", "v" }, "<leader>a", "<cmd>CodeCompanionActions<cr>")
 vim.keymap.set({ "n", "v" }, "<leader>e", vim.diagnostic.open_float) -- Ctrl-W d
 vim.keymap.set({ "n", "v" }, "<leader>o", tele.git_files)
 vim.keymap.set({ "n", "v" }, "<leader>s", tele.lsp_dynamic_workspace_symbols)
