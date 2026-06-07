@@ -31,7 +31,7 @@ local plugins = {
     {
         "saghen/blink.cmp",
         build = function()
-            require("blink.cmp").build():wait(60000)
+            require("blink.cmp").build():pwait()
         end,
     },
     "saghen/blink.lib",
@@ -126,10 +126,8 @@ vim.diagnostic.config({ underline = false, signs = false, severity_sort = true, 
 require("copilot").setup({})
 require("codecompanion").setup({
     interactions = {
-        -- chat = { adapter = { name = "ollama", model = "qwen3-coder" } },
-        chat = {
-            adapter = "copilot",
-        },
+        --chat = { adapter = "ollama" },
+        chat = { adapter = "copilot" },
     },
     display = { chat = { fold_reasoning = false, show_reasoning = false } },
     strategies = {
