@@ -28,12 +28,7 @@ local plugins = {
 
     { "nvim-treesitter/nvim-treesitter", branch = "main", build = ":TSUpdate" },
 
-    {
-        "saghen/blink.cmp",
-        build = function()
-            require("blink.cmp").build():pwait()
-        end,
-    },
+    "saghen/blink.cmp",
     "saghen/blink.lib",
     "rafamadriz/friendly-snippets",
 
@@ -47,7 +42,7 @@ local plugins = {
 
     "zbirenbaum/copilot.lua",
     "olimorris/codecompanion.nvim",
-    --"ravitemer/mcphub.nvim",
+    -- "ravitemer/mcphub.nvim",
 }
 
 -- Register plugins with Paq
@@ -112,7 +107,13 @@ vim.o.softtabstop = -1
 vim.o.tabstop = 4
 vim.o.textwidth = 120
 vim.o.undofile = true
-vim.api.nvim_set_option("clipboard", "unnamedplus")
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "diff",
+    callback = function()
+        vim.opt_local.expandtab = false
+    end,
+})
 
 vim.filetype.add({
     pattern = {
@@ -124,15 +125,57 @@ vim.filetype.add({
 vim.diagnostic.config({ underline = false, signs = false, severity_sort = true, virtual_text = true })
 
 require("copilot").setup({})
+
+local cc_defaults = require("codecompanion.config")
+local default_agent_prompt = cc_defaults.interactions.chat.tools.groups["agent"].system_prompt
+local default_tool_prompt = cc_defaults.interactions.chat.tools.opts.system_prompt.prompt
+local terse = [[
+Be extremely terse.
+Respond with code only; omit prose and explanation unless explicitly asked.
+Never write comments in code.
+Write any non-code text in grug-brain caveman speak: short sentences, simple words, drop articles.
+]]
+
 require("codecompanion").setup({
-    interactions = {
-        --chat = { adapter = "ollama" },
-        chat = { adapter = "copilot" },
-    },
+    adapters = { copilot = { model = "Auto" } },
+    rules = { opts = { chat = { autoload = "default", enabled = true } } },
     display = { chat = { fold_reasoning = false, show_reasoning = false } },
-    strategies = {
+    interactions = {
         chat = {
+            adapter = "copilot",
+            -- adapter = { name = "ollama", model = "gemma4:12b" },
+            opts = {
+                context_management = {
+                    compaction = { trigger = 0.7, min_token_savings = 5000 },
+                },
+                system_prompt = function(ctx)
+                    local prompt = string.gsub(ctx.default_system_prompt, "All non-code text.+language.", terse)
+                    return prompt .. "\n\n" .. terse
+                end,
+            },
             tools = {
+                groups = {
+                    ["agent"] = {
+                        system_prompt = function(group, ctx)
+                            return (
+                                string.gsub(default_agent_prompt(group, ctx), "All non-code text.+language.", terse)
+                            )
+                        end,
+                    },
+                },
+                opts = {
+                    system_prompt = {
+                        prompt = function(args)
+                            return (
+                                string.gsub(
+                                    default_tool_prompt(args),
+                                    "Use proper Markdown formatting in your answers.",
+                                    terse
+                                )
+                            )
+                        end,
+                    },
+                },
                 -- Never prompt for read-only tools
                 read_file = { opts = { require_approval_before = false } },
                 grep_search = { opts = { require_approval_before = false } },
@@ -316,7 +359,7 @@ require("conform").setup({
         json = { "jq" },
         lua = { "stylua" },
         python = { "isort", "black" },
-        sh = { "shellharden" },
+        sh = { "shellcheck", "shellharden" },
         yaml = { "yq" },
     },
 })
@@ -334,20 +377,38 @@ vim.keymap.set({ "n", "v" }, "<leader>c", "<cmd>CodeCompanionChat Toggle<cr>")
 vim.keymap.set({ "n", "v" }, "<leader>w", vim.cmd.OutlineFocus)
 vim.keymap.set({ "n", "v" }, "<leader>k", vim.cmd.cprev)
 vim.keymap.set({ "n", "v" }, "<leader>h", vim.cmd.ClangdSwitchSourceHeader)
+
 vim.keymap.set({ "n", "v" }, "<leader>g", tele.lsp_definitions)
+-- "grt" is mapped to vim.lsp.buf.type_definition()
+
 vim.keymap.set({ "n", "v" }, "<leader>f", require("conform").format)
 vim.keymap.set({ "n", "v" }, "<leader>q", tele.builtin)
 vim.keymap.set({ "n", "v" }, "<leader>u", tele.resume)
-vim.keymap.set({ "n", "v" }, "<leader>i", tele.lsp_implementations) -- gri
---vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action) -- gra
+
+vim.keymap.set({ "n", "v" }, "<leader>i", tele.lsp_implementations)
+-- "gri" is mapped to vim.lsp.buf.implementation()
+
+--vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action)
+-- "gra" (Normal and Visual mode) is mapped to vim.lsp.buf.code_action()
+
 vim.keymap.set({ "n", "v" }, "<leader>a", "<cmd>CodeCompanionActions<cr>")
 vim.keymap.set({ "n", "v" }, "<leader>e", vim.diagnostic.open_float) -- Ctrl-W d
 vim.keymap.set({ "n", "v" }, "<leader>o", tele.git_files)
 vim.keymap.set({ "n", "v" }, "<leader>s", tele.lsp_dynamic_workspace_symbols)
-vim.keymap.set({ "n", "v" }, "<leader>n", vim.lsp.buf.rename) -- grn
-vim.keymap.set({ "n", "v" }, "<leader>r", tele.lsp_references) -- grr
+
+-- vim.keymap.set({ "n", "v" }, "<leader>n", vim.lsp.buf.rename)
+-- "grn" is mapped to vim.lsp.buf.rename()
+
+vim.keymap.set({ "n", "v" }, "<leader>r", tele.lsp_references)
+-- "grr" is mapped to vim.lsp.buf.references()
+
 vim.keymap.set({ "n", "v" }, "<leader>t", vim.cmd.ClangdTypeHierarchy) -- use "gd" to jump to entry
-vim.keymap.set({ "n", "v" }, "<leader>d", vim.lsp.buf.hover) -- K or gO or Ctrl-S
+
+-- vim.keymap.set({ "n", "v" }, "<leader>d", vim.lsp.buf.hover)
+-- K
+-- "gO" is mapped to vim.lsp.buf.document_symbol()
+-- CTRL-S (Insert mode) is mapped to vim.lsp.buf.signature_help()
+
 vim.keymap.set({ "n", "v" }, "<leader>y", tele.registers)
 vim.keymap.set({ "n", "v" }, "<leader>p", tele.lsp_incoming_calls)
 vim.keymap.set({ "n", "v" }, "<leader>z", tele.find_files)
@@ -356,3 +417,5 @@ vim.keymap.set({ "n", "v" }, "<leader>m", tele.oldfiles)
 vim.keymap.set({ "n", "v" }, "<leader>,", tele.live_grep)
 vim.keymap.set({ "n", "v" }, "<leader>.", tele.grep_string)
 vim.keymap.set({ "n", "v" }, "<leader>j", vim.cmd.cnext)
+
+-- "grx" is mapped to vim.lsp.codelens.run()
