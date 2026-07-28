@@ -95,6 +95,7 @@ vim.o.expandtab = true
 vim.o.exrc = true
 vim.o.foldlevelstart = 4
 vim.o.foldtext = ""
+vim.o.linebreak = true
 vim.o.ignorecase = true
 vim.o.mouse = ""
 --vim.o.number = true

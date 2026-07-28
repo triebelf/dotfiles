@@ -1,8 +1,10 @@
 theme = light:modus_operandi,dark:modus_vivendi_tinted
 maximize = true
 window-decoration = none
-font-family = "CommitMono"
-font-size = 12
+# font-family = "JetBrains Mono"
+# font-family = "CommitMono"
+font-family = "Cascadia Code NF"
+freetype-load-flags = hinting, no-force-autohint, no-autohint, no-light
 shell-integration = zsh
 initial-command = "tmux new -As main"
 confirm-close-surface = false

@@ -55,7 +55,8 @@ typeset -gU path cdpath fpath manpath
 path=("$HOME/.local/bin" "$HOME/.cargo/bin" $path)
 export PATH
 export PAGER="${PAGER:-less}"
-export EDITOR=nvim
+export EDITOR="nvim"
+alias sudoedit='SUDO_EDITOR="${commands[nvim]:-$EDITOR}" sudoedit'
 
 export ZSTD_CLEVEL="7"
 export ZSTD_NBTHREADS="0"
