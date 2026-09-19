@@ -52,8 +52,10 @@ alias http_share='python3 -m http.server 9999'
 ################################## ENVIRONMENT ##################################
 # automatically remove duplicates from these arrays
 typeset -gU path cdpath fpath manpath
-path=("$HOME/.local/bin" "$HOME/.cargo/bin" $path)
+path=("$HOME/.local/bin" "$HOME/.cargo/bin" "$HOME/.opencode/bin" $path)
 export PATH
+export XDG_CACHE_HOME="$HOME/.cache"
+
 export PAGER="${PAGER:-less}"
 export EDITOR="nvim"
 alias sudoedit='SUDO_EDITOR="${commands[nvim]:-$EDITOR}" sudoedit'

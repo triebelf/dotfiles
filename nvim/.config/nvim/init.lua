@@ -128,52 +128,70 @@ vim.diagnostic.config({ underline = false, signs = false, severity_sort = true, 
 require("copilot").setup({})
 
 local cc_defaults = require("codecompanion.config")
+local default_chat_prompt = cc_defaults.interactions.chat.opts.system_prompt
 local default_agent_prompt = cc_defaults.interactions.chat.tools.groups["agent"].system_prompt
 local default_tool_prompt = cc_defaults.interactions.chat.tools.opts.system_prompt.prompt
-local terse = [[
+
+local function with_terse(prompt)
+    return prompt
+        .. [[
+
+<responseStyle>
 Be extremely terse.
 Respond with code only; omit prose and explanation unless explicitly asked.
 Never write comments in code.
 Write any non-code text in grug-brain caveman speak: short sentences, simple words, drop articles.
+</responseStyle>
 ]]
+end
 
+-- require("mcphub").setup()
 require("codecompanion").setup({
-    adapters = { copilot = { model = "Auto" } },
     rules = { opts = { chat = { autoload = "default", enabled = true } } },
-    display = { chat = { fold_reasoning = false, show_reasoning = false } },
+    --display = { chat = { fold_reasoning = false, show_reasoning = false } },
+    -- adapters = {
+    --     http = {
+    --         extend = {
+    --             copilot = {
+    --                 parameters = {
+    --                     -- reasoning = { effort = "low" },
+    --                     text = { verbosity = "low" },
+    --                 },
+    --             },
+    --         },
+    --     },
+    -- },
     interactions = {
         chat = {
-            adapter = "copilot",
+            -- adapter = { name = "copilot", model = "claude-haiku-4.5" },
+            adapter = { name = "copilot", model = "claude-opus-5" },
+            -- adapter = { name = "copilot", model = "claude-sonnet-5" },
+            -- adapter = { name = "copilot", model = "gemini-3.8-flash" },
+            -- adapter = { name = "copilot", model = "gpt-5.6-luna" },
+            -- adapter = { name = "copilot", model = "gpt-5.6-sol" },
+            -- adapter = { name = "copilot", model = "gpt-5.6-terra"," },
+            -- adapter = { name = "copilot", model = "gpt-6-astra" },
+            -- adapter = { name = "copilot", model = "kimi-k2.7-code" },
+            -- adapter = { name = "copilot", model = "kimi-k3" },
+            -- adapter = { name = "copilot", model = "mai-code-1.1-flash" },
             -- adapter = { name = "ollama", model = "gemma4:12b" },
             opts = {
-                context_management = {
-                    compaction = { trigger = 0.7, min_token_savings = 5000 },
-                },
                 system_prompt = function(ctx)
-                    local prompt = string.gsub(ctx.default_system_prompt, "All non-code text.+language.", terse)
-                    return prompt .. "\n\n" .. terse
+                    return with_terse(default_chat_prompt(ctx))
                 end,
             },
             tools = {
                 groups = {
-                    ["agent"] = {
+                    agent = {
                         system_prompt = function(group, ctx)
-                            return (
-                                string.gsub(default_agent_prompt(group, ctx), "All non-code text.+language.", terse)
-                            )
+                            return with_terse(default_agent_prompt(group, ctx))
                         end,
                     },
                 },
                 opts = {
                     system_prompt = {
                         prompt = function(args)
-                            return (
-                                string.gsub(
-                                    default_tool_prompt(args),
-                                    "Use proper Markdown formatting in your answers.",
-                                    terse
-                                )
-                            )
+                            return with_terse(default_tool_prompt(args))
                         end,
                     },
                 },
@@ -199,7 +217,6 @@ require("codecompanion").setup({
     --     },
     -- },
 })
--- require("mcphub").setup()
 
 require("blink.cmp").setup({
     completion = {
@@ -300,14 +317,7 @@ vim.lsp.config("ltex_plus", {
     },
 })
 
--- TODO test
-vim.lsp.config("pyright", {
-    settings = {
-        python = {
-            analysis = { autoSearchPaths = true, diagnosticMode = "workspace", useLibraryCodeForTypes = true },
-        },
-    },
-})
+vim.lsp.config("ty", { settings = { ty = { diagnosticMode = "workspace" } } })
 
 vim.lsp.config("lua_ls", {
     settings = {
@@ -331,8 +341,9 @@ require("mason-lspconfig").setup({
         "lemminx",
         "ltex_plus",
         "lua_ls",
-        "pyright",
+        "ruff",
         "taplo",
+        "ty",
         "yamlls",
     },
 })
@@ -340,7 +351,6 @@ require("clangd_extensions").setup({})
 
 require("lint").linters_by_ft = {
     make = { "checkmake" },
-    python = { "mypy", "pylint" },
     rst = { "rstcheck" },
     sh = { "bash" },
     yaml = { "yamllint" },
@@ -354,12 +364,12 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
 })
 
 require("conform").setup({
+    default_format_opts = { lsp_format = "fallback" },
     formatters_by_ft = {
         bzl = { "buildifier" },
         cpp = { "clang_format" },
         json = { "jq" },
         lua = { "stylua" },
-        python = { "isort", "black" },
         sh = { "shellcheck", "shellharden" },
         yaml = { "yq" },
     },
