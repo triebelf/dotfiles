@@ -98,7 +98,6 @@ vim.o.foldtext = ""
 vim.o.linebreak = true
 vim.o.ignorecase = true
 vim.o.mouse = ""
---vim.o.number = true
 vim.o.shiftround = true
 vim.o.shiftwidth = 0
 vim.o.signcolumn = "yes"
@@ -128,73 +127,40 @@ vim.diagnostic.config({ underline = false, signs = false, severity_sort = true, 
 require("copilot").setup({})
 
 local cc_defaults = require("codecompanion.config")
-local default_chat_prompt = cc_defaults.interactions.chat.opts.system_prompt
-local default_agent_prompt = cc_defaults.interactions.chat.tools.groups["agent"].system_prompt
-local default_tool_prompt = cc_defaults.interactions.chat.tools.opts.system_prompt.prompt
 
-local function with_terse(prompt)
-    return prompt
-        .. [[
-
-<responseStyle>
-Be extremely terse.
-Respond with code only; omit prose and explanation unless explicitly asked.
-Never write comments in code.
-Write any non-code text in grug-brain caveman speak: short sentences, simple words, drop articles.
-</responseStyle>
-]]
-end
-
--- require("mcphub").setup()
+-- require("mcphub").setup({ auto_approve = true })
 require("codecompanion").setup({
-    rules = { opts = { chat = { autoload = "default", enabled = true } } },
-    --display = { chat = { fold_reasoning = false, show_reasoning = false } },
-    -- adapters = {
-    --     http = {
-    --         extend = {
-    --             copilot = {
-    --                 parameters = {
-    --                     -- reasoning = { effort = "low" },
-    --                     text = { verbosity = "low" },
-    --                 },
-    --             },
-    --         },
-    --     },
-    -- },
+    skills = { dirs = vim.list_extend(vim.deepcopy(cc_defaults.skills.dirs), { ".github/skills" }) },
+    rules = {
+        terse = {
+            description = "Token-saving response style",
+            parser = "codecompanion",
+            files = { "~/.config/codecompanion/rules/terse.md" },
+        },
+        opts = {
+            chat = {
+                autoload = { "default", "terse" },
+                autoload_groups_in_prompt_library = true,
+                enabled = true,
+            },
+        },
+    },
     interactions = {
         chat = {
-            -- adapter = { name = "copilot", model = "claude-haiku-4.5" },
-            adapter = { name = "copilot", model = "claude-opus-5" },
-            -- adapter = { name = "copilot", model = "claude-sonnet-5" },
-            -- adapter = { name = "copilot", model = "gemini-3.8-flash" },
-            -- adapter = { name = "copilot", model = "gpt-5.6-luna" },
-            -- adapter = { name = "copilot", model = "gpt-5.6-sol" },
-            -- adapter = { name = "copilot", model = "gpt-5.6-terra"," },
-            -- adapter = { name = "copilot", model = "gpt-6-astra" },
-            -- adapter = { name = "copilot", model = "kimi-k2.7-code" },
-            -- adapter = { name = "copilot", model = "kimi-k3" },
-            -- adapter = { name = "copilot", model = "mai-code-1.1-flash" },
+            adapter = { name = "copilot", model = "claude-opus-5.5" },
+            -- "claude-haiku-4.5"
+            -- "claude-opus-5.5"
+            -- "claude-sonnet-5.5"
+            -- "gemini-3.8-flash"
+            -- "gpt-6.1-sol"
+            -- "gpt-6-astra"
+            -- "gpt-6-luna"
+            -- "gpt-6-sol"
+            -- "kimi-k2.7-code"
+            -- "kimi-k3"
+            -- "mai-code-1.1-flash"
             -- adapter = { name = "ollama", model = "gemma4:12b" },
-            opts = {
-                system_prompt = function(ctx)
-                    return with_terse(default_chat_prompt(ctx))
-                end,
-            },
             tools = {
-                groups = {
-                    agent = {
-                        system_prompt = function(group, ctx)
-                            return with_terse(default_agent_prompt(group, ctx))
-                        end,
-                    },
-                },
-                opts = {
-                    system_prompt = {
-                        prompt = function(args)
-                            return with_terse(default_tool_prompt(args))
-                        end,
-                    },
-                },
                 -- Never prompt for read-only tools
                 read_file = { opts = { require_approval_before = false } },
                 grep_search = { opts = { require_approval_before = false } },
@@ -203,7 +169,7 @@ require("codecompanion").setup({
                 get_diagnostics = { opts = { require_approval_before = false } },
                 fetch_webpage = { opts = { require_approval_before = false } },
                 -- auto-approve all shell commands in YOLO mode:
-                run_command = { opts = { allowed_in_yolo_mode = true } },
+                run_command = { opts = { protect = false } },
             },
         },
     },
@@ -213,6 +179,9 @@ require("codecompanion").setup({
     --         opts = {
     --             make_tools = true,
     --             make_vars = false,
+    --             show_server_tools_in_chat = true,
+    --             add_mcp_prefix_to_tool_names = false,
+    --             make_slash_commands = true,
     --         },
     --     },
     -- },
@@ -351,6 +320,7 @@ require("clangd_extensions").setup({})
 
 require("lint").linters_by_ft = {
     make = { "checkmake" },
+    python = { "mypy" },
     rst = { "rstcheck" },
     sh = { "bash" },
     yaml = { "yamllint" },
