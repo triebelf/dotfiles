@@ -1,20 +1,18 @@
-belak/zsh-utils path:editor
-belak/zsh-utils path:history
+mattmc3/zephyr path:plugins/editor
+mattmc3/zephyr path:plugins/history
 
 sindresorhus/pure kind:fpath
-belak/zsh-utils path:prompt
+mattmc3/zephyr path:plugins/prompt
 
 zsh-users/zsh-completions
-belak/zsh-utils path:completion
+mattmc3/zephyr path:plugins/completion
 
-sorin-ionescu/prezto path:init.zsh
-sorin-ionescu/prezto path:modules/git
+sorin-ionescu/prezto path:modules/git/functions kind:autoload
+sorin-ionescu/prezto path:modules/git/alias.zsh
 nekofar/zsh-git-lfs
 
-ohmyzsh/ohmyzsh path:plugins/gpg-agent
-ohmyzsh/ohmyzsh path:plugins/direnv
+ptavares/zsh-direnv
 
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-history-substring-search
-3v1n0/zsh-bash-completions-fallback

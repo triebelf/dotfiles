@@ -10,22 +10,24 @@ setopt CORRECT_ALL
 setopt INTERACTIVE_COMMENTS
 
 ################################## PLUGINS ##################################
+# zephyr reads zstyles at load time
+zstyle ':zephyr:plugin:editor' key-bindings 'vi'
+zstyle ':zephyr:plugin:history' histfile "${XDG_DATA_HOME:-$HOME/.local/share}/zsh/history"
+zstyle ':zephyr:plugin:prompt' theme 'pure'
+
 [[ ! -d "$HOME/.antidote" ]] && git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 antidote load
 
-# vi mode and additional key bindings
-bindkey -v
+# additional key bindings
 [[ -n "${key_info[Up]}" ]] && bindkey -- "${key_info[Up]}" history-substring-search-up
 [[ -n "${key_info[Down]}" ]] && bindkey -- "${key_info[Down]}" history-substring-search-down
 
-prompt pure
 zstyle :prompt:pure:git:stash show yes
 export PURE_PROMPT_SYMBOL="»"
 export PURE_PROMPT_VICMD_SYMBOL="«"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=250"
-compstyle 'prezto'
 autoload -U zmv
 
 export LS_COLORS="di=01;36:ln=01;35:so=01;33:pi=01;33:bd=01;33:ex=01;32:or=01;31:mi=00;su=01;31:sg=01;31:tw=01;34:ow=01;34"
@@ -52,7 +54,7 @@ alias http_share='python3 -m http.server 9999'
 ################################## ENVIRONMENT ##################################
 # automatically remove duplicates from these arrays
 typeset -gU path cdpath fpath manpath
-path=("$HOME/.local/bin" "$HOME/.cargo/bin" "$HOME/.opencode/bin" $path)
+path=("$HOME/.local/bin" "$HOME/.cargo/bin" "$HOME/.opencode/bin" "$HOME/.direnv" $path)
 export PATH
 export XDG_CACHE_HOME="$HOME/.cache"
 

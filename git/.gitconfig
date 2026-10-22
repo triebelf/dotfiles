@@ -19,7 +19,7 @@
 [pull]
     ff = only
 [push]
-    default = upstream
+    default = current
     autoSetupRemote = true
 [fetch]
     prune = true
