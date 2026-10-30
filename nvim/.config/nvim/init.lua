@@ -77,7 +77,7 @@ if missing then
 end
 
 vim.o.termguicolors = true
-require("modus-themes").setup({ style = "auto", variants = { modus_vivendi = "tinted" } })
+require("modus-themes").setup({ style = "auto", transparent = true })
 vim.cmd("colorscheme modus")
 
 require("lualine").setup({ options = { theme = "auto" } })
@@ -119,6 +119,7 @@ vim.filetype.add({
     pattern = {
         [".+cpp.*"] = "cpp",
         [".+hpp.*"] = "cpp",
+        [".+xml.*"] = "xml",
     },
 })
 
@@ -197,25 +198,12 @@ require("blink.cmp").setup({
 })
 
 require("outline").setup({
+    outline_window = { auto_width = { enabled = true, max_width = 25 } },
     guides = { enabled = false },
     symbols = {
-        icons = {
-            Array = { icon = "▦", hl = "Constant" },
-            Class = { icon = "󱡠", hl = "Type" },
-            Constructor = { icon = "󰒓", hl = "Special" },
-            Enum = { icon = "󰦨", hl = "Type" },
-            EnumMember = { icon = "󰦨", hl = "Identifier" },
-            Field = { icon = "󰜢", hl = "Identifier" },
-            Function = { icon = "󰊕", hl = "Function" },
-            Method = { icon = "󰊕", hl = "Function" },
-            Module = { icon = "󰅩", hl = "Include" },
-            Namespace = { icon = "∷", hl = "Include" },
-            Null = { icon = "␀", hl = "Type" },
-            Property = { icon = "󰖷", hl = "Identifier" },
-            String = { icon = "󰉿", hl = "String" },
-            Struct = { icon = "󱡠", hl = "Structure" },
-            Variable = { icon = "󰆦", hl = "Constant" },
-        },
+        icon_fetcher = function(kind, bufnr, symbol)
+            return kind:sub(1, 1)
+        end,
     },
 })
 
