@@ -128,15 +128,34 @@ vim.diagnostic.config({ underline = false, signs = false, severity_sort = true, 
 require("copilot").setup({})
 
 local cc_defaults = require("codecompanion.config")
+local function repo_rule_groups()
+    local groups = {}
+    for _, pattern in ipairs({ ".github/prompts/*.prompt.md", ".github/instructions/*.md" }) do
+        for _, path in ipairs(vim.fn.glob(pattern, false, true)) do
+            local name = vim.fn.fnamemodify(path, ":t"):gsub("%.prompt%.md$", ""):gsub("%.md$", "")
+            groups[name] = { description = path, files = { path } }
+        end
+    end
+    return groups
+end
 
 -- require("mcphub").setup({ auto_approve = true })
 require("codecompanion").setup({
-    skills = { dirs = vim.list_extend(vim.deepcopy(cc_defaults.skills.dirs), { ".github/skills" }) },
+    skills = {
+        dirs = vim.list_extend(
+            vim.deepcopy(cc_defaults.skills.dirs),
+            { ".github/skills", "~/.config/codecompanion/skills" }
+        ),
+    },
     rules = {
         terse = {
             description = "Token-saving response style",
             parser = "codecompanion",
             files = { "~/.config/codecompanion/rules/terse.md" },
+        },
+        repo_prompts = {
+            description = "Repo prompts/instructions",
+            files = repo_rule_groups(),
         },
         opts = {
             chat = {
@@ -149,17 +168,6 @@ require("codecompanion").setup({
     interactions = {
         chat = {
             adapter = { name = "copilot", model = "claude-opus-5.5" },
-            -- "claude-haiku-4.5"
-            -- "claude-opus-5.5"
-            -- "claude-sonnet-5.5"
-            -- "gemini-3.8-flash"
-            -- "gpt-6.1-sol"
-            -- "gpt-6-astra"
-            -- "gpt-6-luna"
-            -- "gpt-6-sol"
-            -- "kimi-k2.7-code"
-            -- "kimi-k3"
-            -- "mai-code-1.1-flash"
             -- adapter = { name = "ollama", model = "gemma4:12b" },
             tools = {
                 -- Never prompt for read-only tools
